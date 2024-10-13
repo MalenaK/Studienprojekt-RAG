@@ -267,4 +267,4 @@ dependencies:
       - wrapt==1.16.0
       - yarl==1.13.1
       - zipp==3.20.2
-prefix: C:\Users\Danyal\anaconda3\envs\studyproject
+prefix: C:\Users\{USERNAME}\anaconda3\envs\studyproject #PLEASE ENTER YOUR USERNAME HERE
