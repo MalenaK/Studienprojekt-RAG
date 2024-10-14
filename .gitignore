@@ -1,0 +1,9 @@
+# Editors
+.vscode/
+.idea/
+
+# Byte-compiled
+__pychache__/
+
+#Database contents
+chroma/*
