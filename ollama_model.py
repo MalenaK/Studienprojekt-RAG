@@ -86,6 +86,7 @@ class Model:
         """
         prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
         prompt: str = prompt_template.format(context=context_text, question=query)
+        print(f"prompting the LLM with: \n{prompt}")
         answer: str = self.model.invoke(prompt)
         return answer
 

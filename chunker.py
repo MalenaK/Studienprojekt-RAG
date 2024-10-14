@@ -1,7 +1,7 @@
 from langchain.schema.document import Document
 
 def calculate_chunk_ids(chunks: list[Document]):
-    current_idx = 0
+    current_chunk_index = 0
     last_page_id = None
 
     for chunk in chunks:

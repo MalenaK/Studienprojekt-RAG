@@ -19,8 +19,8 @@ from embedding import get_embedding_function
 #
 
 #Instantiate Required Objects
-llm_model: Model = Model()  # Idk why it says that we are getting None here in pycharm, it returns an object
-db_helper = DatabaseHelper(model=llm_model.get_model())
+llm_model: Model = Model(model="llama3")  # Idk why it says that we are getting None here in pycharm, it returns an object
+db_helper = DatabaseHelper(model="mxbai-embed-large")
 doc_handler = DocumentHandler()
 
 
