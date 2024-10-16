@@ -19,8 +19,8 @@ class DocumentHandler:
 
 
     #custom len function that uses words (tokens) instead of character amount
-    def token_length(self, text: str) -> int:
-        return len(self.tokenizer.encode(text))
+    #def token_length(self, text: str) -> int:
+    #    return len(self.tokenizer.encode(text))
 
     def load_documents(self, file_path: str = "./data") -> list[Document]:
         # Ensure the directory exists before trying to load documents
