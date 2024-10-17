@@ -41,6 +41,19 @@ class Model:
     Answer: 
     """
 
+    template_cpy: str = """
+        Answer the question based on the following context:
+        {context}
+
+        ---
+
+        Question: {question}
+
+        ---
+
+        Answer: 
+        """
+
     template_sheldon: str = """
     Pretend you are Sheldon from the Big Bang Theory and answer the following question based on the context but you must include at least 1 Bazinga in your answer but the more the better.
     Here is the context: 
@@ -110,3 +123,9 @@ class Model:
     def activate_sheldon_mode(self) -> str:
         self.template = self.template_sheldon
         return "🧠 Activating Sheldon Mode, BAZINGA ⚡"
+
+    def set_template(self, template: str) -> None:
+        self.template = template
+
+    def reset_template(self):
+        self.template = self.template_cpy

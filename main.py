@@ -16,11 +16,15 @@ from embedding import get_embedding_function
 
 #TODO SEE DOCUMENT HANDLER
 #TODO DOCUMENTATION/CLEAN UP
-#
+
+
+#Config Parameters
+config_model = "llama3"
+config_embedding = "mxbai-embed-large"
 
 #Instantiate Required Objects
-llm_model: Model = Model(model="llama3")  # Idk why it says that we are getting None here in pycharm, it returns an object
-db_helper = DatabaseHelper(model="mxbai-embed-large")
+llm_model: Model = Model(model=config_model)  # Idk why it says that we are getting None here in pycharm, it returns an object
+db_helper = DatabaseHelper(model=config_embedding)
 doc_handler = DocumentHandler()
 
 
@@ -41,8 +45,6 @@ def query_rag(query_text) -> str:
     return formatted_answer
 
 def main():
-    llm_model: Model = Model() #Idk why it says that we are getting None here in pycharm, it returns an object
-
     print(llm_model.generate_answer("There is no context", "Can you respond with 'Hello, everything is working fine!'"))
 
     # Check if the database should be cleared (using the --clear flag). We could use a different better approach here this /
