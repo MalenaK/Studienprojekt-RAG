@@ -27,7 +27,7 @@ class DatabaseHelper:
         db: Chroma = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(self.model))
 
         # Calculate Page IDs.
-        chunks_with_ids: chunks = calculate_chunk_ids(chunks)
+        chunks_with_ids: list[Document] = calculate_chunk_ids(chunks)
 
         # Add or Update the documents.
         existing_items:  dict[str, Any] = db.get(include=[])  # IDs are always included by default
@@ -56,6 +56,8 @@ class DatabaseHelper:
 
             #debug end_time = time.time()  # End timing
             #debug print(f"Time taken to save documents: {end_time - start_time:.2f} seconds")
+        else:
+            print("No new documents detected - no changes to db are made.")
 
     def clear_database(self):
         if os.path.exists(self.chroma_path):

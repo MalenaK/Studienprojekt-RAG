@@ -24,7 +24,7 @@ config_embedding = "mxbai-embed-large"
 
 #Instantiate Required Objects
 llm_model: Model = Model(model=config_model)  # Idk why it says that we are getting None here in pycharm, it returns an object
-db_helper = DatabaseHelper(model=llm_model.get_model())
+db_helper = DatabaseHelper(model=config_embedding)
 doc_handler = DocumentHandler()
 
 
