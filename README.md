@@ -26,12 +26,12 @@ The project was done for the chair "Soziotechnisches Systemdesign und Künstlich
 1. Clone the repository and navigate into the root directory 
 
 2. Review localRAG_env.yaml
-Ensure the dependencies listed in `localRAG_env.yaml` follow this format:
-`- package=1.3`
-or simply
-`- package`
-**Not this format:**
-`- package=1.3=h28994`
+Ensure the dependencies listed in `localRAG_env.yaml` follow this format:\
+`- package=1.3`\
+or simply\
+`- package`\
+**Not this format:**\
+`- package=1.3=h28994`\
 This ensures compatibility across different operating systems. Remove the build number (`=h28994`) if needed
  -  **Remove Windows-specific dependencies** from the YAML file:
 	- `pywin32-ctypes`
