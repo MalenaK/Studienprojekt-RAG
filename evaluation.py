@@ -3,6 +3,8 @@ from pypika.enums import Boolean
 from sympy import false
 
 from main import *
+from test_cases import *
+
 #Maybe improve this by actually using 3 models and making it a democratic decision if an answer was correct or not
 
 test_template = """
@@ -60,12 +62,7 @@ def test_model(question: str, expected_answer: str) -> bool | None:
         return None
 
 
-def test_case_1():
-    test_model("Basketball is played by how many teams?", "2")
 
-
-def test_case_1_complement():
-    test_model("Basketball is played by how many teams?", "10")
 
 
 positive_test_cases = [test_case_1] #...
