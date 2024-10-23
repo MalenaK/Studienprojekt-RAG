@@ -14,7 +14,6 @@ Actual Response: {question}
 
 Does the actual response match the expected Response regarding content? Only answer with "true" or "false". 
 """
-global counter
 counter: int = 0
 
 
@@ -37,7 +36,6 @@ def query_rag_no_sources(query_text) -> str:
 def test_model(question: str, expected_answer: str) -> bool | None:
     global counter
     actual_answer = query_rag_no_sources(question)
-
     # Change template to evaluation mode
     llm_model.set_template(test_template)
 
@@ -63,11 +61,6 @@ def test_model(question: str, expected_answer: str) -> bool | None:
 
 
 
-
-
-positive_test_cases = [test_case_1] #...
-negative_test_cases = [test_case_1_complement]
-
 def test_loop():
     #Normal tests that should return true
     false_positives = 0
@@ -81,7 +74,9 @@ def test_loop():
         if test() != False:
             false_negatives += 1
 
-    print(f"\n{"-"*100}\nTotal Accuracy: {100*((false_negatives+false_positives)/counter)} %\n"
+    num_test_cases = len(positive_test_cases) + len(negative_test_cases)
+    print(num_test_cases)
+    print(f"\n{"-"*100}\nTotal Accuracy: {100*((false_negatives+false_positives)/num_test_cases)} %\n"
           f"False Positive Percentage: {100*(false_positives/len(positive_test_cases))} %\n"
           f"False Negative Percentage: {100*(false_negatives/len(negative_test_cases))} %\n")
 
