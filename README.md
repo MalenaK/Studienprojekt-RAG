@@ -6,17 +6,18 @@ The project was done for the chair "Soziotechnisches Systemdesign und Künstlich
 0. Install Anaconda for managing python environments: https://www.anaconda.com/download/
 
 1. After cloning this git repository, in the root directory of your local repo, install the python env. If you want to modify the path where the env will be installed, open the localRAG_env.yaml file and change the path in the prefix section. Otherwise, the env will be installed to the default directory. Use `conda env create -f localRAG_env.yaml` to install the environment.
+If you receive the error "Microsoft Visual Studio C++ is required" then proceed with installing it. Open Visual Studio and go to the tap "individual components". Here, select "MSVC v143 - VS 2022 C++ x64/x86 build tools (latest)" and "Windows [your windows version] SDK" with the latest version. Let these components install and try executing the conda create command again.
 
-2. Activate your env, e.g. via command `conda activate studyproject` or with help of your IDE (CTRL+Shift+P in Visual Studio Code)
+3. Activate your env, e.g. via command `conda activate studyproject` or with help of your IDE (CTRL+Shift+P in Visual Studio Code)
 
-3. Install Ollama for accessing open-source LLMs: https://ollama.com/
+4. Install Ollama for accessing open-source LLMs: https://ollama.com/
 
-4. Pull necessary LLMs using Ollama:
+5. Pull necessary LLMs using Ollama:
      1. `ollama pull llama3`
      2. `ollama pull [name of model for embedding]`
-5. Serve local LLM via `ollama serve`. If you receive the error message `Error: listen tcp 127.0.0.1:[port number]: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.` then ollama is probably already running and you can proceed with the next step.
+6. Serve local LLM via `ollama serve`. If you receive the error message `Error: listen tcp 127.0.0.1:[port number]: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.` then ollama is probably already running and you can proceed with the next step.
 
-6. In the root directory of your repository, execute `python main.py` to start using our project.
+7. In the root directory of your repository, execute `python main.py` to start using our project.
 
 
 ## for Linux Machines
