@@ -24,7 +24,7 @@ config_embedding = "mxbai-embed-large"
 
 #Instantiate Required Objects
 llm_model: Model = Model(model=config_model)  # Idk why it says that we are getting None here in pycharm, it returns an object
-db_helper = DatabaseHelper(model=llm_model.get_model())
+db_helper = DatabaseHelper(model=config_embedding)
 doc_handler = DocumentHandler()
 
 
@@ -47,25 +47,29 @@ def query_rag(query_text) -> str:
 def main():
     print(llm_model.generate_answer("There is no context", "Can you respond with 'Hello, everything is working fine!'"))
 
+    parser = argparse.ArgumentParser()
+
     # Check if the database should be cleared (using the --clear flag). We could use a different better approach here this /
     # is temporary
-    # -----------------------------------------
-    parser = argparse.ArgumentParser()
     parser.add_argument("--reset", action="store_true", help="Reset the database.")
+
+    # flag for path to pdfs
+    parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
+
     args = parser.parse_args()
     if args.reset:
         print("Clearing Database...")
         db_helper.clear_database()
-    #--------------------------------------
+
 
     # Create (or update) the data store.
-    documents = doc_handler.load_documents()
+    documents = doc_handler.load_documents(file_path=args.pdf_dir)
     chunks = doc_handler.split_documents(documents)
     db_helper.add_to_chroma(chunks)
 
     #Main Loop
-    print("Enter 'exit' to exit")
     while True:
+        print("\nEnter 'exit' to exit")
         query_text = input("Prompt: ")
         if query_text == 'exit':
             break
