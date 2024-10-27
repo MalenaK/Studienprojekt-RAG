@@ -75,7 +75,8 @@ def test_loop():
             false_negatives += 1
 
     num_test_cases = len(positive_test_cases) + len(negative_test_cases)
-    print(f"\n{"-"*100}\nTotal Accuracy: {100*((false_negatives+false_positives)/num_test_cases)} %\n"
+    num_correct_answers = num_test_cases - false_negatives - false_positives
+    print(f"\n{"-"*100}\nTotal Accuracy: {100*(num_correct_answers/num_test_cases)} %\n"
           f"False Positive Percentage: {100*(false_positives/len(positive_test_cases))} %\n"
           f"False Negative Percentage: {100*(false_negatives/len(negative_test_cases))} %\n")
 
