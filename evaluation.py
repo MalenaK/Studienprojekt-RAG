@@ -83,4 +83,18 @@ def test_loop():
 
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--reset", action="store_true", help="Reset the database.")
+    parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
+
+    args = parser.parse_args()
+    if args.reset:
+        print("Clearing Database...")
+        db_helper.clear_database()
+
+
+    # Create (or update) the data store.
+    update_data_store(args.pdf_dir)
+
     test_loop()
