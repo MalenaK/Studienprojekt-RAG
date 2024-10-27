@@ -12,60 +12,60 @@ def test_case_101_complement():
 
 
 def test_case_102():
-    return test_model("What dimensions is the playing ground?", "28 m in length by 15 m in width")
+    return test_model("What dimensions is the playing ground in Basketball?", "28 m in length by 15 m in width")
 
 def test_case_102_complement():
-    return test_model("What dimensions is the playing ground?", "12 m in length by 5 m in width")
+    return test_model("What dimensions is the playing ground in Basketball?", "12 m in length by 5 m in width")
 
 def test_case_103():
-    return test_model("Can lines be of different colors?", "No")
+    return test_model("On a single playing court in Basketball, can lines be of different colors?", "No")
 
 def test_case_103_complement():
-    return test_model("Can lines be of different colors?", "Yes")
+    return test_model("On a single playing court in Basketball, can lines be of different colors?", "Yes")
 
 
 def test_case_104():
-    return test_model("How can a defensive player establish a legal guarding position?", "Face his opponent and have both feet on the floor")
+    return test_model("How can a defensive player establish a legal guarding position in Basketball??", "Face his opponent and have both feet on the floor")
 
 def test_case_104_complement():
-    return test_model("How can a defensive player establish a legal guarding position?", "Be airborne")
+    return test_model("How can a defensive player establish a legal guarding position in Basketball??", "Be airborne")
 
 def test_case_105():
-    return test_model("May a team substitute a player?", "Yes")
+    return test_model("May a team substitute a player in Basketball??", "Yes")
 
 def test_case_105_complement():
-    return test_model("May a team substitute a player?", "No")
+    return test_model("May a team substitute a player in Basketball??", "No")
 
 def test_case_106():
-    return test_model("How long does a timeout last?", "1 Minute")
+    return test_model("How long does a timeout last in Basketball?", "1 Minute")
 
 def test_case_106_complement():
-    return test_model("How long does a timeout last?", "1 hour")
+    return test_model("How long does a timeout last in Basketball??", "1 hour")
 
 def test_case_107():
-    return test_model("Of how many quarters does a game consist?", "4")
+    return test_model("Of how many quarters does a game consist in Basketball??", "4")
 
 def test_case_107_complement():
-    return test_model("Of how many quarters does a game consist?", "2")
+    return test_model("Of how many quarters does a game consist in Basketball??", "2")
 
 def test_case_108():
-    return test_model("How many minutes does a quarter have?", "10 minutes")
+    return test_model("How many minutes does a quarter have in Basketball?", "10 minutes")
 
 def test_case_108_complement():
-    return test_model("How many minutes does a quarter have?", "15 minutes")
+    return test_model("How many minutes does a quarter have in Basketball?", "15 minutes")
 
 def test_case_109():
-    return test_model("How many players are allowed for each team on the play court?", "5")
+    return test_model("How many players are allowed for each team on the play court in Basketball??", "5")
 
 def test_case_109_complement():
-    return test_model("How many minutes does a quarter have?", "15 minutes")
+    return test_model("How many minutes does a quarter have in Basketball??", "15 minutes")
 
 def test_case_110():
-    return test_model("What is charging?", "Charging is illegal personal contact, with or without the "
+    return test_model("What is charging in Basketball??", "Charging is illegal personal contact, with or without the "
                                     "ball, by pushing or moving into an opponent’s torso.")
 
 def test_case_110_complement():
-    return test_model("What is charging?", "Pulling yourself up via the rim to score a goal")
+    return test_model("What is charging in Basketball??", "Pulling yourself up via the rim to score a goal")
 
 fiba_positive_test_cases = [
     test_case_101,
