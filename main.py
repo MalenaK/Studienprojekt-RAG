@@ -20,7 +20,8 @@ from embedding import get_embedding_function
 
 #Config Parameters
 config_model = "llama3"
-config_embedding = "mxbai-embed-large"
+# config_embedding = "mxbai-embed-large"
+config_embedding = "sentence-transformers/all-mpnet-base-v2"
 
 #Instantiate Required Objects
 llm_model: Model = Model(model=config_model)  # Idk why it says that we are getting None here in pycharm, it returns an object
