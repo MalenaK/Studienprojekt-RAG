@@ -248,10 +248,10 @@ def test_case_309_complement():
     return test_model("What are the 3 largest ethnic groups in Germany?", "1. French (45%), 2.Albanian(44%), 3.Mongolian(1%)")
 
 def test_case_310():
-    return test_model("What are the 3 largest religions?", "1.Roman Catholic (24.8%), 2.Protestant (22.6%), 3.Muslim (3.7%)")
+    return test_model("What are the 3 largest religions in Germany?", "1.Roman Catholic (24.8%), 2.Protestant (22.6%), 3.Muslim (3.7%)")
 
 def test_case_310_complement():
-    return test_model("What are the 3 largest religions?", "1.Hindu (25%), 2.Muslim (21%), 3.Jewish (12 %)")
+    return test_model("What are the 3 largest religions in Germany?", "1.Hindu (25%), 2.Muslim (21%), 3.Jewish (12 %)")
 
 germany_positive_test_cases = [
     test_case_301,
