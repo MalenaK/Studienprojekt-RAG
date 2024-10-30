@@ -49,6 +49,7 @@ def update_data_store(pdf_dir):
     documents = doc_handler.load_documents(file_path=pdf_dir)
     chunks = doc_handler.split_documents(documents)
     db_helper.add_to_chroma(chunks)
+    print(chunks[20])
 
 def main():
     print(llm_model.generate_answer("There is no context", "Can you respond with 'Hello, everything is working fine!'"))
