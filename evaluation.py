@@ -3,6 +3,8 @@ from pypika.enums import Boolean
 from sympy import false
 
 from main import *
+from test_cases import *
+
 #Maybe improve this by actually using 3 models and making it a democratic decision if an answer was correct or not
 
 test_template = """
@@ -12,7 +14,6 @@ Actual Response: {question}
 
 Does the actual response match the expected Response regarding content? Only answer with "true" or "false". 
 """
-global counter
 counter: int = 0
 
 
@@ -35,7 +36,6 @@ def query_rag_no_sources(query_text) -> str:
 def test_model(question: str, expected_answer: str) -> bool | None:
     global counter
     actual_answer = query_rag_no_sources(question)
-
     # Change template to evaluation mode
     llm_model.set_template(test_template)
 
@@ -60,16 +60,6 @@ def test_model(question: str, expected_answer: str) -> bool | None:
         return None
 
 
-def test_case_1():
-    test_model("Basketball is played by how many teams?", "2")
-
-
-def test_case_1_complement():
-    test_model("Basketball is played by how many teams?", "10")
-
-
-positive_test_cases = [test_case_1] #...
-negative_test_cases = [test_case_1_complement]
 
 def test_loop():
     #Normal tests that should return true
@@ -84,11 +74,27 @@ def test_loop():
         if test() != False:
             false_negatives += 1
 
-    print(f"\n{"-"*100}\nTotal Accuracy: {100*((false_negatives+false_positives)/counter)} %\n"
+    num_test_cases = len(positive_test_cases) + len(negative_test_cases)
+    num_correct_answers = num_test_cases - false_negatives - false_positives
+    print(f"\n{"-"*100}\nTotal Accuracy: {100*(num_correct_answers/num_test_cases)} %\n"
           f"False Positive Percentage: {100*(false_positives/len(positive_test_cases))} %\n"
           f"False Negative Percentage: {100*(false_negatives/len(negative_test_cases))} %\n")
 
 
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--reset", action="store_true", help="Reset the database.")
+    parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
+
+    args = parser.parse_args()
+    if args.reset:
+        print("Clearing Database...")
+        db_helper.clear_database()
+
+
+    # Create (or update) the data store.
+    update_data_store(args.pdf_dir)
+
     test_loop()
