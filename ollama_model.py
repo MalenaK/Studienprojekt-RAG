@@ -102,6 +102,28 @@ class Model:
         print(f"prompting the LLM with: \n{prompt}")
         answer: str = self.model.invoke(prompt)
         return answer
+    
+    def generate_answer_for_evaluation(self, question: str, expected_answer: str, actual_answer: str) -> str:
+        """
+        Generates answer from context retrieved by RAG and Query by user
+
+        Parameters
+        ----------
+        context_text: str
+            context that was found by RAG
+        query: str
+            user question used to query the RAG and Model
+
+        Returns
+        -------
+        str
+            Output of model, i.e. generated answer
+        """
+        prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
+        prompt: str = prompt_template.format(question=question, expected_answer=expected_answer, actual_answer=actual_answer)
+        print(f"prompting the LLM with: \n{prompt}")
+        answer: str = self.model.invoke(prompt)
+        return answer
 
     def change_template(self, new_template: str) -> None:
         """

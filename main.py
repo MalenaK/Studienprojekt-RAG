@@ -8,10 +8,6 @@ from database_helper import DatabaseHelper
 
 from document_handler import DocumentHandler
 
-from embedding import get_embedding_function
-
-
-
 #Use Cuda 12.4 https://developer.nvidia.com/cuda-12-4-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local
 
 #TODO SEE DOCUMENT HANDLER

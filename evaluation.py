@@ -1,21 +1,24 @@
-from numpy.ma.core import negative
-from pypika.enums import Boolean
-from sympy import false
-
 from main import *
 from test_cases import *
 
 #Maybe improve this by actually using 3 models and making it a democratic decision if an answer was correct or not
 
 test_template = """
-Question: 
-Expected Response: {context}
-Actual Response: {question}
+Question: {question}
+Expected Response: {expected_answer}
+Actual Response: {actual_answer}
 
 Does the actual response match the expected Response regarding content? Only answer with "true" or "false". 
+Just use one of these two words (true/false) and do not elaborate.
 """
 counter: int = 0
 
+#use regular chat llm as evaluation llm no 1
+evaluation_llm1: Model = Model(model="llama3")
+evaluation_llm2: Model = Model(model="phi3:mini")
+evalutaion_llm3: Model = Model(model="mistral")
+
+evaluation_llms = [evaluation_llm1, evaluation_llm2, evalutaion_llm3]
 
 #Using sources is not necessary in comparison
 def query_rag_no_sources(query_text) -> str:
@@ -31,25 +34,16 @@ def query_rag_no_sources(query_text) -> str:
 
     return answer
 
+def query_judging_model(evalutaion_llm: Model, expected_answer: str, actual_answer: str, question: str):
+    evalutaion_llm.set_template(test_template)
 
+    evaluation = evalutaion_llm.generate_answer_for_evaluation(question, expected_answer, actual_answer)
 
-def test_model(question: str, expected_answer: str) -> bool | None:
-    global counter
-    actual_answer = query_rag_no_sources(question)
-    # Change template to evaluation mode
-    llm_model.set_template(test_template)
+    print("\nmodel evaluation: \n", evaluation)
 
-    #Evaluate the response
-    context = f"Question: {question}\nExpected Response: {expected_answer}"
-    evaluation = llm_model.generate_answer(context, actual_answer)
-    print(f"{"-"*50}\nTest Case Number: {counter}\nQuestion: {question}\nActual Answer: {actual_answer}\nExpected Answer: {expected_answer}\nEvaluation: {evaluation}\n{"-"*50}\n\n")
+    evalutaion_llm.reset_template()
 
-    #Track test cases number
-    counter += 1
-    llm_model.reset_template()
-
-    #return if true or false
-    evaluation = evaluation.lower()
+    evaluation = evaluation.replace(" ", "").lower()
     if evaluation == "true":
         return True
     elif evaluation == "false":
@@ -60,6 +54,35 @@ def test_model(question: str, expected_answer: str) -> bool | None:
         return None
 
 
+def test_model(question: str, expected_answer: str) -> bool | None:
+    global counter
+    actual_answer = query_rag_no_sources(question)
+
+    eval_false_answers = 0
+    eval_true_answers = 0
+
+    for evaluation_llm in evaluation_llms:
+        #print("\n####model name####\n",evaluation_llm.get_model())
+        result = query_judging_model(evalutaion_llm=evaluation_llm, actual_answer=actual_answer, expected_answer=expected_answer, question=question)
+        #print("corresponding result: ", result)
+        if result == True:
+            eval_true_answers += 1
+        elif result == False:
+            eval_false_answers += 1
+        #else None was returned, answer is not counted
+
+    evaluation = None #None in case of tie
+    if eval_true_answers > eval_false_answers:
+        evaluation = True
+    elif eval_true_answers < eval_false_answers:
+        evaluation = False
+
+    print(f"{"-"*50}\nTest Case Number: {counter}\nQuestion: {question}\nActual Answer: {actual_answer}\nExpected Answer: {expected_answer}\nEvaluation: {evaluation}\nNumber of true evaluations:{eval_true_answers}, Number of false evaluations:{eval_false_answers}\n{"-"*50}\n\n")
+
+    #Track test cases number
+    counter += 1
+
+    return evaluation
 
 def test_loop():
     #Normal tests that should return true
