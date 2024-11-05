@@ -9,13 +9,13 @@ Expected Response: {expected_answer}
 Actual Response: {actual_answer}
 
 Does the actual response match the expected Response regarding content? Only answer with "true" or "false". 
-Just use one of these two words (true/false) and do not elaborate.
+Just use one of these two words (true/false) and do not elaborate!
 """
 counter: int = 0
 
 #use regular chat llm as evaluation llm no 1
 evaluation_llm1: Model = Model(model="llama3")
-evaluation_llm2: Model = Model(model="phi3:mini")
+evaluation_llm2: Model = Model(model="phi3:medium")
 evalutaion_llm3: Model = Model(model="mistral")
 
 evaluation_llms = [evaluation_llm1, evaluation_llm2, evalutaion_llm3]
@@ -39,11 +39,12 @@ def query_judging_model(evalutaion_llm: Model, expected_answer: str, actual_answ
 
     evaluation = evalutaion_llm.generate_answer_for_evaluation(question, expected_answer, actual_answer)
 
-    print("\nmodel evaluation: \n", evaluation)
+    print("\nmodel evaluation from model:", evalutaion_llm.get_model(),evaluation,"\n")
 
     evalutaion_llm.reset_template()
 
-    evaluation = evaluation.replace(" ", "").lower()
+    evaluation = evaluation.split(' ')[0]
+    evaluation = evaluation.replace(" ", "").replace(".", "").lower()
     if evaluation == "true":
         return True
     elif evaluation == "false":
@@ -64,7 +65,7 @@ def test_model(question: str, expected_answer: str) -> bool | None:
     for evaluation_llm in evaluation_llms:
         #print("\n####model name####\n",evaluation_llm.get_model())
         result = query_judging_model(evalutaion_llm=evaluation_llm, actual_answer=actual_answer, expected_answer=expected_answer, question=question)
-        #print("corresponding result: ", result)
+        print("corresponding result: ", result)
         if result == True:
             eval_true_answers += 1
         elif result == False:
