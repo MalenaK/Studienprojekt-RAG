@@ -1,0 +1,719 @@
+[START OF TEST]
+--------------------------------------------------
+Test Case Number: 0
+Question: A game of Basketball is played by how many teams?
+Actual Answer: According to the provided context, a game of Basketball is played by 2 teams, each consisting of 5 players.
+Expected Answer: 2
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 1
+Question: What dimensions is the playing ground?
+Actual Answer: According to the provided context, the dimensions of the playing court are:
+
+* Length: 28 meters
+* Width: 15 meters
+
+These measurements are taken from the inner edge of the boundary line.
+Expected Answer: 28 m in length by 15 m in width
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 2
+Question: Can lines be of different colors?
+Actual Answer: Based on the provided context, which appears to be a combination of basketball rules and wiring diagrams from a military vehicle, it can be inferred that in the context of basketball, "imaginary lines" are used to define certain areas such as the no-charge semi-circles. These imaginary lines are not part of the playing court.
+
+As for your question about whether lines can be of different colors, the answer is yes. In fact, the provided wiring diagram (Figure 19) shows various wires with different colored insulation, including:
+
+* Black
+* Red
+* Yellow
+* Blue
+* Green
+* Tan
+* Orange
+
+This suggests that in this context, different colors are used to distinguish between different lines or wires.
+Expected Answer: No
+Evaluation: No context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 3
+Question: How can a defensive player establish a legal guarding position?
+Actual Answer: According to the context, a defensive player can establish a legal guarding position by:
+
+• Facing his opponent
+• Having both feet on the floor
+• Maintaining an initial legal guarding position without causing contact before taking their position.
+
+This allows the defensive player to maintain a vertical position (cylinder) and may move laterally or backwards to maintain the initial legal guarding position.
+Expected Answer: Face his opponent and have both feet on the floor
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 4
+Question: May a team substitute a player?
+Actual Answer: Yes, according to Article 19 of the Official Basketball Rules 2020, a team may substitute a player(s) during a substitution opportunity. A substitution opportunity begins when the ball becomes dead, the game clock is stopped, and the referee has ended his communication with the scorer's table (Article 19.2.1).
+Expected Answer: Yes
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 5
+Question: How long does a timeout last?
+Actual Answer: According to the context, timeouts can last either:
+
+* 60 seconds for all timeouts except the first one in each quarter (which can be 60, 75, 90, or 100 seconds)
+* 50 seconds, with a signal sounded by the timer when 50 seconds have elapsed and again when the timeout has ended
+
+Note that Media timeouts are specifically defined to last 60, 75, 90, or 100 seconds.
+Expected Answer: 1 Minute
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 6
+Question: Of how many quarters does a game consist?
+Actual Answer: According to Article 8.1 of the Official Basketball Rules 2020, a game shall consist of 4 quarters of 10 minutes each.
+Expected Answer: 4
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 7
+Question: How many minutes does a quarter have?
+Actual Answer: According to Article 8.1 of the Official Basketball Rules 2020, a quarter has 10 minutes each.
+Expected Answer: 10 minutes
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 8
+Question: How many players are allowed for each team on the play court?
+Actual Answer: According to Rule Three - Teams, Art. 4.2.1:
+
+"Each team shall consist of: • No more than 12 team members entitled to play, including a captain."
+
+During playing time, only 5 players from each team are allowed on the playing court (Rule Three - Teams, Art. 4.2.2).
+Expected Answer: 5
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 9
+Question: What is charging?
+Actual Answer: Based on the provided context, there is no mention of "charging" in any of the rules or articles. Therefore, I cannot provide an answer to this question based on the given context. It appears that the term "charging" may not be a part of the Official Basketball Rules 2020. If you'd like, I can try to help you find the definition of "charging" in a different rulebook or source.
+Expected Answer: Charging is illegal personal contact, with or without the ball, by pushing or moving into an opponent’s torso.
+Evaluation: No context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 10
+Question: How thick is the hull armor?
+Actual Answer: According to the context, the hull armor on the medium tank M4A3 is 1-2 inches thick.
+
+The sides of the hull are described as being 1 inch thick, and the front slope is 2 inches thick. There is no mention of a specific thickness for the rest of the hull, but it can be inferred that it is likely to be at least 1 inch thick, if not uniform with the sides.
+Expected Answer: 1 inch
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 11
+Question: What is the maximum sustained speed on a hard road?
+Actual Answer: According to the context, the answer is:
+
+Maximum sustained speed on hard road ....................................26 mph
+Expected Answer: 26 mph
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 12
+Question: What range does the voltmeter have?
+Actual Answer: According to the context, the voltmeter has a range from 16 to 32 volts.
+Expected Answer: 16 to 32 volts
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 13
+Question: Is the spark control automatic?
+Actual Answer: Based on the context, the answer is:
+
+No, the spark control is not automatic. The ignition switch has a 4-position switch that controls which magneto (left or right) is on, and the pilot must manually position the switch to select which bank of cylinders to run on. Additionally, there are no references to an automatic spark control system in the provided text.
+Expected Answer: Yes
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 14
+Question: What is the rated horsepower for the engine?
+Actual Answer: According to TM 9-759, the rated horsepower for the Ford tank engine (GAA model) is:
+
+"Rated horsepower .......................................__..__..._...........500 at 2600 rpm"
+
+So, the answer is 500 horsepower at 2600 rpm.
+Expected Answer: 500 at 2600 rpm
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 15
+Question: What is the weight without armament, fuel or crew?
+Actual Answer: According to TM 9-759, the weight of the engine and accessories is given as 1470 lb. Since we are looking for the weight without armament, fuel, or crew, we can subtract this value from the total weight of the vehicle.
+
+The total weight of the vehicle is not explicitly stated in the document, but it can be calculated based on the available data. The armor on the sides of the hull is 1 ©/> inches thick and the front slope is 2 inches thick. This information suggests that the hull is quite heavy.
+
+However, without more specific information, we cannot calculate the exact weight of the vehicle. Therefore, we will have to rely on approximate values or consult other sources for a more accurate answer.
+
+For the sake of estimation, let's assume that the weight of the hull and turret is around 25-30 tons (50000-60000 lb). Subtracting the engine weight (1470 lb) from this total, we get:
+
+50000-60000 - 1470 = approximately 49,530-58,530 lb
+
+This is a rough estimate of the weight without armament, fuel, or crew.
+Expected Answer: 59560 lb
+Evaluation: no context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 16
+Question: What guns are part of the combination turret mount?
+Actual Answer: According to the context, the guns that are part of the combination turret mount are:
+
+1. 75-mm gun, M3
+2. Machine gun, cal. .30, M1919A4 (combination turret mount)
+Expected Answer: 1 gun, 75-mm, M3 and 1 gun, machine, cal. .30, M1919A4
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 17
+Question: How many degrees can the turret be rotated?
+Actual Answer: According to TM 9-759, Section II, Paragraph c., "The turret can be rotated through 360 degrees by a hydraulic system or by hand."
+Expected Answer: 360
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 18
+Question: How to stop the engine?
+Actual Answer: To stop the engine, you should:
+
+1. Pull back on both steering levers at the same time.
+2. Release the throttle.
+3. Depress the clutch pedal when the vehicle has slowed down to approximately 2-5 miles per hour (depending on which gear is being used).
+4. Set the hand throttle for a tachometer reading of 500 rpm for the duration of the halt.
+
+In addition, it's recommended to always pull the toggle switch to the right and hold it in that position until the engine stops before turning off the ignition. This shuts off the fuel from the idle fuel supply wells in the carburetor, which helps prevent loading up of the carburetor if the engine is restarted while still hot.
+Expected Answer: After completing a run, the engine must be allowed to operate at 500 rpm for two minutes to assure a gradual and uniform cooling of the valves and other various engine parts.
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 19
+Question: What is the overall length?
+Actual Answer: Based on the provided context, I will answer your question.
+
+According to section 2.4.6, "Throw-in lines", the throw-in line is marked outside the playing court at the sideline opposite the scorer's table, with the outer edge of the line being 8.325 m from the inner edge of the nearest endline.
+Expected Answer: 232 1/2-in
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 20
+Question: What was the real gdp of Germany in 2023?
+Actual Answer: According to the provided context, the real GDP of Germany in 2023 is $5.23 trillion (purchasing power parity). Additionally, the country's exports were estimated to be around $2.104 trillion in 2023.
+Expected Answer: 5.23 trillion
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 21
+Question: Who is the biggest export partner of Germany?
+Actual Answer: According to the provided data, the biggest export partners of Germany are:
+
+1. United States (10%)
+2. France (7%)
+3. China (7%)
+4. Netherlands (7%)
+5. Italy (6%)
+
+So, the answer is the United States, with a share of 10% in Germany's exports.
+Expected Answer: The United States
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 22
+Question: Who is the biggest import partner of Germany?
+Actual Answer: Based on the context, the answer to the question "Who is the biggest import partner of Germany?" is:
+
+China (10%), followed by the Netherlands (9%), Poland (6%), Belgium (6%), and Italy (5%) (2022).
+Expected Answer: China
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 23
+Question: Who is the head of government?
+Actual Answer: The head of government in Germany (Berlin) is Chancellor Olaf SCHOLZ, since 8 December 2021.
+Expected Answer: Olaf Scholz
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 24
+Question: Who is the chief of state?
+Actual Answer: According to the provided context, the chief of state is President Frank-Walter STEINMEIER (since 19 March 2017).
+Expected Answer: Frank-Walter Steinmeier
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 25
+Question: What is the population growth?
+Actual Answer: According to the provided context, the population growth rate of Germany is -0.12% (2024 est.).
+Expected Answer: -0.12%
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 26
+Question: What is the total population?
+Actual Answer: According to the provided context, the total population of Germany is 84,119,100 as of 2022 est.
+Expected Answer: 84119100
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 27
+Question: What is the total area of Germany? How much land and how water does it consist of?
+Actual Answer: According to the context, the total area of Germany is 357,022 square kilometers (sq km). This consists of:
+
+* Land: 348,672 sq km
+* Water: 8,350 sq km
+Expected Answer: totaL: 357022 sq km, land: 348672 sq km, water: 8350 sq km
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 28
+Question: What are the 3 largest ethnic groups in Germany?
+Actual Answer: According to the provided context, the three largest ethnic groups in Germany are:
+
+1. German - 85.4%
+2. Turkish - 1.8%
+3. Ukrainian - 1.4%
+
+Note that these figures are based on an estimate from 2022.
+Expected Answer: 1. German (85,4%), 2.Turkish(1.8%), 3.Ukrainian(1.4%)
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 29
+Question: What are the 3 largest religions in Germany?
+Actual Answer: According to the provided context, the three largest religions in Germany are:
+
+1. Roman Catholic (24.8%)
+2. Protestant (22.6%)
+3. Muslim (3.7%)
+
+These figures are based on the 2022 estimate.
+Expected Answer: 1.Roman Catholic (24.8%), 2.Protestant (22.6%), 3.Muslim (3.7%)
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 30
+Question: A game of Basketball is played by how many teams?
+Actual Answer: According to Art. 1 - Definitions, a basketball game is played by 2 teams of 5 players each.
+Expected Answer: 10
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 31
+Question: What dimensions is the playing ground?
+Actual Answer: According to the provided context, the playing ground has a flat, hard surface with dimensions of 28 meters in length by 15 meters in width measured from the inner edge of the boundary line.
+Expected Answer: 12 m in length by 5 m in width
+Evaluation: TRUE
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 32
+Question: Can lines be of different colors?
+Actual Answer: According to the provided context, specifically Page 8 of 96 OFFICIAL BASKETBALL RULES 2020, it is mentioned that:
+
+"The no-charge semi-circle areas are completed by imaginary lines joining the ends of the parallel lines directly below the front edges of the backboards. The no-charge semi-circle lines are part of the no-charge semi-circle areas."
+
+There is also a diagram (Diagram 2) showing restricted area and free throw rebound places.
+
+In this context, it seems that there is only one type of line mentioned, which is the imaginary line joining the ends of the parallel lines. There is no mention of lines being different colors.
+
+However, in the wiring diagram (Figure 19), there are multiple wires with different colors marked:
+
+* "18 SHIELDED BLACK"
+* "5-12 BLACK"
+* "14 RED-BLACK TR 14"
+* and so on...
+
+So, to answer your question: Yes, lines can be of different colors.
+Expected Answer: Yes
+Evaluation: No context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 33
+Question: How can a defensive player establish a legal guarding position?
+Actual Answer: According to the context, a defensive player can establish a legal guarding position by:
+
+1. Facing their opponent with the ball
+2. Having both feet on the floor
+
+Additionally, the defensive player must maintain an initial legal guarding position without causing contact before taking their position.
+
+(Note: The context also mentions that the defensive player may raise their arms and hands above their head or jump vertically as long as they remain within the imaginary cylinder extending vertically above them from the floor to the ceiling.)
+Expected Answer: Be airborne
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 34
+Question: May a team substitute a player?
+Actual Answer: According to Article 19, Substitution, yes, a team may substitute a player. In fact, it is stated in Rule 19.2.1 that "A team may substitute a player(s) during a substitution opportunity." A substitution opportunity begins when certain conditions are met, such as the ball becoming dead, the game clock being stopped, and the referee ending his communication with the scorer's table (Rule 19.2.2).
+Expected Answer: No
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 35
+Question: How long does a timeout last?
+Actual Answer: According to the rules, the duration of a Media timeout is:
+
+* The first timeout in each quarter (team or Media) shall be 60, 75, 90, or 100 seconds.
+* All other timeouts in a quarter shall be 60 seconds.
+
+Additionally, if a team requests a timeout after a Media timeout has been granted, the duration of that timeout is also 60 seconds.
+Expected Answer: 1 hour
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 36
+Question: Of how many quarters does a game consist?
+Actual Answer: According to Art. 8.1 in the Official Basketball Rules 2020, a game shall consist of 4 quarters of 10 minutes each.
+Expected Answer: 2
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 37
+Question: How many minutes does a quarter have?
+Actual Answer: According to Rule 8.1, a game shall consist of 4 quarters of 10 minutes each. Therefore, a quarter has 10 minutes.
+Expected Answer: 15 minutes
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 38
+Question: How many minutes does a quarter have?
+Actual Answer: According to Rule FOUR – PLAYING REGULATIONS, Art. 8.1, a quarter has 10 minutes each.
+Expected Answer: 15 minutes
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 39
+Question: What is charging?
+Actual Answer: Charging is not mentioned in the provided context, which appears to be official basketball rules for 2020. Therefore, I cannot answer your question about what charging is. The provided text only mentions rules related to team control, throw-ins, and protests, but does not address the specific topic of "charging".
+Expected Answer: Pulling yourself up via the rim to score a goal
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 40
+Question: How thick is the hull armor?
+Actual Answer: According to the TM 9-759, Section II, Description and Tabulated Data, Paragraph 4:
+
+"b. The tank is wired for radio installation, and for an interphone system within the tank.
+b. The armor on the sides of the hull is 1 inch thick and the front slope is 2 inches thick."
+
+Therefore, the answer is: The hull armor is 1 inch thick on the sides and 2 inches thick on the front slope.
+Expected Answer: 15 inch
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 41
+Question: What is the maximum sustained speed on a hard road?
+Actual Answer: According to the context, the answer is:
+
+Maximum sustained speed on hard road ....................................26 mph
+Expected Answer: 26 kmh
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 42
+Question: What range does the voltmeter have?
+Actual Answer: The voltmeter has a range from 16 to 32 volts. When the battery master switch is off, the voltmeter will read at the lower end of the scale (16 volts). When the master switch is "on," the voltmeter should read approximately 24 volts, which is the battery voltage.
+Expected Answer: 6 to 62 volts
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 43
+Question: Is the spark control automatic?
+Actual Answer: No, the spark control is not automatic. The TM 9-759 instructions provide specific procedures for checking and testing the spark plug circuits, including using a neon tester or manually testing the spark plug with the starting motor. This suggests that the operator must actively check and adjust the spark control rather than relying on an automatic system.
+Expected Answer: No
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 44
+Question: What is the rated horsepower for the engine?
+Actual Answer: According to TM 9-759, the rated horsepower for the Ford "V" 8-cylinder tank engine (Model GAA) is 500 at 2600 rpm. This information can be found in section b of the tabulated data under "Engine".
+Expected Answer: 250 at 2600 rpm
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 45
+Question: What is the weight without armament, fuel or crew?
+Actual Answer: Based on the provided context from TM 9-759, we can find the answer to your question.
+
+According to Paragraph 22:
+
+"...Check vehicle weight (without armament, fuel or crew) and record..."
+
+Unfortunately, this information is not explicitly stated in the provided text. However, we can look for related information that might give us a hint about the weight of the M4A3 medium tank without armament, fuel, or crew.
+
+In Paragraph 20-21, we find the following information:
+
+"...Weight of engine, w/accessories ..................................................1470 Ib"
+
+This suggests that the weight of the engine alone is approximately 1470 pounds. However, this does not give us the total weight of the vehicle without armament, fuel, or crew.
+
+In Paragraph 3, we find the following information:
+
+"Vehicle ........................................ 3"
+
+Unfortunately, this does not provide a specific weight value for the vehicle without armament, fuel, or crew.
+
+Given the available information, it appears that the answer to your question is not explicitly stated in TM 9-759. However, we can infer that the engine alone weighs approximately 1470 pounds, but the total weight of the vehicle without armament, fuel, or crew remains unknown based on this specific context.
+Expected Answer: 59560 kg
+Evaluation: No context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 46
+Question: What guns are part of the combination turret mount?
+Actual Answer: According to the provided context, the guns that are part of the combination turret mount are:
+
+1. Gun, 75-mm, M3 (combination turret mount)
+2. Gun, machine, cal. .30, M1919A4 (combination turret mount)
+Expected Answer: 1 gun, 90-mm, M4 and 1 gun, machine, cal. .50, M2-Browning
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 47
+Question: How many degrees can the turret be rotated?
+Actual Answer: According to the TM 9-759, the turret can be rotated through 360 degrees by a hydraulic system or by hand. The turret platform rotates with the turret.
+Expected Answer: 300
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 48
+Question: How to stop the engine?
+Actual Answer: To stop the engine, release the throttle and pull back on both steering levers at the same time. Depress the clutch pedal when the vehicle has slowed down to approximately two to five miles per hour, depending upon which gear is being employed before stopping. Set the hand throttle for a tachometer reading of 500 rpm for the duration of the halt.
+Expected Answer: Just turn it off by taking out the key
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 49
+Question: What is the overall length?
+Actual Answer: The document appears to be a set of official basketball rules from 2020, and it does not provide information on the overall length. The context only mentions specific details related to team control, throw-in lines, court dimensions, and other playing rules. There is no mention of an overall length or any measurements that would allow us to calculate such a value.
+Expected Answer: 40 meters
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 50
+Question: What was the real gdp of Germany in 2023?
+Actual Answer: According to the provided context, the Real GDP (purchasing power parity) of Germany in 2023 is:
+
+$5.23 trillion (2023 est.)
+Expected Answer: 6 trillion
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 51
+Question: Who is the biggest export partner of Germany?
+Actual Answer: According to the provided context, the largest export partners of Germany are:
+
+* US (10% in 2022)
+* France (7% in 2022)
+* China (7% in 2022)
+* Netherlands (7% in 2022)
+* Italy (6% in 2022)
+
+So, the answer is not a single country but a group of countries that are significant export partners of Germany.
+Expected Answer: Luxemburg
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 52
+Question: Who is the biggest import partner of Germany?
+Actual Answer: According to the context, China is Germany's largest import partner, accounting for 10% of its imports in 2022.
+Expected Answer: France
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 53
+Question: Who is the head of government?
+Actual Answer: According to the context, the head of government in Berlin (Germany) is:
+
+Chancellor Olaf SCHOLZ (since 8 December 2021)
+Expected Answer: Angela Merkel
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 54
+Question: Who is the chief of state?
+Actual Answer: The chief of state is President Frank-Walter Steinmeier (since 19 March 2017).
+Expected Answer: Pierre Danke
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 55
+Question: What is the population growth?
+Actual Answer: The population growth rate of Germany is -0.12% (2024 est.).
+Expected Answer: 0.14%
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 56
+Question: What is the total population?
+Actual Answer: According to the provided context, the total population of Germany is 84,119,100 as of 2022 est.
+Expected Answer: 22200000
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 57
+Question: What is the total area of Germany? How much land and how water does it consist of?
+Actual Answer: According to the provided context, the total area of Germany is 357,022 square kilometers. This consists of:
+
+* Land: 348,672 square kilometers
+* Water: 8,350 square kilometers
+Expected Answer: totaL: 100000 sq km, land: 1000 sq km, water: 99000 sq km
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 58
+Question: What are the 3 largest ethnic groups in Germany?
+Actual Answer: According to the provided context, the three largest ethnic groups in Germany are:
+
+1. German - 85.4%
+2. Turkish - 1.8%
+3. Ukrainian - 1.4%
+
+Note that these figures are based on an estimate from 2022.
+Expected Answer: 1. French (45%), 2.Albanian(44%), 3.Mongolian(1%)
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 59
+Question: What are the 3 largest religions in Germany?
+Actual Answer: According to the provided context, the three largest religions in Germany are:
+
+1. Roman Catholic (24.8%)
+2. Protestant (22.6%)
+3. Muslim (3.7%)
+Expected Answer: 1.Hindu (25%), 2.Muslim (21%), 3.Jewish (12 %)
+Evaluation: False
+--------------------------------------------------
+
+
+
+----------------------------------------------------------------------------------------------------
+Total Accuracy: 66.67 %
+False Positive Percentage: 10.00 %
+False Negative Percentage: 40.00 %
+No Context Percentage: 8.33
+[END OF TEST]

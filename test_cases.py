@@ -199,7 +199,7 @@ def test_case_301_complement():
 
 
 def test_case_302():
-    return test_model("Who is the biggest export partner of Germany?", "The United States 🦅")
+    return test_model("Who is the biggest export partner of Germany?", "The United States")
 
 def test_case_302_complement():
     return test_model("Who is the biggest export partner of Germany?", "Luxemburg")
