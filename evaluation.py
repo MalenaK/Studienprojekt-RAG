@@ -39,8 +39,6 @@ def query_judging_model(evalutaion_llm: Model, expected_answer: str, actual_answ
 
     evaluation = evalutaion_llm.generate_answer_for_evaluation(question, expected_answer, actual_answer)
 
-    print("\nmodel evaluation from model:", evalutaion_llm.get_model(),evaluation,"\n")
-
     evalutaion_llm.reset_template()
 
     evaluation = evaluation.split(' ')[0]
@@ -63,9 +61,7 @@ def test_model(question: str, expected_answer: str) -> bool | None:
     eval_true_answers = 0
 
     for evaluation_llm in evaluation_llms:
-        #print("\n####model name####\n",evaluation_llm.get_model())
         result = query_judging_model(evalutaion_llm=evaluation_llm, actual_answer=actual_answer, expected_answer=expected_answer, question=question)
-        print("corresponding result: ", result)
         if result == True:
             eval_true_answers += 1
         elif result == False:
