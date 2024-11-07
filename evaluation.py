@@ -1,7 +1,3 @@
-from numpy.ma.core import negative
-from pypika.enums import Boolean
-from sympy import false
-
 from main import *
 from test_cases import *
 
@@ -15,11 +11,11 @@ Actual Response: {question}
 Does the actual response match the expected Response regarding content? Only answer with "true" or "false". 
 """
 counter: int = 0
-
+collection_name = None
 
 #Using sources is not necessary in comparison
 def query_rag_no_sources(query_text) -> str:
-    db = db_helper.get_db()
+    db = db_helper.get_collection(collection_name=collection_name)
 
     #search in the db
     results = db.similarity_search_with_score(query_text, k=5)
@@ -65,13 +61,13 @@ def test_loop():
     #Normal tests that should return true
     false_positives = 0
     for test in positive_test_cases:
-        if test() != True:
+        if test_model(test[0], test[1]) != True:
             false_positives += 1
 
     #Complement tests that should return
     false_negatives = 0
     for test in negative_test_cases:
-        if test() != False:
+        if test_model(test[0], test[1]) != False:
             false_negatives += 1
 
     num_test_cases = len(positive_test_cases) + len(negative_test_cases)
@@ -83,7 +79,6 @@ def test_loop():
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
     parser.add_argument("--reset", action="store_true", help="Reset the database.")
     parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
@@ -93,8 +88,9 @@ if __name__ == "__main__":
         print("Clearing Database...")
         db_helper.clear_database()
 
-
     # Create (or update) the data store.
     update_data_store(args.pdf_dir)
+
+    collection_name = doc_handler.get_collection_name(args.pdf_dir)
 
     test_loop()
