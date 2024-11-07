@@ -4,9 +4,9 @@ from test_cases import *
 #Maybe improve this by actually using 3 models and making it a democratic decision if an answer was correct or not
 
 test_template = """
-Question: 
-Expected Response: {context}
-Actual Response: {question}
+Question: {question}
+Expected Response: {expected_answer}
+Actual Response: {actual_answer}
 
 Does the actual response match the expected Response regarding content? Only answer with "true" or "false". 
 """
@@ -36,8 +36,7 @@ def test_model(question: str, expected_answer: str) -> bool | None:
     llm_model.set_template(test_template)
 
     #Evaluate the response
-    context = f"Question: {question}\nExpected Response: {expected_answer}"
-    evaluation = llm_model.generate_answer(context, actual_answer)
+    evaluation = llm_model.generate_answer_for_evaluation(question, expected_answer, actual_answer)
     print(f"{"-"*50}\nTest Case Number: {counter}\nQuestion: {question}\nActual Answer: {actual_answer}\nExpected Answer: {expected_answer}\nEvaluation: {evaluation}\n{"-"*50}\n\n")
 
     #Track test cases number
