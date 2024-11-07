@@ -4,6 +4,8 @@
 
 # Byte-compiled
 __pychache__/
+.pytest_cache/
+
 
 #Database contents
 chroma/*
