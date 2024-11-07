@@ -62,17 +62,15 @@ def test_model(question: str, expected_answer: str) -> bool | str:
     counter += 1
     llm_model.reset_template()
 
-    #return if true or false
     evaluation = evaluation.lower()
 
     if evaluation == "true":
         return True
     elif evaluation == "false":
         return False
-    #In case the question could not be answered, we return None, we count this as an undesirable case always
-    #We may change and decide to track the undecided answers later
+    #If there was insufficient context to answer the question  we return noc (no context)
     else:
-        return "noc" #No context
+        return "noc"
 
 
 def plot_bar_chart(accuracy, false_positive_rate, false_negative_rate, no_context_rate, current_test):
@@ -95,34 +93,38 @@ def plot_bar_chart(accuracy, false_positive_rate, false_negative_rate, no_contex
     plt.savefig(bar_chart_path)
     plt.close()
 
-
-def plot_confusion_matrix(false_positives, false_negatives, no_context, current_test):
-    true_positives = len(positive_test_cases) - false_positives - no_context
-    true_negatives = len(negative_test_cases) - false_negatives - no_context
+#Attention, in this confusion matrix we display no context just as a false prediction however we do state the total amount of no context entries separately as text!
+def plot_confusion_matrix(false_positives, false_negatives, no_context_on_positive, no_context_on_negative, current_test):
+    true_positives = len(positive_test_cases) - (false_positives+no_context_on_positive)
+    true_negatives = len(negative_test_cases) - (false_negatives+no_context_on_negative)
 
     confusion_matrix = np.array([
-        [true_positives, false_negatives, no_context],  # Positive cases
-        [false_positives, true_negatives, no_context],  # Negative cases
-        [no_context, no_context, 0]  # No Context cases (no direct TP/TN/FP/FN mapping)
+        [true_positives, false_negatives],  # Positive cases
+        [false_positives, true_negatives],  # Negative cases
     ])
 
-    labels = ['Positive', 'Negative', 'No Context']
+    labels = ['Positive', 'Negative']
 
     plt.figure(figsize=(7, 6))
-    sns.heatmap(confusion_matrix, annot=True, fmt="d", cmap="viridis",
+    sns.heatmap(confusion_matrix, annot=True, fmt="d", cmap="Blues",
                 xticklabels=labels, yticklabels=labels)
     plt.xlabel('Predicted Label')
     plt.ylabel('True Label')
-    plt.title('Confusion Matrix of Positives, Negatives and No Context')
+    plt.title('Confusion Matrix of Positives and Negatives')
+
+    no_context_text = f"Total of No Context: {no_context_on_positive+ no_context_on_negative}\nNo Context on Positive Test: {no_context_on_positive}\nNo Context on Negative Test: {no_context_on_negative}"
+    #Put text into lower right corner
+    plt.figtext(0.95, -0.15, no_context_text, ha="right", fontsize=12, color="black")
 
 
     confusion_matrix_path = os.path.join(current_test, "confusion_matrix.png")
-    plt.savefig(confusion_matrix_path)
+    plt.savefig(confusion_matrix_path, bbox_inches="tight")
     plt.close()
 
 
 def test_loop():
-    no_context = 0
+    no_context_on_positive = 0
+    no_context_on_negative = 0
     test_idx = 0 #Used to track the progress of the test
     #Normal tests that should return true
     false_positives = 0
@@ -144,7 +146,7 @@ def test_loop():
         answer = test()
 
         if answer == "noc": #No context
-            no_context += 1
+            no_context_on_positive += 1
             continue
 
         if answer != True:
@@ -163,13 +165,13 @@ def test_loop():
         answer = test()
 
         if answer == "noc":
-            no_context += 1
+            no_context_on_negative += 1
             continue
 
         if answer == True:
             false_negatives += 1
 
-
+    no_context = no_context_on_negative + no_context_on_positive
     num_correct_answers = num_test_cases - false_negatives - false_positives - no_context
 
     accuracy = 100 * (num_correct_answers / num_test_cases)
@@ -188,7 +190,7 @@ def test_loop():
         f"No Context Percentage: {no_context_rate:.2f}")
 
     plot_bar_chart(accuracy=accuracy, false_positive_rate=false_positive_rate, false_negative_rate=false_negative_rate, no_context_rate=no_context_rate, current_test=current_test)
-    plot_confusion_matrix(false_positives=false_positives, false_negatives=false_negatives, no_context=no_context, current_test=current_test)
+    plot_confusion_matrix(false_positives=false_positives, false_negatives=false_negatives, no_context_on_negative=no_context_on_negative, no_context_on_positive=no_context_on_positive, current_test=current_test)
 
 
 
