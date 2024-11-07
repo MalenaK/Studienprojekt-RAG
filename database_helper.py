@@ -69,9 +69,6 @@ class DatabaseHelper:
 
     def get_collection(self, collection_name) -> Chroma:
         db = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(), collection_name=collection_name)
-        existing_items:  dict[str, Any] = db.get(include=[])  # IDs are always included by default
-        existing_ids: set = set(existing_items["ids"])
-        print(f"Number of existing documents in DB{len(existing_ids)}")
 
         return db
     
