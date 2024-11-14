@@ -1,5 +1,7 @@
 import os
 import shutil
+import time
+from chromadb import PersistentClient
 from typing import Any
 
 from langchain_chroma import Chroma
@@ -23,8 +25,8 @@ class DatabaseHelper:
             except Exception as e:
                 print(f"Error creating directory '{self.file_path}': {e}")
 
-    def add_to_chroma(self, chunks: list[Document]) -> None:
-        db: Chroma = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(self.model))
+    def add_to_chroma(self, chunks: list[Document], collection_name: str) -> None:
+        db: Chroma = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(self.model), collection_name=collection_name)
 
         # Calculate Page IDs.
         chunks_with_ids: list[Document] = calculate_chunk_ids(chunks)
@@ -32,7 +34,7 @@ class DatabaseHelper:
         # Add or Update the documents.
         existing_items:  dict[str, Any] = db.get(include=[])  # IDs are always included by default
         existing_ids: set = set(existing_items["ids"])
-        print(f"Number of existing documents in DB: {len(existing_ids)}")
+        print(f"Number of existing documents in DB collection {collection_name}: {len(existing_ids)}")
 
         # Only add documents that don't exist in the DB.
         new_chunks: list[Document] = []
@@ -46,22 +48,34 @@ class DatabaseHelper:
 
             new_chunk_ids: list[Document] = [chunk.metadata["id"] for chunk in new_chunks]
 
-            #debug start_time = time.time()  # Start timing
-
+            # start_time = time.time()  # Start timing
             for idx, (chunk, chunk_id) in enumerate(zip(new_chunks, new_chunk_ids)):
                 db.add_documents([chunk], ids=[chunk_id])  # Add one chunk at a time
 
                 # Print progress
                 print(f"Progress: {idx + 1}/{total_new_chunks} chunks added.")
 
-            #debug end_time = time.time()  # End timing
-            #debug print(f"Time taken to save documents: {end_time - start_time:.2f} seconds")
+            # end_time = time.time()  # End timing
+            # print(f"Time taken to save documents: {end_time - start_time:.2f} seconds")
         else:
             print("No new documents detected - no changes to db are made.")
 
     def clear_database(self):
         if os.path.exists(self.chroma_path):
             shutil.rmtree(self.chroma_path)
+            print("Cleared the whole DB")
+        else:
+            print("DB already empty")
 
-    def get_db(self) -> Chroma:
-        return Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function())
+    def get_collection(self, collection_name) -> Chroma:
+        db = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(), collection_name=collection_name)
+
+        return db
+    
+    def clear_collection(self, collection_name):
+        try:
+            db_client = PersistentClient(path=self.chroma_path)
+            db_client.delete_collection(collection_name)
+            print(f"Collection {collection_name} deleted successfully.")
+        except Exception as e:
+            raise Exception(f"Unable to delete collection: {e}")
