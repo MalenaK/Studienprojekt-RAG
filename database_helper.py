@@ -9,7 +9,8 @@ from langchain_chroma import Chroma
 from langchain.schema.document import Document
 
 from chunker import calculate_chunk_ids
-from embedding import get_embedding_function
+from embedding import SentenceTransformerEmbeddings
+from langchain.embeddings.base import Embeddings
 
 
 class DatabaseHelper:
@@ -17,7 +18,8 @@ class DatabaseHelper:
 
     def __init__(self,model: str, file_path: str ="./data"):
         self.file_path = file_path
-        self.model = model
+        #self.model = model
+        self.model_instance = SentenceTransformerEmbeddings(model)
 
         if not os.path.exists(self.file_path):
             try:
@@ -26,7 +28,7 @@ class DatabaseHelper:
                 print(f"Error creating directory '{self.file_path}': {e}")
 
     def add_to_chroma(self, chunks: list[Document], collection_name: str) -> None:
-        db: Chroma = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(self.model), collection_name=collection_name)
+        db: Chroma = Chroma(persist_directory=self.chroma_path, embedding_function=self.model_instance, collection_name=collection_name)
 
         # Calculate Page IDs.
         chunks_with_ids: list[Document] = calculate_chunk_ids(chunks)
@@ -68,7 +70,7 @@ class DatabaseHelper:
             print("DB already empty")
 
     def get_collection(self, collection_name) -> Chroma:
-        db = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(), collection_name=collection_name)
+        db = Chroma(persist_directory=self.chroma_path, embedding_function=self.model_instance, collection_name=collection_name)
 
         return db
     

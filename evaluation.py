@@ -23,10 +23,12 @@ Does the actual response match the expected Response regarding content? Only ans
 """
 counter: int = 0
 collection_name = None
+folder_name = None
+file_name = None
 
 def log(message):
     # Write to the log file
-    with open(f'./tests/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'a') as log_file:
+    with open(file_name, 'a') as log_file:
         log_file.write(message + '\n')
 
 #Using sources is not necessary in comparison
@@ -128,11 +130,8 @@ def test_loop():
     false_positives = 0
     num_test_cases = len(positive_test_cases) + len(negative_test_cases)
     test_tracker = num_test_cases // 20
-    test_folder = "./tests"
-    os.makedirs(test_folder, exist_ok=True)
 
-    current_test = f"{test_folder}/{llm_model.get_model()}---{get_embedding_function().model}" #always Language model followed by embedding seperated by ---
-    os.makedirs(current_test, exist_ok=True)
+    current_test = folder_name #always Language model followed by embedding seperated by ---
     print("Starting tests...")
     for test in positive_test_cases:
         test_idx += 1
@@ -141,7 +140,7 @@ def test_loop():
             progress_bar = '=' * (test_idx * 40 // num_test_cases) + ' ' * (40 - (test_idx * 40 // num_test_cases))
             print(f"Test Progress: [{progress_bar}] {progress_percentage:.2f}% ({test_idx}/{num_test_cases})")
 
-        answer = test()
+        answer = test_model(test[0], test[1])
 
         if answer == "noc": #No context
             no_context_on_positive += 1
@@ -204,7 +203,12 @@ if __name__ == "__main__":
         print("Clearing Database...")
         db_helper.clear_database()
 
-    with open(f'./tests/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'w') as f:  #Wipe old testlog
+    model_name: str = config_embedding.replace("/","")
+    folder_name: str = f'./tests/{llm_model.get_model()}---{model_name}'
+    file_name: str = f'{folder_name}/testlog.txt'
+
+    os.makedirs(folder_name, exist_ok=True)
+    with open(file_name, 'w') as f:  #Wipe old testlog
         f.write("")
 
     # Create (or update) the data store.
@@ -216,4 +220,4 @@ if __name__ == "__main__":
     test_loop()
     log("[END OF TEST]")
 
-    print(f"Test is complete, see test folder: ./tests/{llm_model.get_model()}---{get_embedding_function().model}")
+    print(f"Test is complete, see test folder: {folder_name}")

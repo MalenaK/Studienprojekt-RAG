@@ -8,8 +8,6 @@ from database_helper import DatabaseHelper
 
 from document_handler import DocumentHandler
 
-from embedding import get_embedding_function
-
 
 
 #Use Cuda 12.4 https://developer.nvidia.com/cuda-12-4-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local
@@ -21,7 +19,8 @@ from embedding import get_embedding_function
 #Config Parameters
 config_model = "llama3"
 # config_embedding = "mxbai-embed-large"
-config_embedding = "sentence-transformers/all-mpnet-base-v2"
+config_embedding = "dunzhang/stella_en_1.5B_v5"
+#config_embedding = "dunzhang/stella_en_400M_v5"
 
 #Instantiate Required Objects
 llm_model: Model = Model(model=config_model)  # Idk why it says that we are getting None here in pycharm, it returns an object

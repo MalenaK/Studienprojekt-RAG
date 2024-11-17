@@ -1,0 +1,701 @@
+[START OF TEST]
+--------------------------------------------------
+Test Case Number: 0
+Question: A game of Basketball is played by how many teams?
+Actual Answer: According to Rule ONE – THE GAME, Article 1.1, a basketball game is played by 2 teams of 5 players each.
+Expected Answer: 2
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 1
+Question: What dimensions is the playing ground?
+Actual Answer: According to the provided context and the OFFICIAL BASKETBALL RULES 2020, the dimensions of the playing court are:
+
+* Length: 28 meters
+* Width: 15 meters
+
+These dimensions are specified in Article 2.1 of the rules.
+Expected Answer: 28 m in length by 15 m in width
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 2
+Question: Can lines be of different colors?
+Actual Answer: Based on the context, it seems that the rules are focused on uniformity in terms of color and equipment for players. There is a specific rule mentioned about all players having to wear arm and leg compression sleeves, headgear, wrist bands, headbands, and tapings of the same solid color.
+
+There is no mention of lines being mentioned at all, let alone their color. Therefore, based on this context, it appears that yes, lines can be of different colors.
+Expected Answer: No
+Evaluation: No context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 3
+Question: How can a defensive player establish a legal guarding position?
+Actual Answer: According to the context, a defensive player can establish a legal guarding position when:
+
+* He is facing his opponent (player with the ball).
+* He has both feet on the floor.
+* He maintains his arms and hands within an imaginary cylinder that extends vertically above him from the floor to the ceiling.
+Expected Answer: Face his opponent and have both feet on the floor
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 4
+Question: May a team substitute a player?
+Actual Answer: According to the context, yes, a team may substitute a player(s) during a substitution opportunity.
+Expected Answer: Yes
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 5
+Question: How long does a timeout last?
+Actual Answer: According to the rules, the length of a timeout depends on whether it is a Media timeout or a team-requested timeout.
+
+For a Media timeout:
+
+* The duration is 60, 75, 90, or 100 seconds (specified by the organizing body of the competition).
+
+For a team-requested timeout:
+
+* If it's the first timeout in each quarter (team or Media), its duration is 60, 75, 90, or 100 seconds.
+* For all other timeouts in a quarter, the duration is 60 seconds.
+
+In summary, the length of a timeout can be 60-100 seconds for a Media timeout and 60 seconds for a team-requested timeout.
+Expected Answer: 1 Minute
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 6
+Question: Of how many quarters does a game consist?
+Actual Answer: According to the context, a game consists of 4 quarters of 10 minutes each.
+Expected Answer: 4
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 7
+Question: How many minutes does a quarter have?
+Actual Answer: According to Rule Four, Article 8.1, a quarter has 10 minutes each.
+Expected Answer: 10 minutes
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 8
+Question: How many players are allowed for each team on the play court?
+Actual Answer: According to rule 4.2.2, during playing time, 5 team members from each team shall be on the playing court.
+Expected Answer: 5
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 9
+Question: What is charging?
+Actual Answer: Based on the provided context, it appears that there are two separate documents or manuals: "OPERATING INSTRUCTIONS AND CONTROLS" (TM 9-759) and "POWER UNIT AND ACCESSORIES" (TM 9-759). The first document seems to be focused on operating instructions and controls for a vehicle or equipment, while the second document provides information on power units and accessories.
+
+In the context of charging, it appears that there is no specific mention of charging in these documents. However, if we look at Figure 15 in the "POWER UNIT AND ACCESSORIES" manual (TM 9-759), we can see a diagram showing how to turn an engine by hand (Figure 15 — Turning Engine by Hand).
+Expected Answer: Charging is illegal personal contact, with or without the ball, by pushing or moving into an opponent’s torso.
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 10
+Question: How thick is the hull armor?
+Actual Answer: According to the context, the hull armor thickness is:
+
+* Front slope: 2 inches
+* Bottom, front: 1 inch
+* Sides: 11/2 inches (1.5 inches)
+* Top: 1 inch
+* Rear: 2 inches
+* Bottom, rear: 1/4 inch (0.25 inches)
+
+So, the total hull armor thickness varies depending on the location, but the thickest part is 2 inches in the front slope and sides, while the thinnest part is 0.25 inches in the bottom, rear.
+Expected Answer: 1 inch
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 11
+Question: What is the maximum sustained speed on a hard road?
+Actual Answer: According to the context, the answer is:
+
+Maximum sustained speed on hard road....................................26 mph
+Expected Answer: 26 mph
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 12
+Question: What range does the voltmeter have?
+Actual Answer: According to the context, the voltmeter has a range from 16 to 32 volts.
+Expected Answer: 16 to 32 volts
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 13
+Question: Is the spark control automatic?
+Actual Answer: Based on the provided context, I would answer:
+
+No, the spark control is not automatic. The procedure described involves manually adjusting the ignition switch to achieve the correct timing by feeling for the breaker points opening (step 7) and visually checking the flywheel mark "Spark Retarded" under the pointer (fig. 17). Additionally, a separate test is provided using a neon tester or an alternate method of holding the spark plug lead close to a ground connection while turning the engine over with the starting motor. This indicates that the spark control requires manual intervention rather than being automatic.
+Expected Answer: Yes
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 14
+Question: What is the rated horsepower for the engine?
+Actual Answer: According to the information provided in the context, the rated horsepower for the engine is:
+
+Horsepower .................. ...... ..........................................500 at 2600 rpm
+
+So, the answer is 500 horsepower.
+Expected Answer: 500 at 2600 rpm
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 15
+Question: What is the weight without armament, fuel or crew?
+Actual Answer: According to the context, the answer is:
+
+Weight without armament, fuel or crew: 59560 Ib
+Expected Answer: 59560 lb
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 16
+Question: What guns are part of the combination turret mount?
+Actual Answer: According to the provided context, the guns that are part of the combination turret mount are:
+
+1. Gun, 75-mm, M3 (combination turret mount)
+2. Gun, machine, cal. .30, M1919A4 (combination turret mount)
+Expected Answer: 1 gun, 75-mm, M3 and 1 gun, machine, cal. .30, M1919A4
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 17
+Question: How many degrees can the turret be rotated?
+Actual Answer: According to section i. Turret, Cast armor plate ........................................360° traverse, the turret can be rotated 360 degrees, or a full circle.
+Expected Answer: 360
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 18
+Question: How to stop the engine?
+Actual Answer: According to the provided context, when stopping the engine, you should:
+
+* Pull the toggle switch to the right and hold it in that position until the engine stops.
+* Then, turn off the ignition.
+
+This is done to shut off the fuel from the idle fuel supply wells in the carburetor, which will prevent loading up of the carburetor in case the engine needs to be restarted while still hot.
+Expected Answer: After completing a run, the engine must be allowed to operate at 500 rpm for two minutes to assure a gradual and uniform cooling of the valves and other various engine parts.
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 19
+Question: What is the overall length?
+Actual Answer: Unfortunately, the provided context does not include information about the overall length of the tank. The diagram only provides details about the armor thickness, fuel and oil capacity, performance, gages, and other specifications, but it does not mention the overall length. Therefore, I cannot provide an answer to this question based on the given context.
+Expected Answer: 232 1/2-in
+Evaluation: no context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 20
+Question: What was the real gdp of Germany in 2023?
+Actual Answer: According to the provided context, the real GDP of Germany in 2023 is:
+
+$5.23 trillion (2023 est.)
+Expected Answer: 5.23 trillion
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 21
+Question: Who is the biggest export partner of Germany?
+Actual Answer: According to the context, the answer is:
+
+The United States (10%), followed closely by France (7%), China (7%), Netherlands (7%), and Italy (6%) are the top export partners of Germany.
+Expected Answer: The United States
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 22
+Question: Who is the biggest import partner of Germany?
+Actual Answer: According to the provided context, China is Germany's 10th largest import partner, making up about 10% of its imports in 2022. However, if we look at the top five import partners, they are:
+
+1. China (10%)
+2. Netherlands (9%)
+3. Poland (6%)
+4. Belgium (6%)
+5. Italy (5%)
+
+So, none of these countries make up more than 10% of Germany's imports, making it difficult to pinpoint a single "biggest" import partner.
+Expected Answer: China
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 23
+Question: Who is the head of government?
+Actual Answer: I think there's been a misunderstanding! The provided context appears to be about rules and regulations for a game or sport, rather than information about government. As such, I'm not aware of any information about the "head of government" within this context.
+
+If you'd like to ask another question that is related to the provided text, I'll do my best to help!
+Expected Answer: Olaf Scholz
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 24
+Question: Who is the chief of state?
+Actual Answer: The context provided does not mention anything about a "chief of state". It appears to be rules or regulations for a sports game, specifically basketball. Therefore, it's difficult to answer this question based on the given context.
+Expected Answer: Frank-Walter Steinmeier
+Evaluation: No Context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 25
+Question: What is the population growth?
+Actual Answer: According to the provided context, the population growth rate of Germany is -0.12% (2024 est.).
+Expected Answer: -0.12%
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 26
+Question: What is the total population?
+Actual Answer: According to the provided context, the total population of Germany is 84,119,100.
+Expected Answer: 84119100
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 27
+Question: What is the total area of Germany? How much land and how water does it consist of?
+Actual Answer: According to the provided context, the total area of Germany is 357,022 square kilometers. This area consists of:
+
+* Land: 348,672 square kilometers
+* Water: 8,350 square kilometers
+Expected Answer: totaL: 357022 sq km, land: 348672 sq km, water: 8350 sq km
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 28
+Question: What are the 3 largest ethnic groups in Germany?
+Actual Answer: According to the provided context, the three largest ethnic groups in Germany are:
+
+1. German - 85.4%
+2. Turkish - 1.8%
+3. Ukrainian - 1.4%
+
+Note that these percentages are based on estimates from 2022.
+Expected Answer: 1. German (85,4%), 2.Turkish(1.8%), 3.Ukrainian(1.4%)
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 29
+Question: What are the 3 largest religions in Germany?
+Actual Answer: According to the provided context, the three largest religions in Germany are:
+
+1. Roman Catholic - 24.8%
+2. Protestant - 22.6%
+3. Muslim - 3.7%
+Expected Answer: 1.Roman Catholic (24.8%), 2.Protestant (22.6%), 3.Muslim (3.7%)
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 30
+Question: A game of Basketball is played by how many teams?
+Actual Answer: According to the Official Basketball Rules 2020, a game of basketball is played by 2 teams. Each team consists of 5 players each.
+Expected Answer: 10
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 31
+Question: What dimensions is the playing ground?
+Actual Answer: According to the context and the provided rules, the playing court has the following dimensions:
+
+* Length: 28 meters
+* Width: 15 meters
+Expected Answer: 12 m in length by 5 m in width
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 32
+Question: Can lines be of different colors?
+Actual Answer: Based on the provided context, I would answer:
+
+No, according to rule 4.4.3, all arm and leg compression sleeves, headgear, wrist bands, headbands, and tapings must have the same solid colour.
+Expected Answer: Yes
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 33
+Question: How can a defensive player establish a legal guarding position?
+Actual Answer: According to the context, a defensive player can establish a legal guarding position by:
+
+* Facing his opponent
+* Having both feet on the floor
+* Maintaining a vertical position inside an imaginary cylinder extending from the floor to the ceiling (as long as arms and hands are raised above the hips)
+
+Additionally, the defensive player must not cause contact before taking their initial legal guarding position.
+Expected Answer: Be airborne
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 34
+Question: May a team substitute a player?
+Actual Answer: According to the context, yes, a team may substitute a player(s). This is stated in Article 19.2.1 of the Official Basketball Rules 2020:
+
+"A team may substitute a player(s) during a substitution opportunity."
+Expected Answer: No
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 35
+Question: How long does a timeout last?
+Actual Answer: According to the provided context, a timeout can have different durations depending on the situation:
+
+* In the first quarter (or overtime), the duration of all timeouts (team or Media) is 60 seconds.
+* If it's considered a Media timeout (i.e., the first timeout in a quarter), it lasts either 60, 75, 90, or 100 seconds.
+* After the initial Media timeout has been granted, any subsequent team timeouts last 60 seconds.
+
+So, to summarize: a timeout can last anywhere from 60 seconds to 100 seconds, depending on whether it's a regular team timeout or a Media timeout.
+Expected Answer: 1 hour
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 36
+Question: Of how many quarters does a game consist?
+Actual Answer: According to the context, a game consists of 4 quarters of 10 minutes each.
+Expected Answer: 2
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 37
+Question: How many minutes does a quarter have?
+Actual Answer: According to the context, a quarter has 10 minutes each.
+Expected Answer: 15 minutes
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 38
+Question: How many minutes does a quarter have?
+Actual Answer: According to Rule FOUR – PLAYING REGULATIONS, Art. 8.1, a quarter has 10 minutes each.
+Expected Answer: 15 minutes
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 39
+Question: What is charging?
+Actual Answer: Based on the provided context, there is no direct mention of "charging". However, I can try to find a related section that might help answer your question.
+
+After reviewing the text, I found that in the TM 9-759 document, there is a section titled "POWER UNIT AND ACCESSORIESTM 9-759" starting from page 25. Unfortunately, this section does not explicitly mention "charging" either.
+
+Without more information or context about what kind of power unit or accessory you are referring to, I'm unable to pinpoint the exact location where charging is discussed. If you could provide more details or clarify which type of charging (e.g., battery charging) you're looking for, I'll do my best to help you find the answer!
+Expected Answer: Pulling yourself up via the rim to score a goal
+Evaluation: No context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 40
+Question: How thick is the hull armor?
+Actual Answer: According to the context, the hull armor thickness is:
+
+* Front slope: 2 inches
+* Bottom, front: 1 inch
+* Rear: 1/4 inch (0.25 inches)
+* Sides: 11/2 inches (1.5 inches)
+* Top: 1 inch
+* Bottom, rear: 1/8 inch (0.125 inches)
+
+Note that the armor thickness is specified in different locations around the hull of the tank.
+Expected Answer: 15 inch
+Evaluation: no context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 41
+Question: What is the maximum sustained speed on a hard road?
+Actual Answer: According to the context, the maximum sustained speed on a hard road is **26 mph**.
+Expected Answer: 26 kmh
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 42
+Question: What range does the voltmeter have?
+Actual Answer: According to the context, the voltmeter has a range from 16 to 32 volts.
+Expected Answer: 6 to 62 volts
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 43
+Question: Is the spark control automatic?
+Actual Answer: No. According to the text, if dim light shows after testing the magnetos, it suggests that there's an issue with the wire or spark plug. This indicates that the spark control is not fully automatic and requires manual adjustment or intervention to correct any problems.
+Expected Answer: No
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 44
+Question: What is the rated horsepower for the engine?
+Actual Answer: According to the context, the rated horsepower for the engine is:
+
+Horsepower .................. ...... ..........................................500 at 2600 rpm
+Expected Answer: 250 at 2600 rpm
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 45
+Question: What is the weight without armament, fuel or crew?
+Actual Answer: According to the context, the answer is:
+
+Weight without armament, fuel or crew: 59560 Ib
+Expected Answer: 59560 kg
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 46
+Question: What guns are part of the combination turret mount?
+Actual Answer: According to the context, the guns that are part of the combination turret mount are:
+
+1. Gun, 75-mm, M3
+2. Machine gun, cal. .30, M1919A4 (combination turret mount)
+Expected Answer: 1 gun, 90-mm, M4 and 1 gun, machine, cal. .50, M2-Browning
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 47
+Question: How many degrees can the turret be rotated?
+Actual Answer: According to the context, the answer is:
+
+"360° traverse"
+
+The turret has a cast armor plate that allows it to rotate 360 degrees.
+Expected Answer: 300
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 48
+Question: How to stop the engine?
+Actual Answer: To stop the engine, always pull this toggle switch to the right and hold it in that position until the engine stops before turning off the ignition. This shuts off the fuel from the idle fuel supply wells in the carburetor, which will prevent loading up of the carburetor in case the engine is to be restarted while still hot.
+Expected Answer: Just turn it off by taking out the key
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 49
+Question: What is the overall length?
+Actual Answer: The overall length of the tank described in the context is not specified.
+Expected Answer: 40 meters
+Evaluation: no context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 50
+Question: What was the real gdp of Germany in 2023?
+Actual Answer: According to the provided context, the answer is:
+
+Real GDP (purchasing power parity) - $5.23 trillion (2023 est.)
+Expected Answer: 6 trillion
+Evaluation: True
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 51
+Question: Who is the biggest export partner of Germany?
+Actual Answer: According to the text, Germany's biggest export partners are:
+
+1. United States - 10%
+2. France - 7%
+3. China - 7%
+4. Netherlands - 7%
+5. Italy - 6%
+
+So, the answer is a tie among these five countries!
+Expected Answer: Luxemburg
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 52
+Question: Who is the biggest import partner of Germany?
+Actual Answer: According to the provided data, China is not the biggest import partner of Germany. In fact, China accounts for only 10% of Germany's imports in 2022.
+
+The biggest import partners of Germany are:
+
+1. Netherlands (9%)
+2. Poland (6%)
+3. Belgium (6%)
+4. Italy (5%)
+
+These figures are based on Germany's import data for 2022.
+Expected Answer: France
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 53
+Question: Who is the head of government?
+Actual Answer: There is no information provided about a "head of government" in this context. The text appears to be related to rules and regulations for a sports game, specifically basketball. Therefore, I cannot provide an answer to your question as it is not relevant to the given context. If you have any questions about the rules or regulations mentioned in the text, I'd be happy to help!
+Expected Answer: Angela Merkel
+Evaluation: No Context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 54
+Question: Who is the chief of state?
+Actual Answer: There is no information provided about a "chief of state" in this context. The text appears to be related to rules or regulations for a sports game, specifically basketball. Therefore, I cannot provide an answer to your question about who is the chief of state because that term is not relevant to the provided context.
+Expected Answer: Pierre Danke
+Evaluation: No context
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 55
+Question: What is the population growth?
+Actual Answer: According to the provided context, the population growth rate of Germany is -0.12% (2024 est.).
+Expected Answer: 0.14%
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 56
+Question: What is the total population?
+Actual Answer: The total population of Germany is approximately 84,119,100.
+Expected Answer: 22200000
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 57
+Question: What is the total area of Germany? How much land and how water does it consist of?
+Actual Answer: According to the provided context, the total area of Germany is 357,022 square kilometers. This consists of:
+
+* Land: 348,672 square kilometers
+* Water: 8,350 square kilometers
+Expected Answer: totaL: 100000 sq km, land: 1000 sq km, water: 99000 sq km
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 58
+Question: What are the 3 largest ethnic groups in Germany?
+Actual Answer: According to the provided context, the three largest ethnic groups in Germany are:
+
+1. German - 85.4%
+2. Turkish - 1.8%
+3. Ukrainian - 1.4%
+Expected Answer: 1. French (45%), 2.Albanian(44%), 3.Mongolian(1%)
+Evaluation: False
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 59
+Question: What are the 3 largest religions in Germany?
+Actual Answer: Based on the provided context, the three largest religions in Germany are:
+
+1. Roman Catholic - 24.8%
+2. Protestant - 22.6%
+3. Muslim - 3.7%
+
+These figures are based on estimates from 2022.
+Expected Answer: 1.Hindu (25%), 2.Muslim (21%), 3.Jewish (12 %)
+Evaluation: False
+--------------------------------------------------
+
+
+
+----------------------------------------------------------------------------------------------------
+Total Accuracy: 60.00 %
+False Positive Percentage: 23.33 %
+False Negative Percentage: 30.00 %
+No Context Percentage: 13.33
+[END OF TEST]

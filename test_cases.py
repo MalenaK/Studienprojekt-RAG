@@ -128,7 +128,7 @@ sherman_negative_test_cases = [
 test_case_301 = ["What was the real gdp of Germany in 2023?", "5.23 trillion"]
 test_case_301_complement = ["What was the real gdp of Germany in 2023?", "6 trillion"]
 
-test_case_302 = ["Who is the biggest export partner of Germany?", "The United States 🦅"]
+test_case_302 = ["Who is the biggest export partner of Germany?", "The United States"]
 test_case_302_complement = ["Who is the biggest export partner of Germany?", "Luxemburg"]
 
 test_case_303 = ["Who is the biggest import partner of Germany?", "China"]
