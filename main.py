@@ -38,9 +38,8 @@ def query_rag(query_text) -> str:
 
 
     # Page count starts at 0.
+    # Add sources to context
     context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results])
-    print(context_text+ "\n\n")
-    query_text = query_text + "\nOnly use information from context, add each relevant source specified in the context to the relevant part of your answer."
     answer: str = llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text

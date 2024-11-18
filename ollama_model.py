@@ -31,7 +31,8 @@ class Model:
     template: str = """
     Answer the question based on the following context:
     {context}
-
+    
+    Add each relevant source specified in the context to the relevant part of your answer.
     ---
 
     Question: {question}
