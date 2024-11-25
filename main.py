@@ -2,6 +2,9 @@
 
 import argparse
 
+from oauthlib.uri_validate import query
+
+from infinity_reranker import rerank_top_k
 from ollama_model import Model
 
 from database_helper import DatabaseHelper
@@ -9,6 +12,8 @@ from database_helper import DatabaseHelper
 from document_handler import DocumentHandler
 
 from embedding import get_embedding_function
+
+import infinity_reranker
 
 
 
@@ -22,6 +27,12 @@ from embedding import get_embedding_function
 config_model = "llama3"
 config_embedding = "mxbai-embed-large"
 
+#Retrieve top k chunks for a query
+#One Chunk is currently 1200, context limit is around 8000 tokens
+top_k_retrieval = 24
+top_k_rerank = 7
+
+
 #Instantiate Required Objects
 llm_model: Model = Model(model=config_model)  # Idk why it says that we are getting None here in pycharm, it returns an object
 db_helper = DatabaseHelper(model=config_embedding)
@@ -33,10 +44,18 @@ def query_rag(query_text) -> str:
     db = db_helper.get_db()
 
     #search in the db
-    results = db.similarity_search_with_score(query_text, k=5)
+    #First layer of filtering, computationally relatively inexpensive but higher inaccuracy
+    #This layer should retrieve as many chunks as possible while keeping the second filtering layer in an acceptable time frame
+    results = db.similarity_search_with_score(query_text, k=top_k_retrieval)
     #print(f"Search Results: {results}")  # Debug: Print the results to check
 
-    context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
+
+    #We will use the reranker to make a second more fine but computationally expensive layer of filtering here
+    #This layer should utilize the maximum context of our llm
+    results_reranked = rerank_top_k(results, query_text)
+
+    context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results_reranked])
+
     answer: str = llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text
