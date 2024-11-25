@@ -1,4 +1,5 @@
 import os
+import hashlib
 
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -52,3 +53,16 @@ class DocumentHandler:
             #is_separator_regex=False,
         )
         return text_splitter.split_documents(documents)
+    
+    #creates the name of the collection based on file names in dir + filepath
+    def get_collection_name(self, file_path: str) -> str:
+        if not os.path.exists(file_path):
+            raise FileNotFoundError(f"The specified directory does not exist: {file_path}")
+        
+        #compute hash of path + folder content to ensure uniqueness and meet criteria for collection name (< 63 character,...)
+        pdf_names: str = ''.join(sorted(os.listdir(file_path))).replace(' ','') #turn list into string
+        hash_input = file_path + pdf_names
+        hash_object = hashlib.sha256(hash_input.encode())
+
+        return hash_object.hexdigest()[:63]
+

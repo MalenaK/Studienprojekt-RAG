@@ -41,8 +41,8 @@ doc_handler = DocumentHandler()
 
 
 #handles querying the llm
-def query_rag(query_text) -> str:
-    db = db_helper.get_db()
+def query_rag(query_text, collection_name) -> str:
+    db = db_helper.get_collection(collection_name=collection_name)
 
     #search in the db
     #First layer of filtering, computationally relatively inexpensive but higher inaccuracy
@@ -71,7 +71,7 @@ def update_data_store(pdf_dir):
     # Create (or update) the data store.
     documents = doc_handler.load_documents(file_path=pdf_dir)
     chunks = doc_handler.split_documents(documents)
-    db_helper.add_to_chroma(chunks)
+    db_helper.add_to_chroma(chunks, collection_name=doc_handler.get_collection_name(file_path=pdf_dir))
 
 def main():
     print(llm_model.generate_answer("There is no context", "Can you respond with 'Hello, everything is working fine!'"))
@@ -80,16 +80,20 @@ def main():
 
     # Check if the database should be cleared (using the --clear flag). We could use a different better approach here this /
     # is temporary
-    parser.add_argument("--reset", action="store_true", help="Reset the database.")
+    parser.add_argument("-ra", "--reset_all", action="store_true", help="Reset the whole database.")
+    parser.add_argument("-rc", "--reset_collection", action="store_true", help="Reset the collection specified in pdf_dir.")
 
     # flag for path to pdfs
     parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
 
     args = parser.parse_args()
-    if args.reset:
-        print("Clearing Database...")
-        db_helper.clear_database()
 
+    collection_name = doc_handler.get_collection_name(file_path=args.pdf_dir)
+    if args.reset_all:
+        db_helper.clear_database()
+    
+    if args.reset_collection:
+        db_helper.clear_collection(collection_name)
 
     # Create (or update) the data store.
     update_data_store(args.pdf_dir)
@@ -103,7 +107,7 @@ def main():
         elif query_text == 'Bazinga':  # easter egg
             print("🧠 Switching to Sheldon Mode... Bazinga!")
             llm_model.activate_sheldon_mode()
-        print(query_rag(query_text))
+        print(query_rag(query_text, collection_name))
 
 if __name__ == "__main__":
     main()

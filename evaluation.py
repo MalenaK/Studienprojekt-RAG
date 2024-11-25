@@ -1,5 +1,4 @@
 import os
-import sys
 
 import numpy as np
 from numpy.ma.core import negative
@@ -16,14 +15,14 @@ import seaborn as sns
 #Maybe improve this by actually using 3 models and making it a democratic decision if an answer was correct or not
 
 test_template = """
-Question: 
-Expected Response: {context}
-Actual Response: {question}
+Question: {question}
+Expected Response: {expected_answer}
+Actual Response: {actual_answer}
 
 Does the actual response match the expected Response regarding content? Only answer with "true", "no context" or "false". If the actual response states that it can not provide an answer due to missing context you must respond with "no context"".
 """
 counter: int = 0
-
+collection_name = None
 
 def log(message):
     # Write to the log file
@@ -32,7 +31,7 @@ def log(message):
 
 #Using sources is not necessary in comparison
 def query_rag_no_sources(query_text) -> str:
-    db = db_helper.get_db()
+    db = db_helper.get_collection(collection_name=collection_name)
 
     #search in the db
     results = db.similarity_search_with_score(query_text, k=5)
@@ -53,8 +52,7 @@ def test_model(question: str, expected_answer: str) -> bool | str:
     llm_model.set_template(test_template)
 
     #Evaluate the response
-    context = f"Question: {question}\nExpected Response: {expected_answer}"
-    evaluation = llm_model.generate_answer(context, actual_answer)
+    evaluation = llm_model.generate_answer_for_evaluation(question, expected_answer, actual_answer)
     #print(f"{"-"*50}\nTest Case Number: {counter}\nQuestion: {question}\nActual Answer: {actual_answer}\nExpected Answer: {expected_answer}\nEvaluation: {evaluation}\n{"-"*50}\n\n")
     log(f"{'-' * 50}\nTest Case Number: {counter}\nQuestion: {question}\nActual Answer: {actual_answer}\nExpected Answer: {expected_answer}\nEvaluation: {evaluation}\n{'-' * 50}\n\n")
 
@@ -162,7 +160,7 @@ def test_loop():
             progress_bar = '=' * (test_idx * 40 // num_test_cases) + ' ' * (40 - (test_idx * 40 // num_test_cases))
             print(f"Test Progress: [{progress_bar}] {progress_percentage:.2f}% ({test_idx}/{num_test_cases})")
 
-        answer = test()
+        answer = test_model(test[0], test[1])
 
         if answer == "noc":
             no_context_on_negative += 1
@@ -197,7 +195,6 @@ def test_loop():
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser()
     parser.add_argument("--reset", action="store_true", help="Reset the database.")
     parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
@@ -213,9 +210,11 @@ if __name__ == "__main__":
     with open(f'./tests/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'w') as f:  #Wipe old testlog
         f.write("")
 
-
     # Create (or update) the data store.
     update_data_store(args.pdf_dir)
+
+    collection_name = doc_handler.get_collection_name(args.pdf_dir)
+
     log("[START OF TEST]")
     test_loop()
     log("[END OF TEST]")
