@@ -8,6 +8,7 @@ from infinity_reranker import rerank_top_k
 from ollama_model import Model
 
 from database_helper import DatabaseHelper
+from langchain.schema.document import Document
 
 from document_handler import DocumentHandler
 
@@ -29,8 +30,8 @@ config_embedding = "mxbai-embed-large"
 
 #Retrieve top k chunks for a query
 #One Chunk is currently 1200, context limit is around 8000 tokens
-top_k_retrieval = 24
-top_k_rerank = 7
+top_k_retrieval = 30
+top_k_rerank = 5
 
 
 #Instantiate Required Objects
@@ -46,15 +47,18 @@ def query_rag(query_text) -> str:
     #search in the db
     #First layer of filtering, computationally relatively inexpensive but higher inaccuracy
     #This layer should retrieve as many chunks as possible while keeping the second filtering layer in an acceptable time frame
-    results = db.similarity_search_with_score(query_text, k=top_k_retrieval)
+    results:  list[tuple[Document, float]] = db.similarity_search_with_score(query_text, k=top_k_retrieval)
     #print(f"Search Results: {results}")  # Debug: Print the results to check
 
 
     #We will use the reranker to make a second more fine but computationally expensive layer of filtering here
     #This layer should utilize the maximum context of our llm
-    results_reranked = rerank_top_k(results, query_text)
+    #Currently the rerank_top_k does not look at the document the text was taken from but only the content!
+    results_reranked = rerank_top_k(query_text, results)
+    #print(f"len reranked: {len(results_reranked)}")
 
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results_reranked])
+    #print(context_text)
 
     answer: str = llm_model.generate_answer(context_text, query_text)
 

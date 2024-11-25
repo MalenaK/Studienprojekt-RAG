@@ -31,29 +31,25 @@ async def __rerank(query: str, docs: [], engine: AsyncEmbeddingEngine):
 
     async with engine:
         ranking, usage = await engine.rerank(query=query, docs=docs)
-        print(list(zip(ranking, docs)))
+        #print(list(zip(ranking, docs)))
     await engine.astart()
     ranking, usage = await engine.rerank(query=query, docs=docs)
     await engine.astop()
     return ranking
 
-def rerank_top_k(query: str, docs: list[tuple[Document, float]], k=7):
-    
-    reranked_docs = asyncio.run(__rerank(query, docs, engine))
+def rerank_top_k(query: str, docs: list[tuple[Document, float]], k=7) -> list[tuple[Document, float]]:
+
+    doc_texts = [doc[0].page_content for doc in docs]
+
+    reranked_docs = asyncio.run(__rerank(query, doc_texts, engine))
+
     #All indices sorted based on relevance
     #Here the relevance score can also be given back if needed
-    reranked_indices = [ i.index for i in reranked_docs]
+    reranked_indices = [ idx.index for idx in reranked_docs]
 
-    #print(f"a: {reranked_docs[0]}\n Type: {type(reranked_docs)}")
-    #print(reranked_indices)
-
-    return reranked_indices
-
-    #reshuffle docs
-    #reshuffled_list = list(map(lambda i: docs[i], reranked_indices))
-    #print(reshuffled_list)
-
-    #return reshuffled_list[:k]
+    #Sort docs list based on relevance
+    reshuffled_list = [docs[i] for i in reranked_indices]
+    return reshuffled_list[:k]
 
 if __name__ == "__main__":
     print(f"OUTPUT: {rerank_top_k("", [], 1)}")

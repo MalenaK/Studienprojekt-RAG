@@ -207,6 +207,9 @@ if __name__ == "__main__":
         print("Clearing Database...")
         db_helper.clear_database()
 
+    test_dir = f'./tests/{llm_model.get_model()}---{get_embedding_function().model}'
+    os.makedirs(test_dir, exist_ok=True)
+
     with open(f'./tests/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'w') as f:  #Wipe old testlog
         f.write("")
 
