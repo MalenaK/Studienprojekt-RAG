@@ -43,8 +43,8 @@ def query_rag(query_text) -> str:
     answer: str = llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text
-    #sources = [doc.metadata.get("id", None) for doc, _score in results]
-    formatted_answer = f"Answer: {answer}\n"#Sources: {sources}"
+    sources = [doc.metadata.get("id", None) for doc, _score in results]
+    formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
     return formatted_answer
 
 def update_data_store(pdf_dir):
