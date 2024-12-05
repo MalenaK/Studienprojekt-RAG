@@ -14,6 +14,7 @@ from document_handler import DocumentHandler
 
 from embedding import get_embedding_function
 
+
 import infinity_reranker
 
 
@@ -30,7 +31,7 @@ config_embedding = "mxbai-embed-large"
 
 #Retrieve top k chunks for a query
 #One Chunk is currently 1200, context limit is around 8000 tokens
-top_k_retrieval = 30
+top_k_retrieval = 20
 top_k_rerank = 5
 
 
@@ -74,7 +75,7 @@ def update_data_store(pdf_dir):
     db_helper.add_to_chroma(chunks, collection_name=doc_handler.get_collection_name(file_path=pdf_dir))
 
 def main():
-    print(llm_model.generate_answer("There is no context", "Can you respond with 'Hello, everything is working fine!'"))
+    print(llm_model.generate_answer("There is no context", "Can you respond with '...Everything is working perfectly fine so far, getting the Database...'"))
 
     parser = argparse.ArgumentParser()
 
@@ -98,6 +99,7 @@ def main():
     # Create (or update) the data store.
     update_data_store(args.pdf_dir)
 
+    print("Everything is operational, have fun :D")
     #Main Loop
     while True:
         print("\nEnter 'exit' to exit")
