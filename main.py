@@ -51,21 +51,18 @@ def query_rag(query_text, collection_name) -> str:
     results:  list[tuple[Document, float]] = db.similarity_search_with_score(query_text, k=top_k_retrieval)
     #print(f"Search Results: {results}")  # Debug: Print the results to check
 
-
+    
     #We will use the reranker to make a second more fine but computationally expensive layer of filtering here
     #This layer should utilize the maximum context of our llm
     #Currently the rerank_top_k does not look at the document the text was taken from but only the content!
     results_reranked = rerank_top_k(query_text, results)
-    #print(f"len reranked: {len(results_reranked)}")
 
-    context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results_reranked])
-    #print(context_text)
-
+    context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results_reranked])
     answer: str = llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text
     sources = [doc.metadata.get("id", None) for doc, _score in results]
-    formatted_answer = f"Answer: {answer}\nSources: {sources}"
+    formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
     return formatted_answer
 
 def update_data_store(pdf_dir):
