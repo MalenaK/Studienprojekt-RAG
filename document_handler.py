@@ -60,9 +60,9 @@ class DocumentHandler:
             raise FileNotFoundError(f"The specified directory does not exist: {file_path}")
         
         #compute hash of path + folder content to ensure uniqueness and meet criteria for collection name (< 63 character,...)
-        pdf_names: str = ''.join(sorted(os.listdir(file_path))).replace(' ','') #turn list into string
-        hash_input = file_path + pdf_names
-        hash_object = hashlib.sha256(hash_input.encode())
+        #pdf_names: str = ''.join(sorted(os.listdir(file_path))).replace(' ','') #turn list into string
+        abs_path = os.path.abspath(file_path)
+        hash_object = hashlib.sha256(abs_path.encode('utf-8'))
 
         return hash_object.hexdigest()[:63]
 
