@@ -36,12 +36,15 @@ def query_rag(query_text, collection_name) -> str:
     results = db.similarity_search_with_score(query_text, k=5)
     #print(f"Search Results: {results}")  # Debug: Print the results to check
 
-    context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
+
+    # Page count starts at 0.
+    # Add sources to context
+    context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results])
     answer: str = llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text
     sources = [doc.metadata.get("id", None) for doc, _score in results]
-    formatted_answer = f"Answer: {answer}\nSources: {sources}"
+    formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
     return formatted_answer
 
 def update_data_store(pdf_dir):
