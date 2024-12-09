@@ -1,5 +1,3 @@
-from evaluation import test_model
-
 #We number the test such that they always begin with a hundred to stay flexible and add tests for a specific document if necessary
 
 #FIBA Rulebook DOCUMENT
@@ -184,3 +182,59 @@ germany_negative_test_cases = [
 
 positive_test_cases = fiba_positive_test_cases + sherman_positive_test_cases + germany_positive_test_cases
 negative_test_cases = fiba_negative_test_cases + sherman_negative_test_cases + germany_negative_test_cases
+
+#complex test cases as specified in our google doc
+test_cases_c1xx = [
+    "What kind of retrievers can be used in RA-LLMs?",
+    "Once my data is stored in the RA-LLM system, in what format will it be retrieved from the database?",
+    "I am having problems setting up my RAG system. Right now, the chunks retrieved by the retriever don’t really seem to match my query. What could I do to get more relevant chunks from the retriever?",
+    "What ways are there to incorporate knowledge directly from the Internet into my RAG/RA-LLM system?"
+    " For my RAG system, I would like to use a less common way of integrating the retrieved external knowledge into my generation model. Are there any approaches to use the knowledge not as part of the initial input for my generation model?",
+    "What is the difference between Input-Layer-Integration as a design for generation augmentation and prompt-engineering based methods for training-free RA-LLMs?",
+    "To improve my RAG system capabilities, I would like to train both the retriever and the generator. What can you tell me about the approaches there and when to use the approaches?",
+    " I am building a simple webshop. As it is common nowadays, I would like my webshop to recommend similar products to my customers based on what they are currently looking at or have recently bought. Are there any existing RAG-systems that could help me with that?",  
+]
+
+test_cases_c2xx = [
+    "What is the given paper about?",
+    "What kind of language models are described in the paper?",
+    "Tell me about some limitations of RALMs?",
+    "Define the term RALM",
+    "How to increase model performance for ralm?",
+    "What data does Ralm use?",
+    "How to evaluate RALM performance?",
+    "Please summarize the conclusion",
+    "What are some use cases for RALM?",
+    "Could  RALM be used to create an ai video game npc?",
+    "Explain sequential Interaction"
+]
+
+test_cases_c3xx = [
+    "In which stages can RAGs be categorized?",
+    "What improvements do advanced RAGs offer compared to the naive RAGs?",
+    "What are the main methods of the post-retrieval process?",
+    "How does the Modular RAG architecture, in general, advance beyond the naive and the advanced RAG paradigms?",
+    "What are the differences between RAG and Fine-Tuning, which should I use?",
+    "What role does LLMs-Generated Content have in RAG systems?",
+    "What are the names of the main methods with which queries can be improved?",
+    "What is the impact of including task irrelevant documents, will accuracy decrease?"
+]
+
+test_cases_c4xx = [
+    "What do the different papers focus on?",
+    "What are the key differences in the papers’ conclusions?",
+    "Taking the different papers into account, what are some key issues research should focus on?",
+    "How does each paper categorize or classify different types of retrieval methods and their applications in RAG systems?",
+    "Can the modular RAG architecture that was presented in one of the papers be applied to any of the RA-LLM approaches discussed in the other papers?",
+    "Regarding the common problem of hallucinations in LLMs, do the papers see RAG as a solution to this problem?",
+    "Are there unique paradigms or models introduced in any of the papers that could complement others?",
+    "Are there underexplored areas in one document that are addressed in detail in another?"
+]
+
+test_cases_names_to_list = {
+    "c1xx": test_cases_c1xx,
+    "c2xx": test_cases_c2xx,
+    "c3xx": test_cases_c3xx,
+    "c4xx": test_cases_c4xx,
+    "cxxx": test_cases_c1xx + test_cases_c2xx + test_cases_c3xx + test_cases_c4xx
+}
