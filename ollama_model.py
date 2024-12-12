@@ -28,7 +28,9 @@ class Model:
 
 
     """
-    template: str = """
+    template: str = ""
+
+    template_standard: str = """
     Answer the question based on the following context:
     {context}
     
@@ -41,19 +43,6 @@ class Model:
 
     Answer: 
     """
-
-    template_cpy: str = """
-        Answer the question based on the following context:
-        {context}
-
-        ---
-
-        Question: {question}
-
-        ---
-
-        Answer: 
-        """
 
     template_sheldon: str = """
     Pretend you are Sheldon from the Big Bang Theory and answer the following question based on the context but you must include at least 1 Bazinga in your answer but the more the better.
@@ -80,6 +69,7 @@ class Model:
         None
         """
         self.model: OllamaLLM = OllamaLLM(model=model)
+        self.set_template(self.template_standard)
 
 
     def generate_answer(self, context_text: str, query: str) -> str:
@@ -151,4 +141,4 @@ class Model:
         self.template = template
 
     def reset_template(self):
-        self.template = self.template_cpy
+        self.template = self.template_standard
