@@ -2,13 +2,20 @@
 
 import argparse
 
+from oauthlib.uri_validate import query
+
+from infinity_reranker import rerank_top_k
 from ollama_model import Model
 
 from database_helper import DatabaseHelper
+from langchain.schema.document import Document
 
 from document_handler import DocumentHandler
 
 from embedding import get_embedding_function
+
+
+import infinity_reranker
 
 
 
@@ -22,6 +29,12 @@ from embedding import get_embedding_function
 config_model = "llama3"
 config_embedding = "mxbai-embed-large"
 
+#Retrieve top k chunks for a query
+#One Chunk is currently 1200, context limit is around 8000 tokens
+top_k_retrieval = 20
+top_k_rerank = 5
+
+
 #Instantiate Required Objects
 llm_model: Model = Model(model=config_model)  # Idk why it says that we are getting None here in pycharm, it returns an object
 db_helper = DatabaseHelper(model=config_embedding)
@@ -33,13 +46,18 @@ def query_rag(query_text, collection_name) -> str:
     db = db_helper.get_collection(collection_name=collection_name)
 
     #search in the db
-    results = db.similarity_search_with_score(query_text, k=5)
+    #First layer of filtering, computationally relatively inexpensive but higher inaccuracy
+    #This layer should retrieve as many chunks as possible while keeping the second filtering layer in an acceptable time frame
+    results:  list[tuple[Document, float]] = db.similarity_search_with_score(query_text, k=top_k_retrieval)
     #print(f"Search Results: {results}")  # Debug: Print the results to check
 
+    
+    #We will use the reranker to make a second more fine but computationally expensive layer of filtering here
+    #This layer should utilize the maximum context of our llm
+    #Currently the rerank_top_k does not look at the document the text was taken from but only the content!
+    results_reranked = rerank_top_k(query_text, results)
 
-    # Page count starts at 0.
-    # Add sources to context
-    context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results])
+    context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results_reranked])
     answer: str = llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text
@@ -54,7 +72,7 @@ def update_data_store(pdf_dir):
     db_helper.add_to_chroma(chunks, collection_name=doc_handler.get_collection_name(file_path=pdf_dir))
 
 def main():
-    print(llm_model.generate_answer("There is no context", "Can you respond with 'Hello, everything is working fine!'"))
+    print(llm_model.generate_answer("There is no context", "Can you respond with '...Everything is working perfectly fine so far, getting the Database...'"))
 
     parser = argparse.ArgumentParser()
 
@@ -78,6 +96,7 @@ def main():
     # Create (or update) the data store.
     update_data_store(args.pdf_dir)
 
+    print("Everything is operational, have fun :D")
     #Main Loop
     while True:
         print("\nEnter 'exit' to exit")
