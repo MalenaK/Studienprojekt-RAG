@@ -31,17 +31,17 @@ def query_rag(query_text, test_suite) -> str:
     return formatted_answer
 
 def log(message: str, test_suite: simple_test_suite):
-    with open(test_suite.path_to_testresults, 'a') as log_file:
+    with open(test_suite.path_to_testresults, 'a', encoding='utf-8') as log_file:
         log_file.write(message + '\n')
     
 def test_loop(test_cases, test_suite: simple_test_suite):
     #loop over all elements in list, ask question
     for test_case in test_cases:
         answer: str = query_rag(query_text=test_case, test_suite=test_suite)
-        message = f"Question: {test_case}\nAnswer:{answer}\n{"-"*50}"
+        message = f"Question: {test_case}\n{answer}\n{"-"*50}"
         log(message=message, test_suite=test_suite)
 
-def make_path_to_testresults(test_suite, data_path, test_cases_name) -> str:
+def create_resultfile(test_suite, data_path, test_cases_name) -> str:
     test_folder = "./tests/complex_testcases"
     os.makedirs(test_folder, exist_ok=True)
 
@@ -62,7 +62,7 @@ def set_up_testsuite(data_path, test_cases_name) -> simple_test_suite:
     test_suite.db_helper = mainFile.db_helper
     test_suite.llm_model = mainFile.llm_model
     test_suite.collection_name = mainFile.doc_handler.get_collection_name(file_path=data_path)
-    test_suite.path_to_testresults = make_path_to_testresults(test_suite, data_path, test_cases_name)
+    test_suite.path_to_testresults = create_resultfile(test_suite, data_path, test_cases_name)
     return test_suite
 
 if __name__ == "__main__":
