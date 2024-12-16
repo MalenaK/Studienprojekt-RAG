@@ -4,6 +4,7 @@ import argparse
 import os
 from database_helper import DatabaseHelper
 from embedding import get_embedding_function
+from infinity_reranker import rerank_top_k
 from ollama_model import Model
 import main as mainFile
 import test_cases
@@ -16,13 +17,15 @@ class simple_test_suite:
     collection_name: str
 
 def query_rag(query_text, test_suite) -> str:
+
     db = test_suite.db_helper.get_collection(collection_name=test_suite.collection_name)
 
     #search in the db
     results = db.similarity_search_with_score(query_text, k=5)
+    results_reranked = rerank_top_k(query_text, results)
     # Page count starts at 0.
     # Add sources to context
-    context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nContained in PDF: " + doc.metadata.get("id", None) for doc, _score in results])
+    context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results_reranked])
     answer: str = test_suite.llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text
