@@ -22,7 +22,7 @@ def query_rag(query_text, test_suite) -> str:
     results = db.similarity_search_with_score(query_text, k=5)
     # Page count starts at 0.
     # Add sources to context
-    context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results])
+    context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nContained in PDF: " + doc.metadata.get("id", None) for doc, _score in results])
     answer: str = test_suite.llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text

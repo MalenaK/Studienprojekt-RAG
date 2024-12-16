@@ -32,7 +32,7 @@ class Model:
     Answer the question based on the following context:
     {context}
     
-    Add each relevant pdf and page source specified via "Source of info in this block:" in the context to the relevant part of your answer.
+    Add each relevant pdf and page source specified at the end of each information in the context to the relevant part of your answer. Do NOT copy sources from the information itself, which looks like [xx]!
     ---
 
     Question: {question}
