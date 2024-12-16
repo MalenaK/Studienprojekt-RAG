@@ -2,20 +2,14 @@
 
 import argparse
 
-from oauthlib.uri_validate import query
 
-from infinity_reranker import rerank_top_k
-from ollama_model import Model
+from models.infinity_reranker import rerank_top_k
+from models.ollama_model import Model
 
-from database_helper import DatabaseHelper
+from retrieval.database_helper import DatabaseHelper
 from langchain.schema.document import Document
 
-from document_handler import DocumentHandler
-
-from embedding import get_embedding_function
-
-
-import infinity_reranker
+from retrieval.document_handler import DocumentHandler
 
 
 
@@ -82,7 +76,7 @@ def main():
     parser.add_argument("-rc", "--reset_collection", action="store_true", help="Reset the collection specified in pdf_dir.")
 
     # flag for path to pdfs
-    parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
+    parser.add_argument("-d", "--pdf_dir", default="./data/data_basic", help="Specify path to directory containing the pdfs.")
 
     args = parser.parse_args()
 

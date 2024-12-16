@@ -2,12 +2,12 @@
 
 import argparse
 import os
-from database_helper import DatabaseHelper
-from embedding import get_embedding_function
-from infinity_reranker import rerank_top_k
-from ollama_model import Model
+from retrieval.database_helper import DatabaseHelper
+from models.embedding import get_embedding_function
+from models.infinity_reranker import rerank_top_k
+from models.ollama_model import Model
 import main as mainFile
-import test_cases
+import tests.test_cases as test_cases
 
 
 class simple_test_suite:
@@ -45,7 +45,7 @@ def test_loop(test_cases, test_suite: simple_test_suite):
         log(message=message, test_suite=test_suite)
 
 def create_resultfile(test_suite, data_path, test_cases_name) -> str:
-    test_folder = "./tests/complex_testcases"
+    test_folder = "./testresults/complex_testcases"
     os.makedirs(test_folder, exist_ok=True)
 
     data_name = data_path.replace("/","").replace("\\", "").replace(" ","").replace(".","")
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-ra", "--reset_all", action="store_true", help="Reset the whole database.")
     parser.add_argument("-rc", "--reset_collection", action="store_true", help="Reset the collection specified in pdf_dir.")
-    parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
+    parser.add_argument("-d", "--pdf_dir", default="./data/data_basic/", help="Specify path to directory containing the pdfs.")
     parser.add_argument("-tc", "--test_cases_name", required=True, help="Specify name of test cases list.")
     args = parser.parse_args()
 

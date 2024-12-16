@@ -1,14 +1,8 @@
 import os
-
 import numpy as np
-from numpy.ma.core import negative
-from pypika.enums import Boolean
-from sympy import false
-
 from main import *
-from test_cases import *
-
-
+from models.embedding import get_embedding_function
+from tests.test_cases import *
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -26,7 +20,7 @@ collection_name = None
 
 def log(message):
     # Write to the log file
-    with open(f'./tests/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'a') as log_file:
+    with open(f'./testresults/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'a') as log_file:
         log_file.write(message + '\n')
 
 #Using sources is not necessary in comparison
@@ -128,7 +122,7 @@ def test_loop():
     false_positives = 0
     num_test_cases = len(positive_test_cases) + len(negative_test_cases)
     test_tracker = num_test_cases // 20
-    test_folder = "./tests"
+    test_folder = "./testresults"
     os.makedirs(test_folder, exist_ok=True)
 
     current_test = f"{test_folder}/{llm_model.get_model()}---{get_embedding_function().model}" #always Language model followed by embedding seperated by ---
@@ -197,17 +191,17 @@ def test_loop():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--reset", action="store_true", help="Reset the database.")
-    parser.add_argument("-d", "--pdf_dir", default="./data", help="Specify path to directory containing the pdfs.")
+    parser.add_argument("-d", "--pdf_dir", default="./data/data_basic/", help="Specify path to directory containing the pdfs.")
 
     args = parser.parse_args()
     if args.reset:
         print("Clearing Database...")
         db_helper.clear_database()
 
-    test_dir = f'./tests/{llm_model.get_model()}---{get_embedding_function().model}'
+    test_dir = f'./testresults/{llm_model.get_model()}---{get_embedding_function().model}'
     os.makedirs(test_dir, exist_ok=True)
 
-    with open(f'./tests/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'w') as f:  #Wipe old testlog
+    with open(f'./testresults/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'w') as f:  #Wipe old testlog
         f.write("")
 
     # Create (or update) the data store.
@@ -219,4 +213,4 @@ if __name__ == "__main__":
     test_loop()
     log("[END OF TEST]")
 
-    print(f"Test is complete, see test folder: ./tests/{llm_model.get_model()}---{get_embedding_function().model}")
+    print(f"Test is complete, see test folder: ./testresults/{llm_model.get_model()}---{get_embedding_function().model}")

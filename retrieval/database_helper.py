@@ -8,8 +8,8 @@ from langchain_chroma import Chroma
 
 from langchain.schema.document import Document
 
-from chunker import calculate_chunk_ids
-from embedding import get_embedding_function
+from retrieval.chunker import calculate_chunk_ids
+from models.embedding import get_embedding_function
 
 
 class DatabaseHelper:
