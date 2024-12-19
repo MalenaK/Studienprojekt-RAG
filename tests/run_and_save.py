@@ -44,7 +44,7 @@ def test_loop(test_cases, test_suite: simple_test_suite):
         log(message=message, test_suite=test_suite)
 
 def create_resultfile(test_suite, data_path, test_cases_name) -> str:
-    test_folder = "./testresults/complex_testcases"
+    test_folder = "./test_results/complex_testcases"
     os.makedirs(test_folder, exist_ok=True)
 
     data_name = data_path.replace("/","").replace("\\", "").replace(" ","").replace(".","")
