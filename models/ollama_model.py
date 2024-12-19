@@ -4,11 +4,20 @@ This module is based on Ollama. It contains the model class which can be used to
 To generate the answers you may use any Ollama model, see https://ollama.com/library?sort=popular for reference.
 """
 
+from typing import List
+from typing_extensions import Annotated, TypedDict
 from langchain_ollama import OllamaLLM
 from langchain_core.prompts import ChatPromptTemplate
-from pandas.core.window.doc import template_returns
 
+class AnswerWithSources(TypedDict):
+    """An answer to the question, with sources."""
 
+    answer: str
+    sources: Annotated[
+        List[str],
+        ...,
+        "List of sources (document name + page number) used to answer the question.",
+    ]
 class Model:
     """
     Model class that can be used to generate answers.
@@ -91,7 +100,8 @@ class Model:
         prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
         prompt: str = prompt_template.format(context=context_text, question=query)
         #print(f"prompting the LLM with: \n{prompt}") #disabled clutters testing
-        answer: str = self.model.invoke(prompt)
+        structured_llm = self.with_structured_output(AnswerWithSources)
+        answer: str = structured_llm.invoke(prompt)
         return answer
     
     def generate_answer_for_evaluation(self, question: str, expected_answer: str, actual_answer: str) -> str:
