@@ -2,35 +2,61 @@
 # to run this script execute "python -m tests.run_and_save -tc [your set of test cases] -d [pdf_dir]" in **root dir of project** 
 import argparse
 import os
+
+from chromadb import Documents
 from retrieval.database_helper import DatabaseHelper
 from models.embedding import get_embedding_function
 from models.infinity_reranker import rerank_top_k
 from models.ollama_model import Model
-from main import db_helper, llm_model, doc_handler
+from main import db_helper, llm_model, doc_handler, top_k_retrieval
+from retrieval.document_handler import DocumentHandler
 import tests.test_cases as test_cases
 
 class simple_test_suite:
     db_helper: DatabaseHelper
     llm_model: Model
+    doc_handler: DocumentHandler
     path_to_testresults: str
     collection_name: str
 
 def query_rag(query_text, test_suite) -> str:
-
     db = test_suite.db_helper.get_collection(collection_name=test_suite.collection_name)
 
     #search in the db
-    results = db.similarity_search_with_score(query_text, k=5)
+    #First layer of filtering, computationally relatively inexpensive but higher inaccuracy
+    #This layer should retrieve as many chunks as possible while keeping the second filtering layer in an acceptable time frame
+    results:  list[tuple[Documents, float]] = db.similarity_search_with_score(query_text, k=top_k_retrieval)
+    #print(f"Search Results: {results}")  # Debug: Print the results to check
+
+    
+    #We will use the reranker to make a second more fine but computationally expensive layer of filtering here
+    #This layer should utilize the maximum context of our llm
+    #Currently the rerank_top_k does not look at the document the text was taken from but only the content!
     results_reranked = rerank_top_k(query_text, results)
-    # Page count starts at 0.
-    # Add sources to context
+
     context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results_reranked])
-    answer: str = test_suite.llm_model.generate_answer(context_text, query_text)
+    answer: str = llm_model.generate_answer(context_text, query_text)
 
     #Add sources to text
     sources = [doc.metadata.get("id", None) for doc, _score in results]
     formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
     return formatted_answer
+# def query_rag(query_text, test_suite) -> str:
+
+#     db = test_suite.db_helper.get_collection(collection_name=test_suite.collection_name)
+
+#     #search in the db
+#     results = db.similarity_search_with_score(query_text, k=5)
+#     results_reranked = rerank_top_k(query_text, results)
+#     # Page count starts at 0.
+#     # Add sources to context
+#     context_text = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results_reranked])
+#     answer: str = test_suite.llm_model.generate_answer(context_text, query_text)
+
+#     #Add sources to text
+#     sources = [doc.metadata.get("id", None) for doc, _score in results]
+#     formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
+#     return formatted_answer
 
 def log(message: str, test_suite: simple_test_suite):
     with open(test_suite.path_to_testresults, 'a', encoding='utf-8') as log_file:
@@ -38,10 +64,12 @@ def log(message: str, test_suite: simple_test_suite):
     
 def test_loop(test_cases, test_suite: simple_test_suite):
     #loop over all elements in list, ask question
-    for test_case in test_cases:
+    print(f"Starting tests... [total: {len(test_cases)}]")
+    for i, test_case in enumerate(test_cases):
         answer: str = query_rag(query_text=test_case, test_suite=test_suite)
         message = f"Question: {test_case}\n{answer}\n{"-"*50}"
         log(message=message, test_suite=test_suite)
+        print(f"completed test case no {(i+1)}/{len(test_cases)}")
 
 def create_resultfile(test_suite, data_path, test_cases_name) -> str:
     test_folder = "./test_results/complex_testcases"
@@ -63,6 +91,7 @@ def set_up_testsuite(data_path, test_cases_name) -> simple_test_suite:
     test_suite = simple_test_suite()
     test_suite.db_helper = db_helper
     test_suite.llm_model = llm_model
+    test_suite.doc_handler = doc_handler
     test_suite.collection_name = doc_handler.get_collection_name(file_path=data_path)
     test_suite.path_to_testresults = create_resultfile(test_suite, data_path, test_cases_name)
     return test_suite

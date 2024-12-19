@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #Maybe improve this by actually using 3 models and making it a democratic decision if an answer was correct or not
-
+#execute this script with python -m tests.evaluation 
 test_template = """
 Question: {question}
 Expected Response: {expected_answer}
@@ -20,7 +20,7 @@ collection_name = None
 
 def log(message):
     # Write to the log file
-    with open(f'./testresults/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'a') as log_file:
+    with open(f'./test_results/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'a') as log_file:
         log_file.write(message + '\n')
 
 #Using sources is not necessary in comparison
@@ -122,7 +122,7 @@ def test_loop():
     false_positives = 0
     num_test_cases = len(positive_test_cases) + len(negative_test_cases)
     test_tracker = num_test_cases // 20
-    test_folder = "./testresults"
+    test_folder = "./test_results"
     os.makedirs(test_folder, exist_ok=True)
 
     current_test = f"{test_folder}/{llm_model.get_model()}---{get_embedding_function().model}" #always Language model followed by embedding seperated by ---
@@ -135,7 +135,7 @@ def test_loop():
             progress_bar = '=' * (test_idx * 40 // num_test_cases) + ' ' * (40 - (test_idx * 40 // num_test_cases))
             print(f"Test Progress: [{progress_bar}] {progress_percentage:.2f}% ({test_idx}/{num_test_cases})")
 
-        answer = test()
+        answer = test_model(question=test[0], expected_answer=test[1])
 
         if answer == "noc": #No context
             no_context_on_positive += 1
@@ -154,7 +154,7 @@ def test_loop():
             progress_bar = '=' * (test_idx * 40 // num_test_cases) + ' ' * (40 - (test_idx * 40 // num_test_cases))
             print(f"Test Progress: [{progress_bar}] {progress_percentage:.2f}% ({test_idx}/{num_test_cases})")
 
-        answer = test_model(test[0], test[1])
+        answer = test_model(question=test[0], expected_answer=test[1])
 
         if answer == "noc":
             no_context_on_negative += 1
@@ -198,10 +198,10 @@ if __name__ == "__main__":
         print("Clearing Database...")
         db_helper.clear_database()
 
-    test_dir = f'./testresults/{llm_model.get_model()}---{get_embedding_function().model}'
+    test_dir = f'./test_results/{llm_model.get_model()}---{get_embedding_function().model}'
     os.makedirs(test_dir, exist_ok=True)
 
-    with open(f'./testresults/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'w') as f:  #Wipe old testlog
+    with open(f'./test_results/{llm_model.get_model()}---{get_embedding_function().model}/testlog.txt', 'w') as f:  #Wipe old testlog
         f.write("")
 
     # Create (or update) the data store.
@@ -213,4 +213,4 @@ if __name__ == "__main__":
     test_loop()
     log("[END OF TEST]")
 
-    print(f"Test is complete, see test folder: ./testresults/{llm_model.get_model()}---{get_embedding_function().model}")
+    print(f"Test is complete, see test folder: ./test_results/{llm_model.get_model()}---{get_embedding_function().model}")
