@@ -9,7 +9,6 @@ from models.ollama_model import Model
 import main as mainFile
 import tests.test_cases as test_cases
 
-
 class simple_test_suite:
     db_helper: DatabaseHelper
     llm_model: Model
