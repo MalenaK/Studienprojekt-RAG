@@ -1,12 +1,12 @@
 # run specified test cases and safe output to file
-
+# to run this script execute "python -m tests.run_and_save -tc [your set of test cases] -d [pdf_dir]" in **root dir of project** 
 import argparse
 import os
 from retrieval.database_helper import DatabaseHelper
 from models.embedding import get_embedding_function
 from models.infinity_reranker import rerank_top_k
 from models.ollama_model import Model
-import main as mainFile
+from main import db_helper, llm_model, doc_handler
 import tests.test_cases as test_cases
 
 class simple_test_suite:
@@ -61,11 +61,17 @@ def create_resultfile(test_suite, data_path, test_cases_name) -> str:
 
 def set_up_testsuite(data_path, test_cases_name) -> simple_test_suite:
     test_suite = simple_test_suite()
-    test_suite.db_helper = mainFile.db_helper
-    test_suite.llm_model = mainFile.llm_model
-    test_suite.collection_name = mainFile.doc_handler.get_collection_name(file_path=data_path)
+    test_suite.db_helper = db_helper
+    test_suite.llm_model = llm_model
+    test_suite.collection_name = doc_handler.get_collection_name(file_path=data_path)
     test_suite.path_to_testresults = create_resultfile(test_suite, data_path, test_cases_name)
     return test_suite
+
+def update_data_store(pdf_dir, test_suite):
+    # Create (or update) the data store.
+    documents = test_suite.doc_handler.load_documents(file_path=pdf_dir)
+    chunks = test_suite.doc_handler.split_documents(documents)
+    test_suite.db_helper.add_to_chroma(chunks, collection_name=test_suite.doc_handler.get_collection_name(file_path=pdf_dir))
 
 if __name__ == "__main__":
 
@@ -85,7 +91,7 @@ if __name__ == "__main__":
         test_suite.db_helper.clear_collection(test_suite.collection_name)
     # Create (or update) the data store.
     
-    mainFile.update_data_store(args.pdf_dir)
+    update_data_store(args.pdf_dir, test_suite)
 
     test_cases_list = test_cases.test_cases_names_to_list[args.test_cases_name]
 
