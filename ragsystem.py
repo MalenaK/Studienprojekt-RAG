@@ -21,7 +21,7 @@ class RAGpipeline():
         self.collection_name = ""
         self.pdf_dir = ""
 
-    def setup(self):
+    def setup(self, state: State):
         parser = argparse.ArgumentParser()
 
         parser.add_argument("-ra", "--reset_all", action="store_true", help="Reset the whole database.")
@@ -44,6 +44,10 @@ class RAGpipeline():
         chunks = self.doc_handler.split_documents(documents)
         self.db_helper.add_to_chroma(chunks, collection_name=self.doc_handler.get_collection_name(file_path=self.pdf_dir))
 
+    def test_setup(self, state: State):
+        assert(state["question"] != None)
+        
+
     def retrieve(self, state: State):
         db = self.db_helper.get_collection(collection_name=self.collection_name)
 
@@ -60,14 +64,25 @@ class RAGpipeline():
         return {"context": results_reranked}
 
     def generate(self, state: State):
-        context_text: str = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in results_reranked])
-        answer: str = self.llm_model.generate_answer(prompt=context_text, query=state["question"])
+        context_text: str = "\n\n-Block-\n\n".join([doc.page_content + "\nSource of info in this block: " + doc.metadata.get("id", None) for doc, _score in state["context"]])
+        answer: str = self.llm_model.generate_answer(context_text=context_text, query=state["question"])
 
         #Add sources to text
         sources = [doc.metadata.get("id", None) for doc, _score in state["context"]]
         formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
 
+        print(formatted_answer)
+
         return { "answer": formatted_answer }
+    
+    def get_user_query(self, state: State):
+        print("\nEnter 'exit' to exit")
+        query_text = input("Prompt: ")
+        return {"question": query_text }
+    
+    def user_entered_exit(self, state: State):
+        return state["question"] == "exit"
+    
     
 
 
