@@ -8,7 +8,8 @@ from retrieval.database_helper import DatabaseHelper
 from models.embedding import get_embedding_function
 from models.infinity_reranker import rerank_top_k
 from models.ollama_model import Model
-from main import db_helper, llm_model, doc_handler, top_k_retrieval
+from shared import db_helper, llm_model, doc_handler
+from config import top_k_retrieval
 from retrieval.document_handler import DocumentHandler
 import tests.test_cases as test_cases
 

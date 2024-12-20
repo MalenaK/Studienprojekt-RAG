@@ -4,13 +4,12 @@ import argparse
 
 
 from models.infinity_reranker import rerank_top_k
-from models.ollama_model import Model
 
-from retrieval.database_helper import DatabaseHelper
 from langchain.schema.document import Document
 
-from retrieval.document_handler import DocumentHandler
+from shared import llm_model, db_helper, doc_handler
 
+from config import top_k_retrieval
 
 
 #Use Cuda 12.4 https://developer.nvidia.com/cuda-12-4-0-download-archive?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local
@@ -19,23 +18,9 @@ from retrieval.document_handler import DocumentHandler
 #TODO DOCUMENTATION/CLEAN UP
 
 
-#Config Parameters
-config_model = "llama3"
-config_embedding = "mxbai-embed-large"
-
-#Retrieve top k chunks for a query
-#One Chunk is currently 1200, context limit is around 8000 tokens
-top_k_retrieval = 20
-top_k_rerank = 5
-
-
-#Instantiate Required Objects
-llm_model: Model = Model(model=config_model)  # Idk why it says that we are getting None here in pycharm, it returns an object
-db_helper = DatabaseHelper(model=config_embedding)
-doc_handler = DocumentHandler()
-
 
 #handles querying the llm
+# Should we rename this function? query_rag does not seem fitting as this in not the only thing we do
 def query_rag(query_text, collection_name) -> str:
     db = db_helper.get_collection(collection_name=collection_name)
 
@@ -59,11 +44,6 @@ def query_rag(query_text, collection_name) -> str:
     formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
     return formatted_answer
 
-def update_data_store(pdf_dir):
-    # Create (or update) the data store.
-    documents = doc_handler.load_documents(file_path=pdf_dir)
-    chunks = doc_handler.split_documents(documents)
-    db_helper.add_to_chroma(chunks, collection_name=doc_handler.get_collection_name(file_path=pdf_dir))
 
 def main():
     print(llm_model.generate_answer("There is no context", "Can you respond with '...Everything is working perfectly fine so far, getting the Database...'"))
@@ -88,7 +68,7 @@ def main():
         db_helper.clear_collection(collection_name)
 
     # Create (or update) the data store.
-    update_data_store(args.pdf_dir)
+    doc_handler.update_data_store(args.pdf_dir, db_helper)
 
     print("Everything is operational, have fun :D")
     #Main Loop

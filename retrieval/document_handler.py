@@ -66,3 +66,10 @@ class DocumentHandler:
 
         return hash_object.hexdigest()[:63]
 
+        # Does this fit in here? I did not feel like adding another file just for one fun
+    def update_data_store(self, pdf_dir, db_helper):
+        # Create (or update) the data store.
+        documents = self.load_documents(file_path=pdf_dir)
+        chunks = self.split_documents(documents)
+        db_helper.add_to_chroma(chunks, collection_name=self.get_collection_name(file_path=pdf_dir))
+
