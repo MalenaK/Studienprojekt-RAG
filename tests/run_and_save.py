@@ -97,12 +97,6 @@ def set_up_testsuite(data_path, test_cases_name) -> simple_test_suite:
     test_suite.path_to_testresults = create_resultfile(test_suite, data_path, test_cases_name)
     return test_suite
 
-def update_data_store(pdf_dir, test_suite):
-    # Create (or update) the data store.
-    documents = test_suite.doc_handler.load_documents(file_path=pdf_dir)
-    chunks = test_suite.doc_handler.split_documents(documents)
-    test_suite.db_helper.add_to_chroma(chunks, collection_name=test_suite.doc_handler.get_collection_name(file_path=pdf_dir))
-
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
@@ -121,7 +115,7 @@ if __name__ == "__main__":
         test_suite.db_helper.clear_collection(test_suite.collection_name)
     # Create (or update) the data store.
     
-    update_data_store(args.pdf_dir, test_suite)
+    test_suite.doc_handler.update_data_store(args.pdf_dir, test_suite.db_helper)
 
     test_cases_list = test_cases.test_cases_names_to_list[args.test_cases_name]
 
