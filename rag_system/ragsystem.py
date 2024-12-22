@@ -20,23 +20,27 @@ class RAGpipeline():
         self.doc_handler = DocumentHandler()
         self.collection_name = ""
         self.pdf_dir = ""
+        self.args: argparse.Namespace
 
-    def setup(self, state: State):
+    def get_parser_args(self):
         parser = argparse.ArgumentParser()
 
         parser.add_argument("-ra", "--reset_all", action="store_true", help="Reset the whole database.")
         parser.add_argument("-rc", "--reset_collection", action="store_true", help="Reset the collection specified in pdf_dir.")
         parser.add_argument("-d", "--pdf_dir", default="./data/data_basic", help="Specify path to directory containing the pdfs.")
 
-        args = parser.parse_args()
+        self.args = parser.parse_args()
 
-        self.pdf_dir = args.pdf_dir
+    def setup(self, state: State):
+        self.get_parser_args()
+
+        self.pdf_dir = self.args.pdf_dir
         self.collection_name = self.doc_handler.get_collection_name(file_path=self.pdf_dir)
         
-        if args.reset_all:
+        if self.args.reset_all:
             self.db_helper.clear_database()
         
-        if args.reset_collection:
+        if self.args.reset_collection:
             self.db_helper.clear_collection(self.collection_name)
 
         # Create (or update) the data store.
@@ -44,7 +48,7 @@ class RAGpipeline():
         chunks = self.doc_handler.split_documents(documents)
         self.db_helper.add_to_chroma(chunks, collection_name=self.doc_handler.get_collection_name(file_path=self.pdf_dir))
 
-    def test_setup(self, state: State):
+    def assert_setup(self, state: State):
         assert(state["question"] != None)
         
 
@@ -71,7 +75,7 @@ class RAGpipeline():
         sources = [doc.metadata.get("id", None) for doc, _score in state["context"]]
         formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
 
-        print(formatted_answer)
+        #print(formatted_answer)
 
         return { "answer": formatted_answer }
     
