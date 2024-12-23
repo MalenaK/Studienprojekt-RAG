@@ -69,7 +69,7 @@ class RAGEvalPipeline(RAGpipeline):
         return {"question": question, "current_neg_i": state["current_neg_i"] + 1, "expected_answer": expected_answer}
 
     def log(self, state: EvalState):
-        print("inside log")
+        print(f"Test Progress: {state["case_counter"]}/{len(self.positive_test_cases)+len(self.negative_test_cases)} questions done.")
         message = f"{'-' * 50}\nTest Case Number: {state["case_counter"]}\nQuestion: {state["question"]}\nActual Answer: {state["answer"]}\nExpected Answer: {state["expected_answer"]}\nEvaluation: {state["evaluation"]}\n{'-' * 50}\n\n"
         print(message)
         with open(state["path_to_testresults"], 'a', encoding='utf-8') as log_file:
