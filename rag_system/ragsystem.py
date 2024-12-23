@@ -75,10 +75,11 @@ class RAGpipeline():
         sources = [doc.metadata.get("id", None) for doc, _score in state["context"]]
         formatted_answer = f"Answer: {answer}\n\nRAG Sources: {sources}"
 
-        #print(formatted_answer)
-
         return { "answer": formatted_answer }
     
+    def print_answer_to_user(self, state: State):
+        print(state["answer"])
+
     def get_user_query(self, state: State):
         print("\nEnter 'exit' to exit")
         query_text = input("Prompt: ")

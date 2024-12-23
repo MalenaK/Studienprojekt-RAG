@@ -8,6 +8,7 @@ graph_builder.add_node("setup", pipeline.setup)
 graph_builder.add_node("get_user_query", pipeline.get_user_query)
 graph_builder.add_node("retrieve", pipeline.retrieve)
 graph_builder.add_node("generate", pipeline.generate)
+graph_builder.add_node("print_answer_to_user", pipeline.print_answer_to_user)
 graph_builder.add_node("assert_setup", pipeline.assert_setup)
 
 # Define edges between nodes
@@ -16,7 +17,8 @@ graph_builder.add_edge("setup", "assert_setup")
 graph_builder.add_edge("assert_setup", "retrieve")
 graph_builder.add_conditional_edges("get_user_query", pipeline.user_entered_exit, {True: END, False: "retrieve"}) #exit if user entered exit
 graph_builder.add_edge("retrieve", "generate")
-graph_builder.add_edge("generate", "get_user_query") #next query (loop)
+graph_builder.add_edge("generate", "print_answer_to_user")
+graph_builder.add_edge("print_answer_to_user", "get_user_query") #next query (loop)
 
 #build graph
 graph = graph_builder.compile()
