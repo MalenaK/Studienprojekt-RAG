@@ -7,6 +7,7 @@ from models.embedding import get_embedding_function
 from rag_system.ragsystem import RAGpipeline, State
 import matplotlib.pyplot as plt
 import seaborn as sns
+from config.settings import TEST_RESULT_FOLDER
 
 test_template = """
 Question: {question}
@@ -46,7 +47,7 @@ class RAGEvalPipeline(RAGpipeline):
         self.stats.num_test_cases = len(self.positive_test_cases) + len(self.negative_test_cases)
 
         #make test result file
-        test_folder = "./tests/test_results"
+        test_folder = TEST_RESULT_FOLDER
         os.makedirs(test_folder, exist_ok=True)
 
         test_folder = f"{test_folder}/{self.llm_model.get_model()}---{get_embedding_function().model}" #always Language model followed by embedding seperated by ---

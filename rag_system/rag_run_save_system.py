@@ -5,6 +5,7 @@ from typing import List
 from models.embedding import get_embedding_function
 from rag_system.ragsystem import RAGpipeline, State
 from tests import test_cases
+from config.settings import TEST_RESULT_NOEVAL_FOLDER
 
 
 class RunAndSaveState(State):
@@ -13,8 +14,6 @@ class RunAndSaveState(State):
     current_i: int
 
 class RAGRunSavePipeline(RAGpipeline):
-    #additional setup for running run and save
-    #normal setup method needs to be executed beforehand
 
     #overwrite get_parser_args from RAGpipeline to parse additional args
     def get_parser_args(self):
@@ -30,7 +29,7 @@ class RAGRunSavePipeline(RAGpipeline):
 
     def run_and_save_setup(self, state: RunAndSaveState):
         print("inside run and save setup")
-        test_folder = "./tests/test_results/complex_testcases"
+        test_folder = TEST_RESULT_NOEVAL_FOLDER
         os.makedirs(test_folder, exist_ok=True)
 
         data_name = self.pdf_dir.replace("/","").replace("\\", "").replace(" ","").replace(".","")

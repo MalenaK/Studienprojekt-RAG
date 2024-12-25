@@ -9,20 +9,14 @@ from langchain.schema.document import Document
 
 from retrieval.chunker import calculate_chunk_ids
 from models.embedding import get_embedding_function
+from config.settings import CHROMA_FOLDER
 
 
 class DatabaseHelper:
-    chroma_path: str = "chroma" #folder where chroma db is stored
+    chroma_path: str = CHROMA_FOLDER #folder where chroma db is stored
 
-    def __init__(self,model: str, file_path: str ="./data"):
-        self.file_path = file_path
+    def __init__(self, model: str):
         self.model = model
-
-        if not os.path.exists(self.file_path):
-            try:
-                os.makedirs(self.file_path)
-            except Exception as e:
-                print(f"Error creating directory '{self.file_path}': {e}")
 
     def add_to_chroma(self, chunks: list[Document], collection_name: str) -> None:
         db: Chroma = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(self.model), collection_name=collection_name)
