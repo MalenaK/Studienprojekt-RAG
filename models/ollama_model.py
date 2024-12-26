@@ -7,8 +7,9 @@ To generate the answers you may use any Ollama model, see https://ollama.com/lib
 from typing import List
 from pydantic import Field
 from typing_extensions import Annotated, TypedDict
-from langchain_ollama import OllamaLLM
+from langchain_ollama import OllamaLLM, ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import SystemMessage
 
 class AnswerWithSources(TypedDict):
     """An answer to the question, with sources."""
@@ -47,10 +48,6 @@ class Model:
     Add each relevant pdf and page source specified at the end of each information in the context to the relevant part of your answer. Do NOT copy sources from the information itself, which looks like [xx]!
     ---
 
-    Question: {question}
-
-    ---
-
     Answer: 
     """
 
@@ -78,9 +75,17 @@ class Model:
         -------
         None
         """
-        self.model: OllamaLLM = OllamaLLM(model=model)
+        self.model: ChatOllama = ChatOllama(model=model)
         self.set_template(self.template_standard)
 
+    def generate_answer_with_history(self, context_text: str, conversation_messages: List[str]):
+        prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
+        system_message_content: str = prompt_template.format(context=context_text)
+        prompt = [SystemMessage(system_message_content)] + conversation_messages
+        #print(f"prompting the LLM with: \n{prompt}") #disabled clutters testing
+        #structured_llm = self.with_structured_output(AnswerWithSources)
+        answer: str = self.model.invoke(prompt)
+        return answer
 
     def generate_answer(self, context_text: str, query: str) -> str:
         """
@@ -100,6 +105,7 @@ class Model:
         """
         prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
         prompt: str = prompt_template.format(context=context_text, question=query)
+        
         #print(f"prompting the LLM with: \n{prompt}") #disabled clutters testing
         #structured_llm = self.with_structured_output(AnswerWithSources)
         answer: str = self.model.invoke(prompt)
