@@ -7,6 +7,7 @@ from retrieval.document_handler import DocumentHandler
 from langchain_core.tools import tool
 from langgraph.graph import MessagesState
 from config.settings import config_embedding, config_model, top_k_retrieval, top_k_rerank
+from langchain_core.messages import RemoveMessage
 
 llm_model: Model = Model(model=config_model)
 db_helper = DatabaseHelper(model=config_embedding)
@@ -93,6 +94,10 @@ def get_user_query(state: MessagesState):
 
 def user_entered_exit(state: MessagesState):
     return state["messages"][-1].content == "exit"
+
+def delete_messages(state: MessagesState):
+    messages = state["messages"]
+    return {"messages": [RemoveMessage(id=m.id) for m in messages]}
 
     
 
