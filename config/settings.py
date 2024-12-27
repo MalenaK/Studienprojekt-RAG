@@ -1,5 +1,5 @@
 #Config Parameters
-config_model = "llama3"
+config_model = "llama3.1"
 config_embedding = "mxbai-embed-large"
 
 #Retrieve top k chunks for a query

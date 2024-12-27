@@ -42,15 +42,12 @@ class Model:
     template: str = ""
 
     template_standard: str = """
-    Answer the question based on the following context:
-    {context}
-    
-    Add each relevant pdf and page source specified at the end of each information in the context to the relevant part of your answer. Do NOT copy sources from the information itself, which looks like [xx]!
-    ---
+        You are an assistant for question-answering tasks. 
+        Use the following pieces of retrieved context to answer 
+        the question. If you don't know the answer, say that you 
+        don't know.
 
-    Answer: 
-    """
-
+        """
     template_sheldon: str = """
     Pretend you are Sheldon from the Big Bang Theory and answer the following question based on the context but you must include at least 1 Bazinga in your answer but the more the better.
     Here is the context: 
@@ -62,7 +59,7 @@ class Model:
     Answer: 
     """
 
-    def __init__(self, model: str = "llama3"):
+    def __init__(self, model: str):
         """
         Constructs all necessary attributes for the model.
 
@@ -78,14 +75,21 @@ class Model:
         self.model: ChatOllama = ChatOllama(model=model)
         self.set_template(self.template_standard)
 
-    def generate_answer_with_history(self, context_text: str, conversation_messages: List[str]):
-        prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
-        system_message_content: str = prompt_template.format(context=context_text)
-        prompt = [SystemMessage(system_message_content)] + conversation_messages
-        #print(f"prompting the LLM with: \n{prompt}") #disabled clutters testing
-        #structured_llm = self.with_structured_output(AnswerWithSources)
-        answer: str = self.model.invoke(prompt)
-        return answer
+    # def generate_answer_with_history(self, context_text: str, conversation_messages: List[str]):
+    #     prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
+    #     system_message_content: str = prompt_template.format(context=context_text)
+    #     prompt = [SystemMessage(system_message_content)] + conversation_messages
+    #     print(f"prompting the LLM with: \n{prompt}") #disabled clutters testing
+    #     #structured_llm = self.with_structured_output(AnswerWithSources)
+    #     answer: str = self.model.invoke(prompt)
+    #     print("llm answer", answer)
+    #     return answer
+    
+    # def query_or_respond(self, tool, messages):
+    #     """Generate tool call for retrieval or respond."""
+    #     llm_with_tools = self.model.bind_tools([tool])
+    #     response = llm_with_tools.invoke(messages)
+    #     return response
 
     def generate_answer(self, context_text: str, query: str) -> str:
         """
@@ -130,7 +134,7 @@ class Model:
         prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
         prompt: str = prompt_template.format(question=question, expected_answer=expected_answer, actual_answer=actual_answer)
         print(f"prompting the LLM with: \n{prompt}")
-        answer: str = self.model.invoke(prompt)
+        answer: str = self.llm_model.invoke(prompt)
         return answer
 
     def change_template(self, new_template: str) -> None:

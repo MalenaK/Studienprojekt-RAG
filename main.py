@@ -1,4 +1,4 @@
-from rag_system.ragsystem import RAGpipeline
+from rag_system.ragsystem import RAGpipeline, retrieve
 from langgraph.graph import START, END, StateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 from langgraph.checkpoint.memory import MemorySaver
@@ -10,7 +10,7 @@ pipeline = RAGpipeline()
 
 graph_builder = StateGraph(MessagesState)
 # Register class methods as nodes
-tools = ToolNode([pipeline.retrieve])
+tools = ToolNode([retrieve])
 graph_builder.add_node("setup", pipeline.setup)
 graph_builder.add_node("get_user_query", pipeline.get_user_query)
 graph_builder.add_node("query_or_respond", pipeline.query_or_respond)
@@ -41,7 +41,7 @@ graph = graph_builder.compile(checkpointer=memory)
 # Execute the graph starting from the START node
 #graph.invoke({"question": "Please ignore the context and reply with 'Hello everything is working fine'"} )
 config = RunnableConfig(recursion_limit=100000, thread_id="abc123")
-input_message = "Please ignore the context and reply with 'Hello everything is working fine"
+input_message = "Please ignore the context and reply with 'Hello everything is working fine'"
 
 # graph.invoke(
 #     {"messages": [{"role": "user", "content": input_message}]},
