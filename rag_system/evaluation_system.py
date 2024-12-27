@@ -56,12 +56,14 @@ def evaluation_setup(state: EvalState):
 def load_pos_question(state: EvalState):
     question = positive_test_cases[state["current_pos_i"]][0]
     expected_answer = positive_test_cases[state["current_pos_i"]][1]
-    return {"question": question, "current_pos_i": state["current_pos_i"] + 1, "expected_answer": expected_answer, "messages": question}
+    next_i = state["current_pos_i"] + 1
+    return {"question": question, "current_pos_i": next_i, "expected_answer": expected_answer, "messages": question}
 
 def load_neg_question(state: EvalState):
     question = negative_test_cases[state["current_neg_i"]][0]
     expected_answer = negative_test_cases[state["current_neg_i"]][1]
-    return {"question": question, "current_neg_i": state["current_neg_i"] + 1, "expected_answer": expected_answer, "messages": question}
+    next_i = state["current_neg_i"] + 1
+    return {"question": question, "current_neg_i": next_i, "expected_answer": expected_answer, "messages": question}
 
 def log(state: EvalState):
     print(f"Test Progress: {state["case_counter"]}/{state["num_test_cases"]} questions done.")
@@ -89,8 +91,8 @@ def evaluate(state: EvalState):
     #If there was insufficient context to answer the question  we return noc (no context)
     else:
         eval_result =  "noc"
-
-    return {"evaluation": eval_result, "case_counter": state["case_counter"] + 1}
+    case_counter = state["case_counter"] + 1
+    return {"evaluation": eval_result, "case_counter": case_counter}
 
 #update stats for positive test cases
 def update_stats_for_pos(state: EvalState):

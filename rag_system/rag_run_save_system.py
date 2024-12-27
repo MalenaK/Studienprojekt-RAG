@@ -35,18 +35,15 @@ def run_and_save_setup(state: RunAndSaveState):
 
 def log(state: RunAndSaveState):
     message = f"Question: {state["question"]}\n{state["messages"][-1].content}\n{"-"*50}"
-    print(message)
     with open(state["path_to_testresults"], 'a', encoding='utf-8') as log_file:
         log_file.write(message + '\n')
 
 def load_question(state: RunAndSaveState):
-    #todo: delete past history
     question = state["test_cases_list"][state["current_i"]]
     next_i = state["current_i"] + 1
     print(f"testing progess: question {next_i}/{len(state["test_cases_list"])}") #give user feedback on progess
     return { "question": question, "current_i": next_i, "messages": question}
 
 def all_tests_done(state: RunAndSaveState):
-    print("all tests done?", state["current_i"] >= len(state["test_cases_list"]))
     return state["current_i"] >= len(state["test_cases_list"])
     

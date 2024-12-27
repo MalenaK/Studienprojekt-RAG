@@ -1,3 +1,5 @@
+#run with "python -m test.run_and_save -d [directory to data]" + set correct test cases in code (see rag_run_save_system)
+
 from rag_system.rag_run_save_system import RunAndSaveState, run_and_save_setup, load_question, log, all_tests_done
 from rag_system.ragsystem import setup, retrieve, generate, query_or_respond, delete_messages
 from langgraph.graph import START, END, StateGraph

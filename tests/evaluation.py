@@ -1,3 +1,4 @@
+#run with "python -m test.evaluation -d [directory to data]"
 from rag_system.evaluation_system import EvalState, evaluation_setup, load_pos_question, load_neg_question, evaluate, log, update_stats_for_neg, update_stats_for_pos, calc_stats, plot_bar_chart, plot_confusion_matrix, done_with_pos, done_with_tests
 from rag_system.ragsystem import setup, retrieve, generate, query_or_respond, delete_messages
 from langgraph.graph import START, END, StateGraph
