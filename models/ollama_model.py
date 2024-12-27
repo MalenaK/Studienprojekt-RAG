@@ -5,21 +5,10 @@ To generate the answers you may use any Ollama model, see https://ollama.com/lib
 """
 
 from typing import List
-from pydantic import Field
-from typing_extensions import Annotated, TypedDict
-from langchain_ollama import OllamaLLM, ChatOllama
+from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import SystemMessage
 
-class AnswerWithSources(TypedDict):
-    """An answer to the question, with sources."""
-
-    answer: str = Field(description="answer to the question")
-    sources: Annotated[
-        List[str],
-        ...,
-        "List of sources (document name + page number) used to answer the question.",
-    ] = Field(description = "List of source documents")
 class Model:
     """
     Model class that can be used to generate answers.
@@ -45,8 +34,12 @@ class Model:
         You are an assistant for question-answering tasks. 
         Use the following pieces of retrieved context to answer 
         the question. If you don't know the answer, say that you 
-        don't know.
-
+        don't know. When provided with additional context,  please 
+        add each relevant pdf and page source specified at the end of 
+        each information in the context to the relevant part of your answer.
+        Do NOT copy sources from the information itself, which looks like [xx]!
+        Context:
+        {context}
         """
     template_sheldon: str = """
     Pretend you are Sheldon from the Big Bang Theory and answer the following question based on the context but you must include at least 1 Bazinga in your answer but the more the better.
@@ -75,45 +68,18 @@ class Model:
         self.model: ChatOllama = ChatOllama(model=model)
         self.set_template(self.template_standard)
 
-    # def generate_answer_with_history(self, context_text: str, conversation_messages: List[str]):
-    #     prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
-    #     system_message_content: str = prompt_template.format(context=context_text)
-    #     prompt = [SystemMessage(system_message_content)] + conversation_messages
-    #     print(f"prompting the LLM with: \n{prompt}") #disabled clutters testing
-    #     #structured_llm = self.with_structured_output(AnswerWithSources)
-    #     answer: str = self.model.invoke(prompt)
-    #     print("llm answer", answer)
-    #     return answer
-    
-    # def query_or_respond(self, tool, messages):
-    #     """Generate tool call for retrieval or respond."""
-    #     llm_with_tools = self.model.bind_tools([tool])
-    #     response = llm_with_tools.invoke(messages)
-    #     return response
-
-    def generate_answer(self, context_text: str, query: str) -> str:
-        """
-        Generates answer from context retrieved by RAG and Query by user
-
-        Parameters
-        ----------
-        context_text: str
-            context that was found by RAG
-        query: str
-            user question used to query the RAG and Model
-
-        Returns
-        -------
-        str
-            Output of model, i.e. generated answer
-        """
+    def generate_answer_with_history(self, context_text: str, conversation_messages: List[str]):
         prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
-        prompt: str = prompt_template.format(context=context_text, question=query)
-        
-        #print(f"prompting the LLM with: \n{prompt}") #disabled clutters testing
-        #structured_llm = self.with_structured_output(AnswerWithSources)
+        system_message_content: str = prompt_template.format(context=context_text)
+        prompt = [SystemMessage(system_message_content)] + conversation_messages
+
+        # print(f"prompting the LLM with: \n{prompt}") #disabled clutters testing
         answer: str = self.model.invoke(prompt)
         return answer
+    
+    def invoke_with_toolcall(self, tool, messages):
+        bound_model = self.model.bind_tools([tool])
+        return bound_model.invoke(messages)
     
     def generate_answer_for_evaluation(self, question: str, expected_answer: str, actual_answer: str) -> str:
         """

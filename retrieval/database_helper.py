@@ -17,9 +17,12 @@ class DatabaseHelper:
 
     def __init__(self, model: str):
         self.model = model
+        self.collection_name = ""
 
-    def add_to_chroma(self, chunks: list[Document], collection_name: str) -> None:
-        db: Chroma = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(self.model), collection_name=collection_name)
+    def add_to_chroma(self, chunks: list[Document]) -> None:
+        if not self.collection_name:
+            raise Exception("collection name for db was not set. This is an error in your code. Fix by setting collection name before calling add to chroma.")
+        db: Chroma = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(self.model), collection_name=self.collection_name)
 
         # Calculate Page IDs.
         chunks_with_ids: list[Document] = calculate_chunk_ids(chunks)
@@ -27,7 +30,7 @@ class DatabaseHelper:
         # Add or Update the documents.
         existing_items:  dict[str, Any] = db.get(include=[])  # IDs are always included by default
         existing_ids: set = set(existing_items["ids"])
-        print(f"Number of existing documents in DB collection {collection_name}: {len(existing_ids)}")
+        print(f"Number of existing documents in DB collection {self.collection_name}: {len(existing_ids)}")
 
         # Only add documents that don't exist in the DB.
         new_chunks: list[Document] = []
@@ -60,10 +63,13 @@ class DatabaseHelper:
         else:
             print("DB already empty")
 
-    def get_collection(self, collection_name) -> Chroma:
-        db = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(), collection_name=collection_name)
+    # def get_collection(self, collection_name) -> Chroma:
+    #     db = Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(), collection_name=collection_name)
 
-        return db
+    #     return db
+    
+    def get_db_for_collection(self) -> Chroma:
+        return Chroma(persist_directory=self.chroma_path, embedding_function=get_embedding_function(), collection_name=self.collection_name)
     
     def clear_collection(self, collection_name):
         try:
@@ -72,3 +78,6 @@ class DatabaseHelper:
             print(f"Collection {collection_name} deleted successfully.")
         except Exception as e:
             raise Exception(f"Unable to delete collection: {e}")
+        
+    def set_collection_name (self, collection_name: str):
+        self.collection_name = collection_name

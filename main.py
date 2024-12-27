@@ -1,29 +1,26 @@
-from rag_system.ragsystem import RAGpipeline, retrieve
+from rag_system.ragsystem import retrieve, setup, get_user_query, query_or_respond, generate, print_answer_to_user, assert_setup, user_entered_exit
 from langgraph.graph import START, END, StateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.runnables.config import RunnableConfig
 from langgraph.graph import MessagesState
 
-
-pipeline = RAGpipeline()
-
 graph_builder = StateGraph(MessagesState)
 # Register class methods as nodes
 tools = ToolNode([retrieve])
-graph_builder.add_node("setup", pipeline.setup)
-graph_builder.add_node("get_user_query", pipeline.get_user_query)
-graph_builder.add_node("query_or_respond", pipeline.query_or_respond)
+graph_builder.add_node("setup", setup)
+graph_builder.add_node("get_user_query", get_user_query)
+graph_builder.add_node("query_or_respond", query_or_respond)
 graph_builder.add_node("tools", tools)
-graph_builder.add_node("generate", pipeline.generate)
-graph_builder.add_node("print_answer_to_user", pipeline.print_answer_to_user)
-graph_builder.add_node("assert_setup", pipeline.assert_setup)
+graph_builder.add_node("generate", generate)
+graph_builder.add_node("print_answer_to_user", print_answer_to_user)
+graph_builder.add_node("assert_setup", assert_setup)
 
 # Define edges between nodes
 graph_builder.set_entry_point("setup")
 graph_builder.add_edge("setup", "assert_setup")
 graph_builder.add_edge("assert_setup", "query_or_respond")
-graph_builder.add_conditional_edges("get_user_query", pipeline.user_entered_exit, {True: END, False: "query_or_respond"}) #exit if user entered exit
+graph_builder.add_conditional_edges("get_user_query", user_entered_exit, {True: END, False: "query_or_respond"}) #exit if user entered exit
 graph_builder.add_conditional_edges(
     "query_or_respond",
     tools_condition,

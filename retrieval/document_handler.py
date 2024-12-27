@@ -16,21 +16,29 @@ class DocumentHandler:
     #     self.tokenizer = tokenizer
 
     def __init__(self):
-        pass
+        self.pdf_dir = ""
 
 
     #custom len function that uses words (tokens) instead of character amount
     #def token_length(self, text: str) -> int:
     #    return len(self.tokenizer.encode(text))
 
-    def load_documents(self, file_path: str = "./data") -> list[Document]:
+    def load_documents(self) -> list[Document]:
         # Ensure the directory exists before trying to load documents
-        if not os.path.exists(file_path):
-            raise FileNotFoundError(f"The specified directory does not exist: {file_path}")
+        if not self.pdf_dir:
+            raise Exception("no pdf dir set before loading documents. This is an error in your RAG application, please fix.")
+        if not os.path.exists(self.pdf_dir):
+            raise FileNotFoundError(f"The specified directory does not exist: {self.pdf_dir}")
 
-        document_loader = PyPDFDirectoryLoader(file_path)
+        document_loader = PyPDFDirectoryLoader(self.pdf_dir)
         return document_loader.load()
-
+    
+    def set_pdf_dir(self, pdf_dir: str):
+        if not os.path.exists(pdf_dir):
+            raise FileNotFoundError(f"The specified directory does not exist: {pdf_dir}")
+        
+        self.pdf_dir = pdf_dir
+        
     # def split_documents(self, documents: list[Document]) -> list[Document]:
     #     #TODO optimize values in recursiveCharacterText Splitter
     #     text_splitter = RecursiveCharacterTextSplitter(
