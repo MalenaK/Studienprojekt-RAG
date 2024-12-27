@@ -36,15 +36,9 @@ memory = MemorySaver()
 graph = graph_builder.compile(checkpointer=memory)
 
 # Execute the graph starting from the START node
-#graph.invoke({"question": "Please ignore the context and reply with 'Hello everything is working fine'"} )
 config = RunnableConfig(recursion_limit=100000, thread_id="abc123")
 input_message = "Please ignore the context and reply with 'Hello everything is working fine'"
 
-# graph.invoke(
-#     {"messages": [{"role": "user", "content": input_message}]},
-#     stream_mode="values",
-#     config=config,
-# )
 for step in graph.stream(
     {"messages": [{"role": "user", "content": input_message}]},
     stream_mode="values",

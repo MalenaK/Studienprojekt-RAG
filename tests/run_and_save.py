@@ -1,26 +1,35 @@
-from rag_system.rag_run_save_system import RAGRunSavePipeline, RunAndSaveState
+from rag_system.rag_run_save_system import RunAndSaveState, run_and_save_setup, load_question, log, all_tests_done
+from rag_system.ragsystem import setup, retrieve, generate, query_or_respond
 from langgraph.graph import START, END, StateGraph
 from langchain_core.runnables.config import RunnableConfig
+from langgraph.prebuilt import ToolNode, tools_condition
 
-pipeline = RAGRunSavePipeline()
 
 graph_builder = StateGraph(RunAndSaveState)
+
+tools = ToolNode([retrieve])
 # Register class methods as nodes
-graph_builder.add_node("setup", pipeline.setup)
-graph_builder.add_node("run_and_save_setup", pipeline.run_and_save_setup)
-graph_builder.add_node("load_question", pipeline.load_question)
-graph_builder.add_node("retrieve", pipeline.retrieve)
-graph_builder.add_node("generate", pipeline.generate)
-graph_builder.add_node("log", pipeline.log)
+graph_builder.add_node("setup", setup)
+graph_builder.add_node("run_and_save_setup", run_and_save_setup)
+graph_builder.add_node("load_question", load_question)
+graph_builder.add_node("generate", generate)
+graph_builder.add_node("log", log)
+graph_builder.add_node("query_or_respond", query_or_respond)
+graph_builder.add_node("tools", tools)
 
 #add edges
 graph_builder.add_edge(START, "setup")
 graph_builder.add_edge("setup", "run_and_save_setup")
 graph_builder.add_edge("run_and_save_setup", "load_question")
-graph_builder.add_edge("load_question", "retrieve")
-graph_builder.add_edge("retrieve", "generate")
+graph_builder.add_edge("load_question", "query_or_respond")
+graph_builder.add_conditional_edges(
+    "query_or_respond",
+    tools_condition,
+    {END: "log", "tools": "tools"},
+)
+graph_builder.add_edge("tools", "generate")
 graph_builder.add_edge("generate", "log")
-graph_builder.add_conditional_edges("log", pipeline.all_tests_done, {True: END, False: "load_question"}) #end or load next question
+graph_builder.add_conditional_edges("log", all_tests_done, {True: END, False: "load_question"}) #end or load next question
 
 graph = graph_builder.compile()
 config = RunnableConfig(recursion_limit=100)

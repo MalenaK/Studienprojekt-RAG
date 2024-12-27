@@ -1,67 +1,52 @@
-import argparse
 import os
 from typing import List
 
 from models.embedding import get_embedding_function
-from rag_system.ragsystem import RAGpipeline, State
+from langgraph.graph import MessagesState
 from tests import test_cases
 from config.settings import TEST_RESULT_NOEVAL_FOLDER
+from rag_system.ragsystem import doc_handler, llm_model
 
 
-class RunAndSaveState(State):
+class RunAndSaveState(MessagesState):
     path_to_testresults: str
     test_cases_list: List[str]
     current_i: int
+    question: str
 
-class RAGRunSavePipeline(RAGpipeline):
+def run_and_save_setup(state: RunAndSaveState):
+    test_folder = TEST_RESULT_NOEVAL_FOLDER
+    os.makedirs(test_folder, exist_ok=True)
 
-    #overwrite get_parser_args from RAGpipeline to parse additional args
-    def get_parser_args(self):
-        print("inside parser args")
-        parser = argparse.ArgumentParser()
+    data_name = doc_handler.get_pdf_dir().replace("/","").replace("\\", "").replace(" ","").replace(".","")
+    model_name = llm_model.get_model()
+    embedding_name = get_embedding_function().model
+    test_cases_name = "c1xx" #to enter by developer!!
+    file_name = f"{model_name}---{embedding_name}---{data_name}---{test_cases_name}.txt"
 
-        parser.add_argument("-ra", "--reset_all", action="store_true", help="Reset the whole database.")
-        parser.add_argument("-rc", "--reset_collection", action="store_true", help="Reset the collection specified in pdf_dir.")
-        parser.add_argument("-d", "--pdf_dir", default="./data/data_basic", help="Specify path to directory containing the pdfs.")
-        parser.add_argument("-tc", "--test_cases_name", required=True, help="Specify name of test cases list.")
+    relative_path = f"{test_folder}/{file_name}"
 
-        self.args = parser.parse_args()
+    with open(relative_path, 'w') as log_file:
+        log_file.write("") #clear file
 
-    def run_and_save_setup(self, state: RunAndSaveState):
-        print("inside run and save setup")
-        test_folder = TEST_RESULT_NOEVAL_FOLDER
-        os.makedirs(test_folder, exist_ok=True)
+    test_cases_list = test_cases.test_cases_names_to_list[test_cases_name]
 
-        data_name = self.pdf_dir.replace("/","").replace("\\", "").replace(" ","").replace(".","")
-        model_name = self.llm_model.get_model()
-        embedding_name = get_embedding_function().model
-        test_cases_name = self.args.test_cases_name
-        file_name = f"{model_name}---{embedding_name}---{data_name}---{test_cases_name}.txt"
+    return {"path_to_testresults": relative_path, "test_cases_list": test_cases_list, "current_i": 0}
 
-        relative_path = f"{test_folder}/{file_name}"
+def log(state: RunAndSaveState):
+    message = f"Question: {state["question"]}\n{state["messages"][-1].content}\n{"-"*50}"
+    print(message)
+    with open(state["path_to_testresults"], 'a', encoding='utf-8') as log_file:
+        log_file.write(message + '\n')
 
-        with open(relative_path, 'w') as log_file:
-            log_file.write("") #clear file
+def load_question(state: RunAndSaveState):
+    #todo: delete past history
+    question = state["test_cases_list"][state["current_i"]]
+    next_i = state["current_i"] + 1
+    print(f"testing progess: question {next_i}/{len(state["test_cases_list"])}") #give user feedback on progess
+    return { "question": question, "current_i": next_i, "messages": question}
 
-        test_cases_list = test_cases.test_cases_names_to_list[test_cases_name]
-
-        return {"path_to_testresults": relative_path, "test_cases_list": test_cases_list, "current_i": 0}
+def all_tests_done(state: RunAndSaveState):
+    print("all tests done?", state["current_i"] >= len(state["test_cases_list"]))
+    return state["current_i"] >= len(state["test_cases_list"])
     
-    def log(self, state: RunAndSaveState):
-        print("inside log")
-        message = f"Question: {state["question"]}\n{state["answer"]}\n{"-"*50}"
-        print(message)
-        with open(state["path_to_testresults"], 'a', encoding='utf-8') as log_file:
-            log_file.write(message + '\n')
-
-    def load_question(self, state: RunAndSaveState):
-        print("inside load question")
-        question = state["test_cases_list"][state["current_i"]]
-        next_i = state["current_i"] + 1
-        print(f"testing progess: question {next_i}/{len(state["test_cases_list"])}") #give user feedback on progess
-        return { "question": question, "current_i": next_i}
-    
-    def all_tests_done(self, state: RunAndSaveState):
-        print("all tests done?", state["current_i"] >= len(state["test_cases_list"]))
-        return state["current_i"] >= len(state["test_cases_list"])
-        

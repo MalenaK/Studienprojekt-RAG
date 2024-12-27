@@ -38,7 +38,10 @@ class DocumentHandler:
             raise FileNotFoundError(f"The specified directory does not exist: {pdf_dir}")
         
         self.pdf_dir = pdf_dir
-        
+
+    def get_pdf_dir(self):
+        return self.pdf_dir
+
     # def split_documents(self, documents: list[Document]) -> list[Document]:
     #     #TODO optimize values in recursiveCharacterText Splitter
     #     text_splitter = RecursiveCharacterTextSplitter(
