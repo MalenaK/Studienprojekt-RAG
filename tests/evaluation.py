@@ -1,10 +1,9 @@
-#run with "python -m test.evaluation -d [directory to data]"
-from rag_system.evaluation_system import EvalState, evaluation_setup, load_pos_question, load_neg_question, evaluate, log, update_stats_for_neg, update_stats_for_pos, calc_stats, plot_bar_chart, plot_confusion_matrix, done_with_pos, done_with_tests
-from rag_system.ragsystem import setup, retrieve, generate, query_or_respond, delete_messages
+#run with "python -m tests.evaluation -d [directory to data]"
+from rag_system.evaluation_system import EvalState, evaluation_setup,delete_messages, load_pos_question, load_neg_question, evaluate, log, update_stats_for_neg, update_stats_for_pos, calc_stats, plot_bar_chart, plot_confusion_matrix, done_with_pos, done_with_tests
+from rag_system.ragsystem import setup, retrieve, generate, query_or_respond
 from langgraph.graph import START, END, StateGraph
 from langchain_core.runnables.config import RunnableConfig
 from langgraph.prebuilt import ToolNode, tools_condition
-
 
 graph_builder = StateGraph(EvalState)
 
@@ -51,4 +50,6 @@ graph_builder.add_edge("plot_confusion_matrix", END)
 
 graph = graph_builder.compile()
 config = RunnableConfig(recursion_limit=1000) #idk how much is needed exactly, just set high to avoid recursion error
-graph.invoke({"question": "let's get started"}, config=config)
+for chunk in graph.stream({"question": "let's get started"}, config=config, stream_mode="debug"):
+    print(f"Receiving new event: {chunk}...")
+    print("\n\n")

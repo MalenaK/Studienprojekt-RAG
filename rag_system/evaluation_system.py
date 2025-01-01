@@ -9,7 +9,7 @@ from config.settings import TEST_RESULT_FOLDER
 from tests.test_cases import positive_test_cases, negative_test_cases
 from langgraph.graph import MessagesState
 from rag_system.ragsystem import llm_model
-
+from langchain_core.messages import RemoveMessage
 
 test_template = """
 Question: {question}
@@ -184,3 +184,7 @@ def done_with_tests(state: EvalState):
 #method for conditional edge
 def done_with_pos(state: EvalState):
     return state["current_pos_i"] >= len(positive_test_cases)
+
+def delete_messages(state: EvalState):
+    messages = state["messages"]
+    return {"messages": [RemoveMessage(id=m.id) for m in messages]}
