@@ -145,7 +145,13 @@ def plot_bar_chart(state: EvalState):
         plt.text(i, v + 2, f"{v:.2f}%", ha='center')
 
     # Save the bar chart
-    bar_chart_path = os.path.join(state["p"], "bar_chart.png")
+    # Extract the directory part first since path_to_results points to a txt file -D
+    test_results_dir = os.path.dirname(state["path_to_testresults"])
+    bar_chart_path = os.path.join(test_results_dir, "bar_chart.png")
+
+    # For additional safety use this
+    os.makedirs(test_results_dir, exist_ok=True)
+
     plt.savefig(bar_chart_path)
     plt.close()
 
@@ -172,8 +178,12 @@ def plot_confusion_matrix(state: EvalState):
     #Put text into lower right corner
     plt.figtext(0.95, -0.15, no_context_text, ha="right", fontsize=12, color="black")
 
+    #See comments for barchart
+    test_results_dir = os.path.dirname(state["path_to_testresults"])
+    confusion_matrix_path = os.path.join(test_results_dir, "confusion_matrix.png")
 
-    confusion_matrix_path = os.path.join(state["path_to_testresults"], "confusion_matrix.png")
+    os.makedirs(test_results_dir, exist_ok=True)
+
     plt.savefig(confusion_matrix_path, bbox_inches="tight")
     plt.close()
 

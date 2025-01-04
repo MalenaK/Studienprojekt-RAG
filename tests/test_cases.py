@@ -180,7 +180,7 @@ germany_negative_test_cases = [
     test_case_310_complement
 ]
 
-positive_test_cases = fiba_positive_test_cases + sherman_positive_test_cases + germany_positive_test_cases
+positive_test_cases = fiba_positive_test_cases  + sherman_positive_test_cases + germany_positive_test_cases
 negative_test_cases = fiba_negative_test_cases + sherman_negative_test_cases + germany_negative_test_cases
 
 #complex test cases as specified in our google doc

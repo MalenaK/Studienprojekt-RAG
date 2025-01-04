@@ -21,7 +21,7 @@ def run_and_save_setup(state: RunAndSaveState):
     data_name = doc_handler.get_pdf_dir().replace("/","").replace("\\", "").replace(" ","").replace(".","")
     model_name = llm_model.get_model()
     embedding_name = get_embedding_function().model
-    test_cases_name = "c1xx" #to enter by developer!!
+    test_cases_name = "c4xx" #to enter by developer!!
     file_name = f"{model_name}---{embedding_name}---{data_name}---{test_cases_name}.txt"
 
     relative_path = f"{test_folder}/{file_name}"
@@ -41,7 +41,7 @@ def log(state: RunAndSaveState):
 def load_question(state: RunAndSaveState):
     question = state["test_cases_list"][state["current_i"]]
     next_i = state["current_i"] + 1
-    print(f"testing progess: question {next_i}/{len(state["test_cases_list"])}") #give user feedback on progess
+    print(f"testing progress: question {next_i}/{len(state["test_cases_list"])}") #give user feedback on progess
     return { "question": question, "current_i": next_i, "messages": question}
 
 def all_tests_done(state: RunAndSaveState):
