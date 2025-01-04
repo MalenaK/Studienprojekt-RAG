@@ -40,6 +40,8 @@ This ensures compatibility across different operating systems. Remove the build 
 	- `cuda-cccl_win-64`
 	- `vc`
 	- `vs2015_runtime`
+	- `pthreads-win32`
+	- `ucrt`
 
 3. Modify the `prefix` Path
 In `localRAG_env.yaml`, adjust the path under the `prefix` section to specify the location of the environment.
