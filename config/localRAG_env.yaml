@@ -1,13 +1,18 @@
-name: localRAG_env
+name: study_project_exp
 channels:
   - pytorch
   - nvidia
   - conda-forge
   - defaults
+  - https://repo.anaconda.com/pkgs/main
+  - https://repo.anaconda.com/pkgs/r
+  - https://repo.anaconda.com/pkgs/msys2
 dependencies:
   - aiosignal=1.3.1=pyhd8ed1ab_1
   - anaconda-cloud-auth=0.5.1=py312haa95532_0
+  - annotated-types=0.7.0=pyhd8ed1ab_1
   - arrow-cpp=16.1.0=h7cd61ee_0
+  - async-timeout=5.0.1=pyhd8ed1ab_1
   - attrs=24.2.0=pyh71513ae_1
   - aws-c-auth=0.6.19=h2bbff1b_0
   - aws-c-cal=0.5.20=h4b5e85a_3
@@ -30,9 +35,9 @@ dependencies:
   - brotli-python=1.0.9=py312hd77b12b_8
   - bzip2=1.0.8=h8ffe710_4
   - c-ares=1.19.1=h2bbff1b_0
-  - ca-certificates=2024.9.24=haa95532_0
+  - ca-certificates=2024.11.26=haa95532_0
   - cccl=2.5.0=h49adc43_0
-  - certifi=2024.8.30=pyhd8ed1ab_0
+  - certifi=2024.12.14=py312haa95532_0
   - cffi=1.17.1=py312h827c3e9_0
   - charset-normalizer=3.3.2=pyhd8ed1ab_0
   - click=8.1.7=win_pyh7428d3b_1
@@ -62,8 +67,10 @@ dependencies:
   - filelock=3.16.1=pyhd8ed1ab_1
   - fonttools=4.51.0=py312h2bbff1b_0
   - freetype=2.12.1=h546665d_1
+  - fsspec=2024.3.1=pyhca7485f_0
   - gflags=2.2.2=ha925a31_1004
   - glog=0.5.0=h4797de2_0
+  - h11=0.14.0=py312haa95532_0
   - h2=4.1.0=pyhd8ed1ab_1
   - hpack=4.0.0=pyhd8ed1ab_1
   - hyperframe=6.0.1=pyhd8ed1ab_1
@@ -75,9 +82,12 @@ dependencies:
   - jaraco.classes=3.2.1=pyhd8ed1ab_1
   - jinja2=3.1.4=pyhd8ed1ab_1
   - jpeg=9e=h8ffe710_2
+  - jsonpatch=1.33=py312haa95532_1
   - keyring=24.3.1=pyh7428d3b_1
   - kiwisolver=1.4.4=py312hd77b12b_0
   - krb5=1.20.1=heb0366b_0
+  - langgraph=0.2.28=pyhd8ed1ab_0
+  - langgraph-checkpoint=1.0.9=pyhd8ed1ab_0
   - lcms2=2.12=h83e58a3_0
   - lerc=3.0=h0e60522_0
   - libabseil=20240116.2=cxx17_h5da7b33_0
@@ -142,6 +152,7 @@ dependencies:
   - openjpeg=2.5.2=hae555c5_0
   - openssl=3.0.15=h827c3e9_0
   - orc=2.0.1=hd8d391b_0
+  - orjson=3.10.7=py312h827c3e9_0
   - packaging=24.1=pyhd8ed1ab_0
   - pandas=2.2.2=py312h0158946_0
   - patsy=1.0.1=pyhff2d567_0
@@ -149,6 +160,7 @@ dependencies:
   - pip=24.2=pyh8b19718_1
   - pkce=1.0.3=pyhd8ed1ab_0
   - ply=3.11=pyhd8ed1ab_3
+  - propcache=0.2.0=py312h827c3e9_0
   - pthreads-win32=2.9.1=hfa6e2cd_3
   - pyarrow=16.1.0=py312h0158946_0
   - pyarrow-hotfix=0.6=pyhd8ed1ab_0
@@ -173,6 +185,7 @@ dependencies:
   - re2=2022.04.01=h0e60522_0
   - regex=2024.9.11=py312h827c3e9_0
   - requests=2.32.3=pyhd8ed1ab_1
+  - requests-toolbelt=1.0.0=py312haa95532_0
   - safetensors=0.4.4=py312h1429478_0
   - scipy=1.14.1=py312h9d85e7c_0
   - seaborn=0.13.2=hd8ed1ab_3
@@ -189,6 +202,8 @@ dependencies:
   - tk=8.6.14=h0416ee5_0
   - tornado=6.4.1=py312h827c3e9_0
   - tqdm=4.66.5=pyhd8ed1ab_0
+  - typing-extensions=4.12.2=hd8ed1ab_1
+  - typing_extensions=4.12.2=pyha770c72_1
   - tzdata=2024b=hc8b5060_0
   - ucrt=10.0.22621.0=h57928b3_1
   - unicodedata2=15.1.0=py312h2bbff1b_0
@@ -208,7 +223,6 @@ dependencies:
       - accelerate==1.2.0
       - aiohappyeyeballs==2.4.3
       - aiohttp==3.10.9
-      - annotated-types==0.7.0
       - anyio==4.6.0
       - asgiref==3.8.1
       - backoff==2.2.1
@@ -229,13 +243,11 @@ dependencies:
       - fastapi==0.115.0
       - flatbuffers==24.3.25
       - frozenlist==1.4.1
-      - fsspec==2024.3.1
       - google-auth==2.35.0
       - googleapis-common-protos==1.65.0
       - gputil==1.4.0
       - greenlet==3.1.1
       - grpcio==1.66.2
-      - h11==0.14.0
       - hf-transfer==0.1.8
       - httpcore==1.0.6
       - httptools==0.6.4
@@ -246,7 +258,6 @@ dependencies:
       - infinity-emb==0.0.72
       - iniconfig==2.0.0
       - joblib==1.4.2
-      - jsonpatch==1.33
       - jsonpointer==3.0.0
       - kubernetes==31.0.0
       - langchain==0.3.2
@@ -277,7 +288,6 @@ dependencies:
       - opentelemetry-semantic-conventions==0.48b0
       - opentelemetry-util-http==0.48b0
       - optimum==1.23.3
-      - orjson==3.10.7
       - overrides==7.7.0
       - peft==0.11.1
       - pluggy==1.5.0
@@ -298,7 +308,6 @@ dependencies:
       - pyreadline3==3.5.4
       - pytest==8.3.3
       - requests-oauthlib==2.0.0
-      - requests-toolbelt==1.0.0
       - rich==13.9.2
       - rsa==4.9
       - scikit-learn==1.6.0
@@ -317,7 +326,6 @@ dependencies:
       - torchvision==0.19.1
       - transformers==4.46.3
       - typer==0.12.5
-      - typing-extensions==4.12.2
       - typing-inspect==0.9.0
       - uvicorn==0.32.1
       - watchfiles==0.24.0
@@ -326,4 +334,4 @@ dependencies:
       - wrapt==1.16.0
       - yarl==1.13.1
       - zipp==3.20.2
-prefix: C:\Users\Danyal\anaconda3\envs\localRAG_env
+prefix: C:\Users\Danyal\anaconda3\envs\study_project_exp
