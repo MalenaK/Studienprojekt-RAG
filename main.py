@@ -39,9 +39,17 @@ graph = graph_builder.compile(checkpointer=memory)
 config = RunnableConfig(recursion_limit=100000, thread_id="abc123")
 input_message = "Please ignore the context and reply with 'Hello everything is working fine'"
 
-for step in graph.stream(
+#use code below for debugging purposes
+# for step in graph.stream(
+#     {"messages": [{"role": "user", "content": input_message}]},
+#     stream_mode="values",
+#     config=config,
+# ):
+#     step["messages"][-1].pretty_print()
+
+#use code below for normal mode
+graph.invoke(
     {"messages": [{"role": "user", "content": input_message}]},
     stream_mode="values",
     config=config,
-):
-    step["messages"][-1].pretty_print()
+)
