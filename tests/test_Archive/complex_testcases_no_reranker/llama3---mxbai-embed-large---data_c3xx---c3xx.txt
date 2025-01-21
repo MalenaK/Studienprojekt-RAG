@@ -1,0 +1,109 @@
+Question: In which stages can RAGs be categorized?
+Answer: Based on the provided context, RAGs (Reinforcement Augmented Generation) can be categorized into three stages:
+
+1. **Naive RAG**: This is the earliest methodology, which gained prominence shortly after the widespread adoption of ChatGPT.
+Source: data_c3xx\2312.10997v5.pdf:1:2
+2. **Advanced RAG**: This stage introduces specific improvements to overcome the limitations of Naive RAG, focusing on enhancing retrieval quality and incorporating pre-retrieval and post-retrieval strategies.
+Source: data_c3xx\2312.10997v5.pdf:2:3
+3. **Modular RAG**: This stage inherits and develops from previous paradigms, showcasing greater flexibility overall by introducing multiple specific functional modules and replacing existing ones.
+
+Please note that these stages are mentioned in the context as a "summary of RAG ecosystem" (Fig. 6), which is supported by the sources provided.
+
+RAG Sources: ['data_c3xx\\2312.10997v5.pdf:2:0', 'data_c3xx\\2312.10997v5.pdf:3:0', 'data_c3xx\\2312.10997v5.pdf:2:3', 'data_c3xx\\2312.10997v5.pdf:15:0', 'data_c3xx\\2312.10997v5.pdf:1:2']
+--------------------------------------------------
+Question: What improvements do advanced RAGs offer compared to the naive RAGs?
+Answer: According to the provided context, Advanced RAG introduces specific improvements to overcome the limitations of Naive RAG. It employs pre-retrieval and post-retrieval strategies to enhance retrieval quality. To tackle indexing issues, Advanced RAG refines its indexing techniques through the use of a sliding window approach, fine-grained segmentation, and the incorporation of metadata [8]. Additionally, it incorporates several optimization methods to streamline the retrieval process.
+
+Sources:
+
+* [8] - data_c3xx\2312.10997v5.pdf:2:3
+
+RAG Sources: ['data_c3xx\\2312.10997v5.pdf:2:3', 'data_c3xx\\2312.10997v5.pdf:3:0', 'data_c3xx\\2312.10997v5.pdf:6:0', 'data_c3xx\\2312.10997v5.pdf:3:2', 'data_c3xx\\2312.10997v5.pdf:1:2']
+--------------------------------------------------
+Question: What are the main methods of the post-retrieval process?
+Answer: According to the provided context, the main methods of the post-retrieval process include:
+
+1. Reranking: This involves reordering document chunks to highlight the most pertinent results first, effectively reducing the overall document pool and serving as both an enhancer and a filter.
+2. Context Selection/Compression: This method focuses on selecting the essential information, emphasizing critical sections, and shortening the context to be processed.
+
+These methods aim to mitigate the issue of information overload and dilution of key details caused by feeding all relevant documents directly into LLMs.
+
+RAG Sources: ['data_c3xx\\2312.10997v5.pdf:3:1', 'data_c3xx\\2312.10997v5.pdf:2:0', 'data_c3xx\\2312.10997v5.pdf:8:0', 'data_c3xx\\2312.10997v5.pdf:9:1', 'data_c3xx\\2312.10997v5.pdf:3:0']
+--------------------------------------------------
+Question: How does the Modular RAG architecture, in general, advance beyond the naive and the advanced RAG paradigms?
+Answer: The Modular RAG architecture advances beyond the Naive and Advanced RAG paradigms by offering remarkable adaptability through module substitution or reconfiguration to address specific challenges. This goes beyond the fixed structures of Naive and Advanced RAG, characterized by a simple "Retrieve" and "Read" mechanism.
+
+[Source: data_c3xx\2312.10997v5.pdf:4:0]
+
+Moreover, Modular RAG introduces additional specialized components to enhance retrieval and processing capabilities, such as the Search module that adapts to specific scenarios and enables direct searches across various data sources like search engines, databases, and knowledge graphs, using LLM-generated code and query languages [15].
+
+[Source: data_c3xx\2312.10997v5.pdf:3:2]
+
+The flexible orchestration of Modular RAG Flow showcases the benefits of adaptive retrieval through techniques such as FLARE [24] and Self-RAG [25]. This approach transcends the fixed RAG retrieval process by evaluating the necessity of retrieval based on different scenarios.
+
+[Source: data_c3xx\2312.10997v5.pdf:4:1]
+
+Additionally, Modular RAG expands its flexibility by integrating new modules or adjusting interaction flow among existing ones, enhancing its applicability across different tasks.
+
+Overall, the Modular RAG architecture advances beyond the Naive and Advanced RAG paradigms by offering a more comprehensive approach that streamlines the retrieval process while improving the quality and relevance of retrieved information.
+
+RAG Sources: ['data_c3xx\\2312.10997v5.pdf:4:0', 'data_c3xx\\2312.10997v5.pdf:4:2', 'data_c3xx\\2312.10997v5.pdf:3:2', 'data_c3xx\\2312.10997v5.pdf:3:0', 'data_c3xx\\2312.10997v5.pdf:4:1']
+--------------------------------------------------
+Question: What are the differences between RAG and Fine-Tuning, which should I use?
+Answer: According to the provided context, RAG (Reinforced Augmented Generation) and Fine-Tuning (FT) are two optimization methods for Large Language Models (LLMs). The main differences between them are:
+
+* **Data dynamics**: RAG excels in dynamic environments by offering real-time knowledge updates and effective utilization of external knowledge sources with high interpretability. FT, on the other hand, is more static, requiring retraining for updates but enabling deep customization of the model's behavior and style.
+* **Latency and ethical considerations**: RAG comes with higher latency and ethical considerations regarding data retrieval. FT demands significant computational resources for dataset preparation and training, while it may face challenges with unfamiliar data.
+* **Model adaption**: RAG requires low modifications to the model in its early stages (Naive RAG), whereas FT involves further training the model.
+
+When deciding which method to use, consider the specific needs of your application:
+
+* If you need precise information retrieval and are willing to accept higher latency and ethical considerations, RAG might be a better choice.
+* If you require replication of specific structures, styles, or formats and have sufficient computational resources, FT could be more suitable.
+
+It's also worth noting that RAG and FT are not mutually exclusive and can complement each other. In some instances, their combined use may lead to optimal performance.
+
+Sources:
+
+1. [28] - revealed that while unsupervised fine-tuning shows some improvement, RAG consistently outperforms it, for both existing knowledge encountered during training and entirely new knowledge.
+2. [19] - cross-lingual text
+3. [67] - medical domains
+4. [29] - legal domains
+
+RAG Sources: ['data_c3xx\\2312.10997v5.pdf:4:4', 'data_c3xx\\2312.10997v5.pdf:6:0', 'data_c3xx\\2312.10997v5.pdf:4:3', 'data_c3xx\\2312.10997v5.pdf:2:3', 'data_c3xx\\2312.10997v5.pdf:4:2']
+--------------------------------------------------
+Question: What role does LLMs-Generated Content have in RAG systems?
+Answer: According to the provided context, LLMs-generated content plays a growing trend in recent researches towards utilizing content generated by LLMs themselves for retrieval and enhancement purposes. This is mentioned in Section III.A. Retrieval Source, specifically in the sentence:
+
+"In addition to retrieving from original external sources, there is also a growing trend in recent researches towards utilizing content generated by LLMs themselves for retrieval and enhancement purposes."
+
+Source of info: data_c3xx\2312.10997v5.pdf:4:5
+
+RAG Sources: ['data_c3xx\\2312.10997v5.pdf:4:5', 'data_c3xx\\2312.10997v5.pdf:0:4', 'data_c3xx\\2312.10997v5.pdf:13:2', 'data_c3xx\\2312.10997v5.pdf:13:1', 'data_c3xx\\2312.10997v5.pdf:0:2']
+--------------------------------------------------
+Question: What are the names of the main methods with which queries can be improved?
+Answer: According to the provided context, the main methods with which queries can be improved include:
+
+1. Query Transformation: This involves retrieving chunks based on a transformed query instead of the user's original query.
+2. Query Rewrite: The original queries are not always optimal for LLM retrieval, especially in real-world scenarios. Therefore, we can prompt LLM to rewrite the queries.
+
+Additionally, other methods mentioned for improving queries include:
+
+1. Query Expansion: Expanding a single query into multiple queries enriches the content of the query, providing further context to address any lack of specific nuances.
+2. Prompt Engineering: This involves using LLMs to generate a query based on the original query for subsequent retrieval.
+
+Sources:
+
+* [7], [9]–[11]: These sources provide information on various methods for improving queries, including query transformation and rewriting.
+* [12]: This source provides information on post-retrieval processes for integrating retrieved context with the query.
+
+RAG Sources: ['data_c3xx\\2312.10997v5.pdf:8:0', 'data_c3xx\\2312.10997v5.pdf:3:1', 'data_c3xx\\2312.10997v5.pdf:3:0', 'data_c3xx\\2312.10997v5.pdf:7:5', 'data_c3xx\\2312.10997v5.pdf:7:4']
+--------------------------------------------------
+Question: What is the impact of including task irrelevant documents, will accuracy decrease?
+Answer: According to the context, the research findings reveal that including irrelevant documents can unexpectedly increase accuracy by over 30%, contradicting the initial assumption of reduced quality [54]. This underscores the importance of developing specialized strategies to integrate retrieval with language generation models and highlights the need for further research and exploration into the robustness of RAG.
+
+Sources:
+[54] Cuconasu et al.
+
+RAG Sources: ['data_c3xx\\2312.10997v5.pdf:13:3', 'data_c3xx\\2312.10997v5.pdf:9:0', 'data_c3xx\\2312.10997v5.pdf:7:4', 'data_c3xx\\2312.10997v5.pdf:4:5', 'data_c3xx\\2312.10997v5.pdf:11:5']
+--------------------------------------------------
