@@ -20,7 +20,23 @@ Does the actual response match the expected Response regarding content? Only ans
 Reply with "no context", if the actual response states that the information is missing in the context.
 Reply with "true", if the actual response matches the content of the expected response.
 Reply with "false", if the actual response does not match the content the expected response.
-The actual response does not have to be formulated in the exact same words, it just has to state the same content.
+
+I'll give you some examples:\n
+Question: How old is my cat?
+Expected Response: 2 years
+Actual Response: Your cat is 2 years old\n
+true
+
+Question: What is the weather like today?
+Expected Response: sunny
+Actual Reponse: It is raining\n
+false
+
+Question: How high is the mount everest?
+Expected Response: 8849m
+Actual Response: There is no information about the mount everest in the provided context.\n
+no context
+
 """
     
 class EvalState(MessagesState):
