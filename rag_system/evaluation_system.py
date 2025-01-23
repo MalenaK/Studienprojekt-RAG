@@ -16,7 +16,11 @@ Question: {question}
 Expected Response: {expected_answer}
 Actual Response: {actual_answer}
 
-Does the actual response match the expected Response regarding content? Only answer with "true", "no context" or "false". If the actual response states that it can not provide an answer due to missing context you must respond with "no context"".
+Does the actual response match the expected Response regarding content? Only answer with "true", "no context" or "false".
+Reply with "no context", if the actual response states that the information is missing in the context.
+Reply with "true", if the actual response matches the content of the expected response.
+Reply with "false", if the actual response does not match the content the expected response.
+The actual response does not have to be formulated in the exact same words, it just has to state the same content.
 """
     
 class EvalState(MessagesState):
