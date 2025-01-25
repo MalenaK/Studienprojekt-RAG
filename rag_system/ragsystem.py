@@ -65,7 +65,7 @@ def generate(state: MessagesState):
 
     # Format into prompt
     docs_content = "\n\n".join(doc.content for doc in tool_messages)
-    print("docs content", docs_content)
+    #print("docs content", docs_content)
     conversation_messages = [
         message
         for message in state["messages"]

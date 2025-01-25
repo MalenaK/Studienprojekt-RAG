@@ -1,5 +1,14 @@
 #Config Parameters
+#possible options include
+#llama3.1 <-- recommended
+#deepseek-r1:14b does not support tools yet so N/A
+#deepseek-r1:7b does not support tools yet so N/A
 config_model = "llama3.1"
+
+#possible options include
+#bge-m3
+#nomic-embed-text
+#mxbai-embed-large <-- recommended
 config_embedding = "mxbai-embed-large"
 
 #Retrieve top k chunks for a query

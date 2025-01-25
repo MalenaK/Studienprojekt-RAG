@@ -1,0 +1,25 @@
+--------------------------------------------------
+Test Case Number: 1
+Question: A game of Basketball is played by how many teams?
+Actual Answer: I'm happy to help with the question about basketball. However, I notice that you provided context related to an API error, which doesn't seem relevant to the question.
+
+To answer your question: A standard game of basketball is played between two teams. 
+
+No additional context was provided.
+Expected Answer: 2
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 2
+Question: What dimensions is the playing ground?
+Actual Answer: I don't have any information about a playing ground in relation to your context. The provided context only mentions an authentication error with an OpenAI API key issue. I don't know what you're referring to regarding the playing ground's dimensions. 
+
+Context:
+Error: AuthenticationError("Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-ant-a************************************************************************************************lQAA. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}")
+Expected Answer: 28 m in length by 15 m in width
+Evaluation: false
+--------------------------------------------------
+
+

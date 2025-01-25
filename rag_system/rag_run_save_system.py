@@ -20,6 +20,7 @@ def run_and_save_setup(state: RunAndSaveState):
 
     data_name = doc_handler.get_pdf_dir().replace("/","").replace("\\", "").replace(" ","").replace(".","")
     model_name = llm_model.get_model()
+    model_name = model_name.replace(':', '-')
     embedding_name = get_embedding_function().model
     test_cases_name = "c4xx" #to enter by developer!!
     file_name = f"{model_name}---{embedding_name}---{data_name}---{test_cases_name}.txt"

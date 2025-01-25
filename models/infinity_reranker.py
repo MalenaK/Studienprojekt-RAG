@@ -54,6 +54,7 @@ from langchain.schema.document import Document
 #current -> BAAI/bge-reranker-base
 
 #I had to modify this to not use the array it didn't work for us for some reason
+#Also try BAAI/bge-reranker-large
 engine_args = EngineArgs(model_name_or_path="BAAI/bge-reranker-base", engine="torch", device=device)
 engine = AsyncEmbeddingEngine.from_args(engine_args)
 

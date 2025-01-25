@@ -99,7 +99,7 @@ class Model:
         """
         prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
         prompt: str = prompt_template.format(question=question, expected_answer=expected_answer, actual_answer=actual_answer)
-        print(f"prompting the LLM with: \n{prompt}")
+        #print(f"prompting the LLM with: \n{prompt}")
         answer: str = self.model.invoke(prompt)
         return answer
 

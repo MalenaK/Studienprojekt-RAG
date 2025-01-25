@@ -42,8 +42,9 @@ def evaluation_setup(state: EvalState):
     #make test result file
     test_folder = TEST_RESULT_FOLDER
     os.makedirs(test_folder, exist_ok=True)
-
     test_folder = f"{test_folder}/{llm_model.get_model()}---{get_embedding_function().model}" #always Language model followed by embedding seperated by ---
+    # Illegal characters like : are replaced by -
+    test_folder = test_folder.replace(':', '-')
     path_to_testresults = f"{test_folder}/testlog.txt"
     os.makedirs(test_folder, exist_ok=True)
 
@@ -68,7 +69,7 @@ def load_neg_question(state: EvalState):
 def log(state: EvalState):
     print(f"Test Progress: {state["case_counter"]}/{state["num_test_cases"]} questions done.")
     message = f"{'-' * 50}\nTest Case Number: {state["case_counter"]}\nQuestion: {state["question"]}\nActual Answer: {state["messages"][-1].content}\nExpected Answer: {state["expected_answer"]}\nEvaluation: {state["evaluation"]}\n{'-' * 50}\n\n"
-    print(message)
+    #print(message)
     with open(state["path_to_testresults"], 'a', encoding='utf-8') as log_file:
         log_file.write(message + '\n')
 
