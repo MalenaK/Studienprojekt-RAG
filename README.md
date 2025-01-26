@@ -1,5 +1,5 @@
 This is a project for running a local LLM that uses Retrieval-Augmented Generation (RAG) to generate answers based on context which is fed to it via PDFs.
-The project was done for the chair "Soziotechnisches Systemdesign und Künstliche Intelligenz" (SSKI) at Ruhr-University Bochum.
+The project was done for the chair "Soziotechnisches Systemdesign und Künstliche Intelligenz" (SSKI, https://sski.ruhr-uni-bochum.de/) at Ruhr-University Bochum (https://www.ruhr-uni-bochum.de/en).
 
 # SETUP
 ## for Windows Machines
