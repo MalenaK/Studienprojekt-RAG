@@ -4,7 +4,10 @@ from langgraph.prebuilt import ToolNode, tools_condition
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.runnables.config import RunnableConfig
 from langgraph.graph import MessagesState
-
+"""
+module main
+Run this to use the system. See github for usage instructions https://github.com/MalenaK/Studienprojekt-RAG.
+"""
 graph_builder = StateGraph(MessagesState)
 # Register class methods as nodes
 tools = ToolNode([retrieve])

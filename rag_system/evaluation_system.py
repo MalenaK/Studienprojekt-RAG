@@ -11,6 +11,11 @@ from langgraph.graph import MessagesState
 from rag_system.ragsystem import llm_model
 from langchain_core.messages import RemoveMessage
 
+"""
+module evaluation_system
+Provides helper functions to run the automated tests using evaluation.py.
+"""
+
 test_template = """
 Question: {question}
 Expected Response: {expected_answer}
@@ -20,6 +25,44 @@ Does the actual response match the expected Response regarding content? Only ans
 """
     
 class EvalState(MessagesState):
+    """
+       Represents the state of the evaluation process.
+
+       Attributes
+       ----------
+       question : str
+           The current test case question.
+       path_to_testresults : str
+           The path where test results are saved.
+       case_counter : int
+           The number of test cases processed so far.
+       expected_answer : str
+           The expected answer for the current test case.
+       evaluation : str
+           The evaluation result for the current test case ("true", "false", or "noc").
+       current_neg_i : int
+           The index of the current negative test case being evaluated.
+       current_pos_i : int
+           The index of the current positive test case being evaluated.
+       num_test_cases : int
+           The total number of test cases.
+       accuracy : int
+           The accuracy percentage of the model.
+       false_positive_rate : int
+           The false positive rate percentage.
+       false_negative_rate : int
+           The false negative rate percentage.
+       false_positives : int
+           The count of false positive cases.
+       false_negatives : int
+           The count of false negative cases.
+       no_context_rate : int
+           The percentage of cases where the model provided no context.
+       no_context_on_positive : int
+           The count of "no context" responses for positive test cases.
+       no_context_on_negative : int
+           The count of "no context" responses for negative test cases.
+    """
     question: str
     path_to_testresults: str
     case_counter: int
@@ -38,7 +81,20 @@ class EvalState(MessagesState):
     no_context_on_negative: int 
 
 
-def evaluation_setup(state: EvalState):
+def evaluation_setup(state: EvalState) -> dict:
+    """
+    Sets up the environment for evaluation, including creating directories and initializing metrics.
+
+    Parameters
+    ----------
+    state : EvalState
+        The initial state of the evaluation process.
+
+    Returns
+    -------
+    dict
+        A dictionary with updated state values, including paths and metrics.
+    """
     #make test result file
     test_folder = TEST_RESULT_FOLDER
     os.makedirs(test_folder, exist_ok=True)
@@ -54,26 +110,73 @@ def evaluation_setup(state: EvalState):
     return {"path_to_testresults": path_to_testresults, "current_pos_i": 0, "current_neg_i": 0, "case_counter": 0, "num_test_cases": len(positive_test_cases) + len(negative_test_cases),
             "accuracy": 0, "false_positive_rate":0, "false_negative_rate": 0, "false_positives": 0, "false_negatives":0, "no_context_rate":0, "no_context_on_positive":0, "no_context_on_negative":0}
 
-def load_pos_question(state: EvalState):
+def load_pos_question(state: EvalState) -> dict:
+    """
+    Loads the next positive test case question and updates the state.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    dict
+        Updated state with the next positive test case and expected answer.
+    """
     question = positive_test_cases[state["current_pos_i"]][0]
     expected_answer = positive_test_cases[state["current_pos_i"]][1]
     next_i = state["current_pos_i"] + 1
     return {"question": question, "current_pos_i": next_i, "expected_answer": expected_answer, "messages": question}
 
-def load_neg_question(state: EvalState):
+def load_neg_question(state: EvalState) -> dict:
+    """
+    Loads the next negative test case question and updates the state.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    dict
+        Updated state with the next negative test case and expected answer.
+        """
     question = negative_test_cases[state["current_neg_i"]][0]
     expected_answer = negative_test_cases[state["current_neg_i"]][1]
     next_i = state["current_neg_i"] + 1
     return {"question": question, "current_neg_i": next_i, "expected_answer": expected_answer, "messages": question}
 
 def log(state: EvalState):
+    """
+    Logs the evaluation results for the current test case to a log.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+    """
     print(f"Test Progress: {state["case_counter"]}/{state["num_test_cases"]} questions done.")
     message = f"{'-' * 50}\nTest Case Number: {state["case_counter"]}\nQuestion: {state["question"]}\nActual Answer: {state["messages"][-1].content}\nExpected Answer: {state["expected_answer"]}\nEvaluation: {state["evaluation"]}\n{'-' * 50}\n\n"
     #print(message)
     with open(state["path_to_testresults"], 'a', encoding='utf-8') as log_file:
         log_file.write(message + '\n')
 
-def evaluate(state: EvalState):
+def evaluate(state: EvalState) -> dict:
+    """
+    Evaluates the model's response against the expected answer using a predefined template. See ollama_model.py.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    dict
+        Updated state with the evaluation result and incremented case counter.
+    """
     # Change template to evaluation mode
     llm_model.set_template(test_template) #TODO: do this once?
 
@@ -96,7 +199,20 @@ def evaluate(state: EvalState):
     return {"evaluation": eval_result, "case_counter": case_counter}
 
 #update stats for positive test cases
-def update_stats_for_pos(state: EvalState):
+def update_stats_for_pos(state: EvalState) -> dict:
+    """
+    Updates statistics for positive test cases.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    dict
+        Updated state with adjusted statistics for positive cases.
+    """
     no_context_on_pos = state["no_context_on_positive"]
     false_pos = state["false_positives"]
     if state["evaluation"] == "noc":
@@ -108,7 +224,20 @@ def update_stats_for_pos(state: EvalState):
     return {"no_context_on_positive": no_context_on_pos, "false_positives": false_pos}
 
 #update stats for negative test cases
-def update_stats_for_neg(state: EvalState):
+def update_stats_for_neg(state: EvalState) -> dict:
+    """
+    Updates statistics for negative test cases.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    dict
+        Updated state with adjusted statistics for negative cases.
+    """
     no_context_on_neg = state["no_context_on_negative"]
     false_neg = state["false_negatives"]
     if state["evaluation"] == "noc":
@@ -119,7 +248,20 @@ def update_stats_for_neg(state: EvalState):
 
     return {"no_context_on_negative": no_context_on_neg, "false_negatives": false_neg}
 
-def calc_stats(state: EvalState):
+def calc_stats(state: EvalState) -> dict:
+    """
+    Calculates overall evaluation metrics, including accuracy and error rates.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    dict
+        Updated state with calculated metrics.
+    """
     no_context = state["no_context_on_negative"] + state["no_context_on_positive"]
     num_correct_answers = state["num_test_cases"] - state["false_negatives"] - state["false_positives"] - no_context
 
@@ -131,6 +273,14 @@ def calc_stats(state: EvalState):
     return {"accuracy": accuracy, "false_negative_rate": false_negative_rate, "false_positive_rate": false_positive_rate, "no_context_rate": no_context_rate}
 
 def plot_bar_chart(state: EvalState):
+    """
+    Generates a bar chart summarizing the evaluation results.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+    """
     labels = ['Total Accuracy', 'False Positives', 'False Negatives', 'No Context']
     values = state["accuracy"], state["false_positive_rate"], state["false_negative_rate"], state["no_context_rate"]
     colors = ['#4CAF50', '#FF5733', '#FFC300', '#3498db']
@@ -158,6 +308,14 @@ def plot_bar_chart(state: EvalState):
 
 #Attention, in this confusion matrix we display no context just as a false prediction however we do state the total amount of no context entries separately as text!
 def plot_confusion_matrix(state: EvalState):
+    """
+    Generates a confusion matrix summarizing the evaluation results.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+    """
     true_positives = len(positive_test_cases) - (state["false_positives"] + state["no_context_on_positive"])
     true_negatives = len(negative_test_cases) - (state["false_negatives"]+state["no_context_on_negative"])
 
@@ -189,13 +347,52 @@ def plot_confusion_matrix(state: EvalState):
     plt.close()
 
 #method for conditional edge
-def done_with_tests(state: EvalState):
+def done_with_tests(state: EvalState) -> bool:
+    """
+    Checks whether all test cases have been evaluated.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    bool
+        True if all test cases are done, False otherwise.
+     """
     return (state["current_pos_i"] >= len(positive_test_cases)) and state["current_neg_i"] >= len(negative_test_cases)
 
 #method for conditional edge
-def done_with_pos(state: EvalState):
+def done_with_pos(state: EvalState) -> bool:
+    """
+    Checks whether all positive test cases have been evaluated.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    bool
+        True if all positive test cases are done, False otherwise.
+    """
     return state["current_pos_i"] >= len(positive_test_cases)
 
 def delete_messages(state: EvalState):
+    """
+    Deletes all messages from the state.
+
+    Parameters
+    ----------
+    state : EvalState
+        The current state of the evaluation process.
+
+    Returns
+    -------
+    dict
+        Updated state with messages removed.
+    """
     messages = state["messages"]
     return {"messages": [RemoveMessage(id=m.id) for m in messages]}
