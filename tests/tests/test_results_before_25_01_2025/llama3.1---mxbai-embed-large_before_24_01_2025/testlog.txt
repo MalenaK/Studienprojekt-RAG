@@ -1,0 +1,710 @@
+--------------------------------------------------
+Test Case Number: 1
+Question: A game of Basketball is played by how many teams?
+Actual Answer: According to the provided context, a standard basketball game is played with 2 teams.
+
+Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:17:1 (Rule 9.4) and ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:79:0 (Example D.2.3 and D.2.4)
+Expected Answer: 2
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 2
+Question: What dimensions is the playing ground?
+Actual Answer: According to the provided context, the dimensions of the playing court are 28 m in length and 15 m in width, measured from the inner edge of the boundary line (page 6, source: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf).
+Expected Answer: 28 m in length by 15 m in width
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 3
+Question: Can lines be of different colors?
+Actual Answer: According to the provided context, Art. 2.4 Lines states that "All lines shall be of the same colour and drawn in white or other contrasting color...".
+
+Source of info: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:6:0
+Expected Answer: No
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 4
+Question: How can a defensive player establish a legal guarding position?
+Actual Answer: According to the FIBA Official Basketball Rules 2020, a defensive player can establish an initial legal guarding position in the following way:
+
+* He must face his opponent (Section 33.3, ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:38:1)
+* He must have both feet on the floor (Section 33.3, ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:38:1)
+
+Additionally, the defensive player must maintain his arms and hands within a vertical position inside an imaginary cylinder that extends from the floor to the ceiling above him, even when raising them above his head or jumping vertically (Section 33.3, ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:38:1).
+
+It is also important to note that when guarding a player who controls the ball, the defensive player must establish an initial legal guarding position without causing contact before taking his position (Section 33.4, ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:39:0).
+Expected Answer: Face his opponent and have both feet on the floor
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 5
+Question: May a team substitute a player?
+Actual Answer: According to the FIBA Official Basketball Rules 2020, Article 19, Substitution (Page 26 of 96), a team may substitute a player(s) during a substitution opportunity. 
+
+Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:26:0
+Expected Answer: Yes
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 6
+Question: How long does a timeout last?
+Actual Answer: According to the provided context, a regular team timeout (also known as an "Art. 18 Time-out") lasts for 1 minute (Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:24:1).
+
+However, a Media time-out can be 60, 75, 90, or 100 seconds in duration (Source of info in this block: OFFICIAL BASKETBALL RULES 2020 June 2020 Page 86 of 96).
+Expected Answer: 1 Minute
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 7
+Question: Of how many quarters does a game consist?
+Actual Answer: According to Art. 8, Playing time, tied score and overtime (Page 17 of 96 in FIBAOfficialBasketballRules2020_v1.0.pdf), a game shall consist of 4 quarters of 10 minutes each.
+
+Source: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:17:1
+Expected Answer: 4
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 8
+Question: How many minutes does a quarter have?
+Actual Answer: According to the provided context, Article 8, section 1 of the FIBA Official Basketball Rules 2020 (page 17 of 96) states that "The game shall consist of 4 quarters of 10 minutes each." 
+
+Source: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:17:0
+Expected Answer: 10 minutes
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 9
+Question: How many players are allowed for each team on the play court?
+Actual Answer: According to the context, during playing time, a team member is considered as a player when he is on the playing court and is entitled to play (Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:12:4.1.3).
+
+Also, according to RULE ONE –  THE GAME Art. 1  Definitions 1.1 Basketball game (Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:5:1.1), basketball is played by 2 teams of 5 players each.
+
+So, the answer is 5 players per team are allowed on the play court.
+Expected Answer: 5
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 10
+Question: What is charging?
+Actual Answer: According to the context, charging refers to the process of replenishing the battery with water, specifically the procedure for replenishing battery water. This can be found on page 56 of the document ..\data\data_basic\m4a3.pdf. 
+
+Source of info: ..\data\data_basic\m4a3.pdf:56:0
+Expected Answer: Charging is illegal personal contact, with or without the ball, by pushing or moving into an opponent’s torso.
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 11
+Question: How thick is the hull armor?
+Actual Answer: The hull armor thickness varies. The front slope is 2 inches thick, and the sides of the hull are 1 inch thick.
+Expected Answer: 1 inch
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 12
+Question: What is the maximum sustained speed on a hard road?
+Actual Answer: The maximum sustained speed on a hard road is 26 mph (according to source ..\data\data_basic\m4a3.pdf:6:2). 
+
+Also, for cross-country speeds, it's expected to be between 4 to 26 mph (according to source ..\data\data_basic\m4a3.pdf:6:1).
+Expected Answer: 26 mph
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 13
+Question: What range does the voltmeter have?
+Actual Answer: The voltmeter has a range from 16 to 32 volts (..\data\data_basic\m4a3.pdf:14:1).
+Expected Answer: 16 to 32 volts
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 14
+Question: Is the spark control automatic?
+Actual Answer: Yes, the spark control is entirely automatic and requires no attention by the operator of the vehicle. (source of info: ..\data\data_basic\m4a3.pdf:8:0)
+Expected Answer: Yes
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 15
+Question: What is the rated horsepower for the engine?
+Actual Answer: The rated horsepower for the engine is 500 at 2600 rpm (Ford tank engine). 
+Source of info: ..\data\data_basic\m4a3.pdf:39:0
+Expected Answer: 500 at 2600 rpm
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 16
+Question: What is the weight without armament, fuel or crew?
+Actual Answer: I don't have that specific information in my context. However, I can provide you with the weight of the engine and accessories, which is 1470 lb (from ..\data\data_basic\m4a3.pdf:28:1). 
+
+To find the weight without armament, fuel or crew, we would need more information about the total weight of the tank, as well as the weights of the armament, fuel, and crew.
+Expected Answer: 59560 lb
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 17
+Question: What guns are part of the combination turret mount?
+Actual Answer: The guns that are part of the combination turret mount are:
+
+1. 75-mm, M3 gun
+2. Machine gun, cal. .30, M1919A4
+Expected Answer: 1 gun, 75-mm, M3 and 1 gun, machine, cal. .30, M1919A4
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 18
+Question: How many degrees can the turret be rotated?
+Actual Answer: The turret can be rotated through 360 degrees by a hydraulic system or by hand. The turret platform rotates with the turret.
+
+Source of info in this block: ..\data\data_basic\m4a3.pdf:4:0 (Section II - DESCRIPTION AND TABULATED DATA, Paragraph "DESCRIPTION")
+Expected Answer: 360
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 19
+Question: How to stop the engine?
+Actual Answer: To stop the engine, follow these steps:
+
+1. Release the throttle and pull back on both steering levers at the same time (from TM 9-759, page 10).
+2. Depress the clutch pedal when the vehicle has slowed down to approximately two to five miles per hour, depending upon which gear is being employed before stopping (from TM 9-759, page 10).
+
+Additionally, it's recommended to pull the toggle switch to the right and hold it in this position until the engine stops before turning off the ignition. This shuts off the fuel from the idle fuel supply wells in the carburetor and prevents loading up of the carburetor in case the engine is to be restarted while still hot (from ..\data\data_basic\m4a3.pdf, page 18).
+
+Please note that these instructions are for a M4A3 tank.
+Expected Answer: After completing a run, the engine must be allowed to operate at 500 rpm for two minutes to assure a gradual and uniform cooling of the valves and other various engine parts.
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 20
+Question: What is the overall length?
+Actual Answer: The overall length of the playing court shall be 28 m measured from the inner edge of the boundary line (Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:6:0).
+Expected Answer: 232 1/2-in
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 21
+Question: What was the real gdp of Germany in 2023?
+Actual Answer: The real GDP of Germany in 2023 is $5.23 trillion (purchasing power parity) as stated in block-$1, Source of info: ..\data\data_basic\germany.pdf:1:0. 
+
+Additionally, the total economy size of Germany in 2023 was also mentioned as $1.927 trillion in block-$1, Source of info: ..\data\data_basic\germany.pdf:2:0.
+Expected Answer: 5.23 trillion
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 22
+Question: Who is the biggest export partner of Germany?
+Actual Answer: According to the provided context, the United States (US) is the largest export partner of Germany, accounting for 10% of their exports in 2022. 
+
+$2.104 trillion (2023 est.)  
+$2.092 trillion (2022 est.)  
+...  
+Exports - partners  
+US 10%, France 7%, China 7%, Netherlands 7%, Italy 6% (2022)  
+
+Source of info: ..\data\data_basic\germany.pdf:1:1
+Expected Answer: The United States 🦅
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 23
+Question: Who is the biggest import partner of Germany?
+Actual Answer: According to the context, China is not the biggest import partner of Germany. The information states that China is a significant import partner, but it is not specified as the biggest.
+
+However, according to the context, Germany's top 4 import partners are:
+1. Netherlands (9% in 2022)
+2. Poland (6% in 2022)
+3. Belgium (6% in 2022)
+4. China (10% in 2022)
+
+It is not clear from the information which one of these countries is the biggest import partner of Germany.
+
+Source: ..\data\data_basic\germany.pdf:1:1
+Expected Answer: China
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 24
+Question: Who is the head of government?
+Actual Answer: The head of government is Chancellor Olaf SCHOLZ (since 8 December 2021).
+
+Source of info in this block: Context provided initially about Germany.
+Expected Answer: Olaf Scholz
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 25
+Question: Who is the chief of state?
+Actual Answer: President Frank-Walter STEINMEIER (since 19 March 2017) 
+
+Source of info in this context: Germany's basic information from ..\data\data_basic\germany.pdf:1:0
+Expected Answer: Frank-Walter Steinmeier
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 26
+Question: What is the population growth?
+Actual Answer: The population growth rate in Germany is -0.12% (2024 est.). 
+
+Source of info: ..\data\data_basic\germany.pdf:0:2
+Expected Answer: -0.12%
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 27
+Question: What is the total population?
+Actual Answer: According to the provided context, the total population of Germany is approximately 84,119,100 (Source of info in this block: ..\data\data_basic\germany.pdf:0:0).
+Expected Answer: 84119100
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 28
+Question: What is the total area of Germany? How much land and how water does it consist of?
+Actual Answer: According to the context, the total area of Germany is 357,022 square kilometers. It consists of:
+
+* Land: 348,672 square kilometers
+* Water: 8,350 square kilometers
+
+Source of info in this block: ..\data\data_basic\germany.pdf:0:0 (Geography section)
+Expected Answer: totaL: 357022 sq km, land: 348672 sq km, water: 8350 sq km
+Evaluation: true
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 29
+Question: What are the 3 largest ethnic groups in Germany?
+Actual Answer: According to the context, the three largest ethnic groups in Germany are:
+
+1. German (85.4%)
+2. Turkish (1.8%)
+3. Ukrainian (1.4%)
+
+Source of info: ..\data\data_basic\germany.pdf:0:0
+Expected Answer: 1. German (85,4%), 2.Turkish(1.8%), 3.Ukrainian(1.4%)
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 30
+Question: What are the 3 largest religions in Germany?
+Actual Answer: According to the context, the three largest religions in Germany are:
+
+1. Roman Catholic (24.8% of the population)
+2. Protestant (22.6% of the population)
+3. Muslim (3.7% of the population)
+
+Source of info: ..\data\data_basic\germany.pdf:0:0
+Expected Answer: 1.Roman Catholic (24.8%), 2.Protestant (22.6%), 3.Muslim (3.7%)
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 31
+Question: A game of Basketball is played by how many teams?
+Actual Answer: According to the provided context, specifically from Page 70 (Diagram 10 Teams on the scoresheet) of the FIBA Official Basketball Rules 2020, it appears that the scoresheet has space for information about two teams. However, later in the document, when discussing team forfeits and group classifications, there are references to multiple groups with more than two teams.
+
+To answer your question directly: a game of basketball is typically played between two teams.
+Expected Answer: 10
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 32
+Question: What dimensions is the playing ground?
+Actual Answer: The playing court shall have a flat, hard surface free from obstructions with dimensions of 28 m in length by 15 m in width measured from the inner edge of the boundary line (Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:6:0).
+Expected Answer: 12 m in length by 5 m in width
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 33
+Question: Can lines be of different colors?
+Actual Answer: According to the context, all lines shall be of the same colour and drawn in white or other contrasting color (Page 6 of FIBA Official Basketball Rules 2020).
+
+Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:6:0
+Expected Answer: Yes
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 34
+Question: How can a defensive player establish a legal guarding position?
+Actual Answer: To establish a legal guarding position, a defensive player must:
+
+* Face their opponent
+* Have both feet on the floor
+Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:38:1 and ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:39:0
+
+They may then move to guard their opponent, as long as they do not extend their arms, shoulders, hips or legs to prevent the dribbler from passing by them.
+
+Additionally, when guarding a player who controls the ball (is holding or dribbling it), the defensive player must establish an initial legal guarding position without causing contact before taking their position.
+Expected Answer: Be airborne
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 35
+Question: May a team substitute a player?
+Actual Answer: According to the FIBA Official Basketball Rules 2020 (Page 26), Article 19, Substitution:
+
+"A team may substitute a player(s) during a substitution opportunity."
+
+(PDF source: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:26:0)
+
+In other words, yes, a team can substitute a player, but only during a substitution opportunity, which is defined in the subsequent sections of Article 19.
+Expected Answer: No
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 36
+Question: How long does a timeout last?
+Actual Answer: According to the context, there are two types of timeouts mentioned:
+
+1. Regular team timeouts: These last 1 minute (Source: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:24:1, Art. 18)
+2. Media timeouts: The duration of these is specified by the organizing body and can be 60, 75, 90, or 100 seconds for the first timeout in each quarter (Source: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:86:0, E.2.2). For other timeouts in a quarter, they last 60 seconds.
+Expected Answer: 1 hour
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 37
+Question: Of how many quarters does a game consist?
+Actual Answer: According to the context, a game consists of 4 quarters, each lasting 10 minutes (Rule FOUR – PLAYING REGULATIONS, Art. 8  Playing time, tied score and overtime, 8.1). 
+
+Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:17:0
+Expected Answer: 2
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 38
+Question: How many minutes does a quarter have?
+Actual Answer: According to Art. 8  Playing time, tied score and overtime (Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:17:1), a quarter has a duration of 10 minutes.
+
+Additionally, according to 8.7 If the score is tied at the end of the fourth quarter, the game shall continue with as many overtimes of 5 minutes duration each as necessary to break the tie (Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:17:0), an overtime has a duration of 5 minutes.
+
+Also, from Art. 8  Playing time, tied score and overtime (Source of info in this block: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:17:1) it is mentioned that there are intervals of play of 2 minutes between the first and second quarter (first half), between the third and fourth quarter (second half) and before each overtime.
+Expected Answer: 15 minutes
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 39
+Question: How many minutes does a quarter have?
+Actual Answer: According to the provided context, Article 8 of the FIBA Official Basketball Rules 2020 states that "The game shall consist of 4 quarters of 10 minutes each" (Page 17 of 96, .\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf).
+Expected Answer: 15 minutes
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 40
+Question: What is charging?
+Actual Answer: According to the provided context, "Charging" refers to the process of replenishing the battery with water. The relevant information is found on page 56 of the PDF file "\data\data_basic\m4a3.pdf", and it states:
+
+"Battery water, replenishing.........
+Source of info in this block: ..\data\data_basic\m4a3.pdf:56:0"
+Expected Answer: Pulling yourself up via the rim to score a goal
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 41
+Question: How thick is the hull armor?
+Actual Answer: According to the provided context from TM 9-759, paragraph b under Section II DESCRIPTION AND TABULATED DATA (page 3, source: ..\data\data_basic\m4a3.pdf:3:0), the armor on the sides of the hull is 1 inch thick and the front slope is 2 inches thick.
+
+Source:
+TM 9-759, page 4 (source: ..\data\data_basic\m4a3.pdf:3:0)
+Expected Answer: 15 inch
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 42
+Question: What is the maximum sustained speed on a hard road?
+Actual Answer: According to the provided context, the maximum sustained speed on a hard road is 26 mph. 
+
+Source of info in this block: ..\data\data_basic\m4a3.pdf:6:2
+Expected Answer: 26 kmh
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 43
+Question: What range does the voltmeter have?
+Actual Answer: The voltmeter has a range from 16 to 32 volts (pdf: m4a3.pdf, page: 14).
+Expected Answer: 6 to 62 volts
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 44
+Question: Is the spark control automatic?
+Actual Answer: Yes, the spark control is entirely automatic and requires no attention by the operator of the vehicle. (Source: ..\data\data_basic\m4a3.pdf:8:0) 
+
+(See Section III, Paragraph 6a in the provided context)
+Expected Answer: No
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 45
+Question: What is the rated horsepower for the engine?
+Actual Answer: The rated horsepower for the engine is 500 at 2600 rpm. 
+
+Source of info in this block: ..\data\data_basic\m4a3.pdf:39:0
+Expected Answer: 250 at 2600 rpm
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 46
+Question: What is the weight without armament, fuel or crew?
+Actual Answer: I don't know.
+Expected Answer: 59560 kg
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 47
+Question: What guns are part of the combination turret mount?
+Actual Answer: According to the provided context, two guns are part of the combination turret mount:
+
+1. 75-mm, M3 (combination turret mount)
+2. Machine gun, cal. .30, M1919A4 (combination turret mount)
+
+Source: ..\data\data_basic\m4a3.pdf:3:2
+Expected Answer: 1 gun, 90-mm, M4 and 1 gun, machine, cal. .50, M2-Browning
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 48
+Question: How many degrees can the turret be rotated?
+Actual Answer: The turret can be rotated through 360 degrees by a hydraulic system or by hand. 
+
+Source of info in this block: TM 9-759, Section II, Paragraph 4a, ..\data\data_basic\m4a3.pdf:3:0
+Expected Answer: 300
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 49
+Question: How to stop the engine?
+Actual Answer: To stop the engine, follow these steps:
+
+Release the throttle and pull back on both steering levers at the same time. Depress the clutch pedal when the vehicle has slowed down to approximately two to five miles per hour, depending upon which gear is being employed before stopping.
+
+Additionally, according to section 18 in ..\data\data_basic\m4a3.pdf:18:1, it's recommended to pull the toggle switch to the right and hold it in this position until the engine stops before turning off the ignition. This shuts off the fuel from the idle fuel supply wells in the carburetor, which will prevent loading up of the carburetor in case the engine is to be restarted while still hot.
+
+Source:
+TM 9-759, pages not specified
+..\data\data_basic\m4a3.pdf:18:1
+Expected Answer: Just turn it off by taking out the key
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 50
+Question: What is the overall length?
+Actual Answer: The playing court shall have a flat, hard surface free from obstructions with dimensions of 28 m in length by 15 m in width measured from the inner edge of the boundary line.
+
+So, the overall length is 28 meters. 
+
+Source: ..\data\data_basic\FIBAOfficialBasketballRules2020_v1.0.pdf:6:0
+Expected Answer: 40 meters
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 51
+Question: What was the real gdp of Germany in 2023?
+Actual Answer: According to the provided context, the real GDP (purchasing power parity) of Germany in 2023 was $5.23 trillion. 
+
+Source of info: ..\data\data_basic\germany.pdf:1:0
+Expected Answer: 6 trillion
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 52
+Question: Who is the biggest export partner of Germany?
+Actual Answer: According to the provided context, the US is not listed as a partner for exports - commodities but it is mentioned in "Exports - partners" as the largest with 10% share in (2022).
+Expected Answer: Luxemburg
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 53
+Question: Who is the biggest import partner of Germany?
+Actual Answer: According to the provided context, China is not the largest import partner of Germany, but rather one of them. The actual largest import partner of Germany is not explicitly stated in the given blocks of information.
+
+However, I can suggest that you check the block with source '..\data\data_basic\germany.pdf:2:0' and look for the 'Imports - partners' section, which mentions China as 10%, Netherlands as 9%, Poland as 6%, Belgium as 6%, and Italy as 5% (2022).
+Expected Answer: France
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 54
+Question: Who is the head of government?
+Actual Answer: According to the provided context, the head of government is Chancellor Olaf SCHOLZ (since 8 December 2021). 
+
+Source of info in this block: Context (Executive branch)
+Expected Answer: Angela Merkel
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 55
+Question: Who is the chief of state?
+Actual Answer: The chief of state of Germany, also known as the President, is Frank-Walter Steinmeier (since 19 March 2017). 
+
+Source of info in this block: ..\data\data_basic\germany.pdf:1:0
+Expected Answer: Pierre Danke
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 56
+Question: What is the population growth?
+Actual Answer: The population growth rate in Germany is -0.12% (2024 est.). 
+
+Source of info: ..\data\data_basic\germany.pdf:0:2
+Expected Answer: 0.14%
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 57
+Question: What is the total population?
+Actual Answer: According to the context, the total population of Germany is approximately 84,119,100 (Source: ..\data\data_basic\germany.pdf:0:0).
+Expected Answer: 22200000
+Evaluation: noc
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 58
+Question: What is the total area of Germany? How much land and how water does it consist of?
+Actual Answer: According to the provided context, the total area of Germany is 357,022 sq km. It consists of:
+
+* Land: 348,672 sq km
+* Water: 8,350 sq km
+
+Source of info in this block: ..\data\data_basic\germany.pdf:0:0
+Expected Answer: totaL: 100000 sq km, land: 1000 sq km, water: 99000 sq km
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 59
+Question: What are the 3 largest ethnic groups in Germany?
+Actual Answer: According to the context, the three largest ethnic groups in Germany are:
+
+1. German (85.4%)
+2. Turkish (1.8%)
+3. Ukrainian (1.4%)
+
+Source of info: ..\data\data_basic\germany.pdf:0:0
+Expected Answer: 1. French (45%), 2.Albanian(44%), 3.Mongolian(1%)
+Evaluation: false
+--------------------------------------------------
+
+
+--------------------------------------------------
+Test Case Number: 60
+Question: What are the 3 largest religions in Germany?
+Actual Answer: According to the information, the three largest religions in Germany are:
+
+1. Roman Catholic (24.8%)
+2. Protestant (22.6%)
+3. Muslim (3.7%)
+
+Source of info: ..\data\data_basic\germany.pdf:0:0 and ..\data\data_basic\germany.pdf:1:0
+Expected Answer: 1.Hindu (25%), 2.Muslim (21%), 3.Jewish (12 %)
+Evaluation: false
+--------------------------------------------------
+
+
