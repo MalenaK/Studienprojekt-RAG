@@ -18,7 +18,7 @@ def setup(state: MessagesState):
 
     parser.add_argument("-ra", "--reset_all", action="store_true", help="Reset the whole database.")
     parser.add_argument("-rc", "--reset_collection", action="store_true", help="Reset the collection specified in pdf_dir.")
-    parser.add_argument("-d", "--pdf_dir", required=True, help="Specify path to directory containing the pdfs.")
+    parser.add_argument("-d", "--pdf_dir", default="./data/data_basic", help="Specify path to directory containing the pdfs.")
 
     args = parser.parse_args()
 
