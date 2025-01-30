@@ -69,7 +69,7 @@ In `localRAG_env.yaml`, adjust the path under the `prefix` section to specify th
 
 9. In the root directory of your repository, execute `python main.py` to run the project
 
-#Usage
+# USAGE
 The command for running our project: `python main.py [-d path/to/data/dir] [-ra] [-rc]`
 | Command            | Description                                       |
 |--------------------|---------------------------------------------------|
