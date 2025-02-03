@@ -80,6 +80,6 @@ The command for running our project: `python main.py [-d path/to/data/dir] [-ra]
 Further Hints: 
 - Please remember to clear the database after changing the embedding model (using `-rc`).
 - The database will add the new chunks if you add new PDFs to your data directory.
-Please note: The warnings arising during start-up regarding BetterTransformers do not originate from our project but from an external library used. This usage of our system will not be restricted.
+- Please note: The warnings arising during start-up regarding BetterTransformers do not originate from our project but from an external library used. This usage of our system will not be restricted.
 
 
