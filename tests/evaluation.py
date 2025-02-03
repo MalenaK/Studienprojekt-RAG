@@ -51,5 +51,6 @@ graph_builder.add_edge("plot_confusion_matrix", END)
 graph = graph_builder.compile()
 config = RunnableConfig(recursion_limit=1000) #idk how much is needed exactly, just set high to avoid recursion error
 for chunk in graph.stream({"question": "let's get started"}, config=config, stream_mode="debug"):
-    print(f"Receiving new event: {chunk}...")
-    print("\n\n")
+    pass
+    #print(f"Receiving new event: {chunk}...")
+    #print("\n\n")

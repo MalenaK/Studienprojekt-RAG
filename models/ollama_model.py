@@ -1,5 +1,7 @@
 """
-Model to interact with a local LLM.
+module ollama_model
+Module to interact with a local LLM.
+
 This module is based on Ollama. It contains the model class which can be used to generate answers given some context.
 To generate the answers you may use any Ollama model, see https://ollama.com/library?sort=popular for reference.
 """
@@ -23,10 +25,23 @@ class Model:
 
     Methods
     -------
-    generate_answer(self, prompt: str) -> str
-        Generates answer based on prompt using model.
-
-
+     generate_answer_with_history(context_text: str, conversation_messages: List[str]) -> str
+        Generates an answer based on the context and a history of conversation messages.
+    invoke_with_toolcall(tool, messages) -> str
+        Invokes the model with a tool and a list of messages.
+    generate_answer_for_evaluation(question: str, expected_answer: str, actual_answer: str) -> str
+        Generates an answer for evaluation purposes based on a question, expected answer, and actual answer.
+        Only to be used by evaluation.py!
+    change_template(new_template: str) -> None
+        Changes the template used for generating answers.
+    get_model() -> str
+        Returns the name of the currently used model.
+    activate_sheldon_mode() -> str
+        Activates Easter Egg Sheldon mode, setting the template to the `template_sheldon`. BAZINGA!
+    set_template(template: str) -> None
+        Sets a specific template for generating answers.
+    reset_template() -> None
+        Resets the template to the default `template_standard`.
     """
     template: str = ""
 
@@ -54,21 +69,34 @@ class Model:
 
     def __init__(self, model: str):
         """
-        Constructs all necessary attributes for the model.
+        Initializes the `Model` class with the specified model. The model can be set in config/settings.py
 
         Parameters
         ----------
-        model: str, optional
-            model that will be used for generating answers. Change the model using model parameter, see available models here https://ollama.com/library?sort=popular. Default is 'llama3' by Meta
-
-        Returns
-        -------
-        None
+        model : str
+            The name of the Ollama model to use for generating answers.
+            See available models at https://ollama.com/library?sort=popular.
+            We recommend  'llama3.1'.
         """
         self.model: ChatOllama = ChatOllama(model=model)
         self.set_template(self.template_standard)
 
-    def generate_answer_with_history(self, context_text: str, conversation_messages: List[str]):
+    def generate_answer_with_history(self, context_text: str, conversation_messages: List[str]) -> str:
+        """
+        Generates an answer based on the context and conversation history.
+
+        Parameters
+        ----------
+        context_text : str
+            The context to provide to the model.
+        conversation_messages : List[str]
+            A list of previous conversation messages.
+
+        Returns
+        -------
+        str
+        The generated answer.
+        """
         prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
         system_message_content: str = prompt_template.format(context=context_text)
         prompt = [SystemMessage(system_message_content)] + conversation_messages
@@ -78,54 +106,93 @@ class Model:
         return answer
     
     def invoke_with_toolcall(self, tool, messages):
+        """
+        Invokes the model with a tool and a list of messages.
+
+        Parameters
+        ----------
+        tool : ?
+            The tool to bind and use with the model.
+        messages : ?
+            A list of messages to provide as input to the model.
+
+        Returns
+        -------
+        ?
+            The generated output after invoking the tool.
+        """
         bound_model = self.model.bind_tools([tool])
         return bound_model.invoke(messages)
     
     def generate_answer_for_evaluation(self, question: str, expected_answer: str, actual_answer: str) -> str:
         """
-        Generates answer from context retrieved by RAG and Query by user
+        Generates an answer for evaluation purposes. Used by evaluation.py
 
         Parameters
         ----------
-        context_text: str
-            context that was found by RAG
-        query: str
-            user question used to query the RAG and Model
+        question : str
+            The question provided for the evaluation.
+        expected_answer : str
+            The expected answer for comparison.
+        actual_answer : str
+            The actual answer generated for evaluation.
 
         Returns
         -------
         str
-            Output of model, i.e. generated answer
+            The generated answer for evaluation.
         """
         prompt_template: ChatPromptTemplate = ChatPromptTemplate.from_template(self.template)
         prompt: str = prompt_template.format(question=question, expected_answer=expected_answer, actual_answer=actual_answer)
-        print(f"prompting the LLM with: \n{prompt}")
+        #print(f"prompting the LLM with: \n{prompt}")
         answer: str = self.model.invoke(prompt)
         return answer
 
     def change_template(self, new_template: str) -> None:
         """
-        Allows the caller to change the template the Ai uses to generate answers
+        Changes the template used for generating answers.
+
         Parameters
         ----------
-        new_template: str
-            template that replaces the old one
-
-        Returns
-        -------
-        None
+        new_template : str
+            The new template to use.
         """
         self.template = new_template
 
     def get_model(self) -> str:
+        """
+        Retrieves the name of the currently used language  model.
+
+        Returns
+        -------
+        str
+            The name of the model.
+        """
         return self.model.model
 
     def activate_sheldon_mode(self) -> str:
+        """
+        Activates the easter egg. BAZINGA!
+        Returns
+        -------
+        BAAZZZIINGA!
+        """
         self.template = self.template_sheldon
         return "🧠 Activating Sheldon Mode, BAZINGA ⚡"
 
     def set_template(self, template: str) -> None:
+        """
+        Sets a specific template for generating answers.
+
+        Parameters
+        ----------
+        template : str
+            The template to use.
+        """
         self.template = template
 
     def reset_template(self):
+        """
+        Resets the template to the default `template_standard`.
+        """
         self.template = self.template_standard

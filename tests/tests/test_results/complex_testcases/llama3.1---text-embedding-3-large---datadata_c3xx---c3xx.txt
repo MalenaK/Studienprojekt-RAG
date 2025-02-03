@@ -1,0 +1,104 @@
+Question: In which stages can RAGs be categorized?
+According to the provided context, RAG research paradigms are continuously evolving and can be categorized into three stages:
+
+1. **Naive RAG**: This is the earliest methodology that gained prominence shortly after the emergence of LLMs.
+2. **Advanced RAG**: Developed in response to specific shortcomings in Naive RAG, this stage focuses on enhancing language models through retrieval-augmented techniques.
+3. **Modular RAG**: Another development trajectory aimed at addressing limitations in Advanced RAG.
+
+(Please note that these stages are described in the context of Figure 3, which is mentioned but not visually available in the provided text.)
+
+Source:
+- Naive RAG: ..\data\data_c3xx\2312.10997v5.pdf:1:2
+- Advanced and Modular RAG: implied by the text describing Naive RAG's limitations and the subsequent development of these two stages
+--------------------------------------------------
+Question: What improvements do advanced RAGs offer compared to the naive RAGs?
+Advanced RAG introduces specific improvements to overcome the limitations of Naive RAG. Focusing on enhancing retrieval quality, it employs pre-retrieval and post-retrieval strategies [8]. To tackle the indexing issues, Advanced RAG refines its indexing techniques through the use of a sliding window approach, fine-grained segmentation, and the incorporation of metadata.
+
+Additionally, it incorporates several optimization methods to streamline the retrieval process. These improvements allow for more accurate and relevant information to be retrieved, addressing some of the shortcomings present in Naive RAG.
+
+Source of info: ..\data\data_c3xx\2312.10997v5.pdf:2:3
+--------------------------------------------------
+Question: What are the main methods of the post-retrieval process?
+The main methods in the post-retrieval process include:
+
+1. Rerank chunks: This involves re-ranking the retrieved information to relocate the most relevant content to the edges of the prompt.
+2. Context compressing: This method is used to select the essential information, emphasize critical sections, and shorten the context to be processed.
+
+These concepts have been implemented in frameworks such as LlamaIndex2, LangChain3, and HayStack [12].
+
+Source of info in this block: 
+Context: . Common
+methods include query rewriting query transformation, query expansion and other techniques [7], [9]–[11].
+Post-Retrieval Process . Once relevant context is retrieved,
+it’s crucial to integrate it effectively with the query. The main
+methods in post-retrieval process include rerank chunks and
+context compressing. Re-ranking the retrieved information to
+relocate the most relevant content to the edges of the prompt is
+a key strategy. This concept has been implemented in frame-
+works such as LlamaIndex2, LangChain3, and HayStack [12].
+Feeding all relevant documents directly into LLMs can lead
+to information overload, diluting the focus on key details with
+irrelevant content.To mitigate this, post-retrieval efforts con-
+centrate on selecting the essential information, emphasizing
+critical sections, and shortening the context to be processed.
+--------------------------------------------------
+Question: How does the Modular RAG architecture, in general, advance beyond the naive and the advanced RAG paradigms?
+The Modular RAG architecture advances beyond the Naive and Advanced RAG paradigms by introducing multiple specific functional modules and replacing existing ones, allowing for greater flexibility overall. This is evident in the introduction of methods such as iterative and adaptive retrieval. 
+
+Source of info in this block: ..\data\data_c3xx\2312.10997v5.pdf:3:1
+--------------------------------------------------
+Question: What are the differences between RAG and Fine-Tuning, which should I use?
+Based on the provided context, here are the key differences between RAG (Reinforced Augmented Generation) and Fine-Tuning:
+
+1. **External Knowledge Requirements**: RAG requires external knowledge sources to provide real-time information retrieval, whereas Fine-Tuning does not necessarily require external knowledge.
+2. **Model Adaption Requirements**: RAG needs adaptability in its model to effectively utilize external knowledge sources, while Fine-Tuning involves further training the model to fit a specific task or domain.
+3. **Scenario Suitability**: RAG is suitable for precise information retrieval tasks and dynamic environments where real-time updates are necessary. Fine-Tuning is better suited for scenarios requiring replication of specific structures, styles, or formats.
+
+The choice between RAG and Fine-Tuning depends on your specific use case and goals:
+
+* Use RAG when:
+	+ You need to retrieve precise information from external sources.
+	+ Your task involves dynamic environments with real-time updates.
+	+ Interpretability is crucial for your model's outputs.
+* Use Fine-Tuning when:
+	+ Your task requires the model to learn and replicate specific structures, styles, or formats.
+	+ You want to fine-tune a pre-trained model on a specific domain or dataset.
+
+It's worth noting that Modular RAG has become more integrated with Fine-Tuning techniques in recent research. This suggests that combining both approaches can lead to better results in certain scenarios.
+
+Ultimately, the decision between RAG and Fine-Tuning depends on your specific requirements and the characteristics of your task.
+--------------------------------------------------
+Question: What role does LLMs-Generated Content have in RAG systems?
+According to the provided context, LLMs-Generated Content plays a role in addressing the limitations of external auxiliary information in RAG systems. Specifically, some research has focused on exploiting LLMs' internal knowledge by:
+
+* Classifying questions as known or unknown (Skr [58])
+* Replacing traditional retrievers with an LLM generator (GenRead [13]), which finds that LLM-generated contexts often contain more accurate answers due to better alignment with the pre-training objectives of causal language modeling.
+
+This suggests that LLMs-Generated Content is being explored as a way to enhance RAG systems by leveraging the internal knowledge and capabilities of Large Language Models. 
+
+Source: ..\data\data_c3xx\2312.10997v5.pdf:6:2
+--------------------------------------------------
+Question: What are the names of the main methods with which queries can be improved?
+The main methods for improving queries include:
+
+1. Query rewriting [7], [9]–[11]
+2. Query transformation, specifically query rewriting is a part of this method 
+3. Query expansion
+4. Other techniques 
+
+Additionally, there are also the following mentioned in other parts of the text:
+- Rerank chunks and context compressing (part of post-retrieval process) [12]
+
+And in the context of modular RAG architecture:
+
+- Iterative and adaptive retrieval.
+
+Please note that the source references for these methods are provided at the end of each block.
+--------------------------------------------------
+Question: What is the impact of including task irrelevant documents, will accuracy decrease?
+According to the context [54], it was initially assumed that including irrelevant documents would reduce quality and lead to decreased accuracy. However, research findings reveal that including irrelevant documents can unexpectedly increase accuracy by over 30%. This contradicts the initial assumption of reduced quality.
+
+Adding relevant info from this block: 
+
+Cuconasu et al. [54] analyze which type of documents should be retrieved, evaluate the relevance of the documents to the prompt, their position, and the number included in the context... The research findings reveal that including irrelevant documents can unexpectedly increase accuracy by over 30%.
+--------------------------------------------------
