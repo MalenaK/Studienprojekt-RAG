@@ -1,6 +1,33 @@
-#We number the test such that they always begin with a hundred to stay flexible and add tests for a specific document if necessary
+"""
+Test Cases for the RAG
 
-#FIBA Rulebook DOCUMENT
+This script defines a set of test cases to evaluate the performance and correctness of
+the system using facts from documents. The tests include
+positive and negative (complementary) cases for three different knowledge domains:
+
+1. **FIBA Rulebook** (Basketball rules)
+2. **M4A3 Sherman Document** (Specifications of the M4A3 Sherman tank)
+3. **Germany Fact List** (Key facts about Germany)
+
+Each test case consists of:
+- A question (string)
+- The expected correct answer (string)
+- A complementary (incorrect) answer for testing response accuracy
+
+Additionally, more complex test cases are defined based on the following papers about RAG:
+- https://arxiv.org/pdf/2405.06211
+- https://arxiv.org/pdf/2404.19543 
+- https://arxiv.org/pdf/2312.10997
+
+Test cases are numbered in the hundreds to allow flexible insertion of new cases for specific documents:
+- `100s` → FIBA Rulebook
+- `200s` → M4A3 Sherman
+- `300s` → Germany Fact List
+- `C1xx - C4xx` → Complex test cases based on RAG papers
+"""
+
+#FIBA Rulebook
+
 test_case_101 = ["A game of Basketball is played by how many teams?", "2"]
 test_case_101_complement = ["A game of Basketball is played by how many teams?", "10"]
 
@@ -60,7 +87,7 @@ fiba_negative_test_cases = [
 
 
 
-#M4A3 Sherman Document
+#M4A3 Sherman
 
 test_case_201 = ["How thick is the hull armor?", "1 inch"]
 test_case_201_complement = ["How thick is the hull armor?", "15 inch"]
@@ -122,7 +149,8 @@ sherman_negative_test_cases = [
 
 
 
-#Germany fact list Document
+# Germany Fact List
+
 test_case_301 = ["What was the real gdp of Germany in 2023?", "5.23 trillion"]
 test_case_301_complement = ["What was the real gdp of Germany in 2023?", "6 trillion"]
 
@@ -183,7 +211,8 @@ germany_negative_test_cases = [
 positive_test_cases = fiba_positive_test_cases  + sherman_positive_test_cases + germany_positive_test_cases
 negative_test_cases = fiba_negative_test_cases + sherman_negative_test_cases + germany_negative_test_cases
 
-#complex test cases as specified in our google doc
+# Complex test cases based on RAG papers
+
 test_cases_c1xx = [
     "What kind of retrievers can be used in RA-LLMs?",
     "Once my data is stored in the RA-LLM system, in what format will it be retrieved from the database?",
